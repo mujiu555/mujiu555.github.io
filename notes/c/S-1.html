@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>From The C Programming Language To Theoretical Computer Science (Section −1)</title>
+  <link href="/schemas/page.css" rel="stylesheet"/>
+  <link href="/math-block.css" rel="stylesheet"/>
+  <link href="/math-inline.css" rel="stylesheet"/>
+  <link href="/mathyml.css" rel="stylesheet"/>
+  <link href="/inline-fold.css" rel="stylesheet"/>
+  <link crossorigin="true" href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@700&display=swap" rel="stylesheet">
+  
+  <link href="/components/sidebar.css" rel="stylesheet">
+  <script>
+    setInterval(async () => {
+      const res = await fetch('/_reload')
+      if (await res.text() === '1') {
+        location.reload()
+      }
+    }, 500)
+  </script>
+  <link href="/rewrite/code_inline.css" rel="stylesheet">
+  
+  <link href="https://fred-wang.github.io/MathFonts/NewComputerModern/mathfonts.css" rel="stylesheet">
+</head>
+<body>
+
+  <header class="header" parent="true">
+    <nav class="nav">
+      <div class="logo">
+        <span onclick="window.location.href='/index'" title="GitHub@mujiu555's page [/index]">« GitHub@mujiu555's page</span>
+      </div>
+    </nav>
+  </header>
+  <div id="grid-wrapper" sidebar="true">
+    <article>
+      <section class="block" id="notes/c/S-1">
+        <details open="">
+          <summary>
+            <header class="top-header" show-metadata="true">
+              <h1>
+                From The C Programming Language To Theoretical Computer Science (Section −1) 
+              </h1>
+              <div class="metadata">
+                <ul>
+                  <li class="meta-item">
+                    <span class="link external"><a href="https://github.com/mujiu555" title="https://github.com/mujiu555">GitHub@mujiu555</a></span>
+                  </li>
+                  <li class="meta-item">
+                    2025-12-14 23:46
+                  </li>
+                  <li class="meta-item">
+                    <span class="link local"><a href="https://github.com/mujiu555/Wishful-Thinking/tree/main/site" title="Source [https://github.com/mujiu555/Wishful-Thinking/tree/main/site]">Source</a></span>
+                  </li>
+                </ul>
+              </div>
+            </header>
+          </summary>
+          
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-1">1</span>
+ From The C Programming Language to Theoretical Computer Science</summary>
+      
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-1.1">1.1</span>
+ Section −1: Linux and Tool Chain</summary>
+      
+    </details>
+  </section>
+  
+
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2">2</span>
+ Contents</summary>
+      <div>From The C Programming Language to Theoretical Computer Science <span style="display: inline-block;"></span> ⁠1</div>
+    <div>Section −1: Linux and Tool Chain <span style="display: inline-block;"></span> ⁠1</div>
+    <div>Intro <span style="display: inline-block;"></span> ⁠1</div>
+    <div>Virtualization <span style="display: inline-block;"></span> ⁠1</div>
+    <div>Virtual Machine <span style="display: inline-block;"></span> ⁠1</div>
+    <div>Full Virtualization & Semi Virtualization <span style="display: inline-block;"></span> ⁠1</div>
+    <div>Hardware Virtualization Support <span style="display: inline-block;"></span> ⁠1</div>
+    <div>Virtual Box <span style="display: inline-block;"></span> ⁠1</div>
+    <div>Operating System <span style="display: inline-block;"></span> ⁠1</div>
+    <div>Bootloader <span style="display: inline-block;"></span> ⁠1</div>
+    <div>Bootstrap <span style="display: inline-block;"></span> ⁠1</div>
+    <div>Kernel <span style="display: inline-block;"></span> ⁠1</div>
+    <div>GRUB, Systemd-boot <span style="display: inline-block;"></span> ⁠1</div>
+    <div>GNU/ Linux, Minix, GNU/Hurd, *BSD, Illumos, Drawin, …: *nix (Unix-Like) <span style="display: inline-block;"></span> ⁠1</div>
+    <div>Distribution <span style="display: inline-block;"></span> ⁠1</div>
+    <div>Debian, Ubuntu, RHEL, Arch, NixOS, Slackware <span style="display: inline-block;"></span> ⁠1</div>
+    <div>Root Distribution <span style="display: inline-block;"></span> ⁠1</div>
+    <div>Why Ubuntu <span style="display: inline-block;"></span> ⁠1</div>
+    <div>Live CD <span style="display: inline-block;"></span> ⁠1</div>
+    <div>Bootstrap <span style="display: inline-block;"></span> ⁠1</div>
+    <div>Installation <span style="display: inline-block;"></span> ⁠1</div>
+    <div>Partition <span style="display: inline-block;"></span> ⁠1</div>
+    <div>Partition Table <span style="display: inline-block;"></span> ⁠1</div>
+    <div>File System <span style="display: inline-block;"></span> ⁠1</div>
+    <div>Log, CoW, Snapshot <span style="display: inline-block;"></span> ⁠1</div>
+    <div>User & Group <span style="display: inline-block;"></span> ⁠1</div>
+    <div>Privilege <span style="display: inline-block;"></span> ⁠1</div>
+    <div>Root user <span style="display: inline-block;"></span> ⁠1</div>
+    <div>Sudo <span style="display: inline-block;"></span> ⁠1</div>
+    <div>Terminal, Shell, Terminal Simulator & <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">tty/n</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">tty/n</span></code>
+</span> <span style="display: inline-block;"></span> ⁠1</div>
+    <div>FHS <span style="display: inline-block;"></span> ⁠1</div>
+    <div>home <span style="display: inline-block;"></span> ⁠1</div>
+    <div>root <span style="display: inline-block;"></span> ⁠1</div>
+    <div>bin & sbin <span style="display: inline-block;"></span> ⁠1</div>
+    <div>usr <span style="display: inline-block;"></span> ⁠1</div>
+    <div>User Commands <span style="display: inline-block;"></span> ⁠1</div>
+    <div>Sudoer Commands <span style="display: inline-block;"></span> ⁠1</div>
+    <div>commands, parameters, augments <span style="display: inline-block;"></span> ⁠1</div>
+    <div>shell tricks, pipeline, i/o redirection <span style="display: inline-block;"></span> ⁠1</div>
+    <div>Forground & Background <span style="display: inline-block;"></span> ⁠1</div>
+    <div>Process Suspend <span style="display: inline-block;"></span> ⁠1</div>
+    <div>signal <span style="display: inline-block;"></span> ⁠1</div>
+    <div>Terminal Reuse <span style="display: inline-block;"></span> ⁠1</div>
+    <div>Aliasing <span style="display: inline-block;"></span> ⁠1</div>
+    <div>SSH <span style="display: inline-block;"></span> ⁠1</div>
+    <div>Shell substitution <span style="display: inline-block;"></span> ⁠1</div>
+    <div>Command line Editor <span style="display: inline-block;"></span> ⁠1</div>
+    <div>Version Control <span style="display: inline-block;"></span> ⁠1</div>
+    <div>Build System <span style="display: inline-block;"></span> ⁠1</div>
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.1">2.1</span>
+ Intro</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.2">2.2</span>
+ Virtualization</summary>
+      
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.2.1">2.2.1</span>
+ Virtual Machine</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.2.2">2.2.2</span>
+ Full Virtualization & Semi Virtualization</summary>
+      <p>Full Virtualization:</p>
+    <p>全虚拟化通过软件模拟硬件的架构, 和运行, 效率低</p>
+    <ol>
+      <li>qemu</li>
+      <li>bochs</li>
+    </ol>
+    <p>Semi Virtualization:</p>
+    <p>半虚拟化有硬件提供辅助, 虚拟化运行的指令可以直接发到硬件, 由硬件直接运行, 需要硬件支持, 并且无法跨硬件平台模拟</p>
+    <ol>
+      <li>KVM</li>
+      <li>ZEN</li>
+    </ol>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.2.3">2.2.3</span>
+ Hardware Virtualization Support</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.2.4">2.2.4</span>
+ Virtual Box</summary>
+      
+    </details>
+  </section>
+  
+
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.3">2.3</span>
+ Operating System</summary>
+      
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.3.1">2.3.1</span>
+ Bootloader</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.3.2">2.3.2</span>
+ Bootstrap</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.3.3">2.3.3</span>
+ Kernel</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.3.4">2.3.4</span>
+ GRUB, Systemd-boot</summary>
+      
+    </details>
+  </section>
+  
+
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.4">2.4</span>
+ GNU/ Linux, Minix, GNU/Hurd, *BSD, Illumos, Drawin, …: *nix (Unix-Like)</summary>
+      
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.4.1">2.4.1</span>
+ Distribution</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.4.2">2.4.2</span>
+ Debian, Ubuntu, RHEL, Arch, NixOS, Slackware</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.4.3">2.4.3</span>
+ Root Distribution</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.4.4">2.4.4</span>
+ Why Ubuntu</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.4.5">2.4.5</span>
+ Live CD</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.4.6">2.4.6</span>
+ Bootstrap</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.4.7">2.4.7</span>
+ Installation</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.4.8">2.4.8</span>
+ Partition</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.4.9">2.4.9</span>
+ Partition Table</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.4.10">2.4.10</span>
+ File System</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.4.11">2.4.11</span>
+ Log, CoW, Snapshot</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.4.12">2.4.12</span>
+ User & Group</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.4.13">2.4.13</span>
+ Privilege</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.4.14">2.4.14</span>
+ Root user</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.4.15">2.4.15</span>
+ Sudo</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.4.16">2.4.16</span>
+ Terminal, Shell, Terminal Simulator & <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">tty/n</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">tty/n</span></code>
+</span></summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.4.17">2.4.17</span>
+ FHS</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.4.18">2.4.18</span>
+ home</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.4.19">2.4.19</span>
+ root</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.4.20">2.4.20</span>
+ bin & sbin</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.4.21">2.4.21</span>
+ usr</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.4.22">2.4.22</span>
+ User Commands</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.4.23">2.4.23</span>
+ Sudoer Commands</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.4.24">2.4.24</span>
+ commands, parameters, augments</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.4.25">2.4.25</span>
+ shell tricks, pipeline, i/o redirection</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.4.26">2.4.26</span>
+ Forground & Background</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.4.27">2.4.27</span>
+ Process Suspend</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.4.28">2.4.28</span>
+ signal</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.4.29">2.4.29</span>
+ Terminal Reuse</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.4.30">2.4.30</span>
+ Aliasing</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.4.31">2.4.31</span>
+ SSH</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.4.32">2.4.32</span>
+ Shell substitution</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.4.33">2.4.33</span>
+ Command line Editor</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.4.34">2.4.34</span>
+ Version Control</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/c/S-1-2.4.35">2.4.35</span>
+ Build System</summary>
+      
+    </details>
+  </section>
+  
+
+    </details>
+  </section>
+  
+
+    </details>
+  </section>
+  
+
+ 
+        </details>
+      </section>
+      
+    
+
+
+    </article>
+    
+    <nav id="toc">
+        <div class="block">
+            <h1>Table of Contents</h1>
+            <ul class="block">
+            
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1">
+<span id="notes/c/S-1"></span>
+From The C Programming Language To Theoretical Computer Science (Section −1)</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-1">
+<span id="notes/c/S-1-1">1</span>
+From The C Programming Language to Theoretical Computer Science</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-1.1">
+<span id="notes/c/S-1-1.1">1.1</span>
+Section −1: Linux and Tool Chain</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2">
+<span id="notes/c/S-1-2">2</span>
+Contents</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.1">
+<span id="notes/c/S-1-2.1">2.1</span>
+Intro</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.2">
+<span id="notes/c/S-1-2.2">2.2</span>
+Virtualization</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.2.1">
+<span id="notes/c/S-1-2.2.1">2.2.1</span>
+Virtual Machine</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.2.2">
+<span id="notes/c/S-1-2.2.2">2.2.2</span>
+Full Virtualization & Semi Virtualization</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.2.3">
+<span id="notes/c/S-1-2.2.3">2.2.3</span>
+Hardware Virtualization Support</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.2.4">
+<span id="notes/c/S-1-2.2.4">2.2.4</span>
+Virtual Box</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.3">
+<span id="notes/c/S-1-2.3">2.3</span>
+Operating System</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.3.1">
+<span id="notes/c/S-1-2.3.1">2.3.1</span>
+Bootloader</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.3.2">
+<span id="notes/c/S-1-2.3.2">2.3.2</span>
+Bootstrap</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.3.3">
+<span id="notes/c/S-1-2.3.3">2.3.3</span>
+Kernel</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.3.4">
+<span id="notes/c/S-1-2.3.4">2.3.4</span>
+GRUB, Systemd-boot</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.4">
+<span id="notes/c/S-1-2.4">2.4</span>
+GNU/ Linux, Minix, GNU/Hurd, *BSD, Illumos, Drawin, …: *nix (Unix-Like)</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.4.1">
+<span id="notes/c/S-1-2.4.1">2.4.1</span>
+Distribution</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.4.2">
+<span id="notes/c/S-1-2.4.2">2.4.2</span>
+Debian, Ubuntu, RHEL, Arch, NixOS, Slackware</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.4.3">
+<span id="notes/c/S-1-2.4.3">2.4.3</span>
+Root Distribution</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.4.4">
+<span id="notes/c/S-1-2.4.4">2.4.4</span>
+Why Ubuntu</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.4.5">
+<span id="notes/c/S-1-2.4.5">2.4.5</span>
+Live CD</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.4.6">
+<span id="notes/c/S-1-2.4.6">2.4.6</span>
+Bootstrap</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.4.7">
+<span id="notes/c/S-1-2.4.7">2.4.7</span>
+Installation</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.4.8">
+<span id="notes/c/S-1-2.4.8">2.4.8</span>
+Partition</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.4.9">
+<span id="notes/c/S-1-2.4.9">2.4.9</span>
+Partition Table</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.4.10">
+<span id="notes/c/S-1-2.4.10">2.4.10</span>
+File System</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.4.11">
+<span id="notes/c/S-1-2.4.11">2.4.11</span>
+Log, CoW, Snapshot</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.4.12">
+<span id="notes/c/S-1-2.4.12">2.4.12</span>
+User & Group</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.4.13">
+<span id="notes/c/S-1-2.4.13">2.4.13</span>
+Privilege</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.4.14">
+<span id="notes/c/S-1-2.4.14">2.4.14</span>
+Root user</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.4.15">
+<span id="notes/c/S-1-2.4.15">2.4.15</span>
+Sudo</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.4.16">
+<span id="notes/c/S-1-2.4.16">2.4.16</span>
+Terminal, Shell, Terminal Simulator & <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">tty/n</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">tty/n</span></code>
+</span></a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.4.17">
+<span id="notes/c/S-1-2.4.17">2.4.17</span>
+FHS</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.4.18">
+<span id="notes/c/S-1-2.4.18">2.4.18</span>
+home</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.4.19">
+<span id="notes/c/S-1-2.4.19">2.4.19</span>
+root</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.4.20">
+<span id="notes/c/S-1-2.4.20">2.4.20</span>
+bin & sbin</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.4.21">
+<span id="notes/c/S-1-2.4.21">2.4.21</span>
+usr</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.4.22">
+<span id="notes/c/S-1-2.4.22">2.4.22</span>
+User Commands</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.4.23">
+<span id="notes/c/S-1-2.4.23">2.4.23</span>
+Sudoer Commands</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.4.24">
+<span id="notes/c/S-1-2.4.24">2.4.24</span>
+commands, parameters, augments</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.4.25">
+<span id="notes/c/S-1-2.4.25">2.4.25</span>
+shell tricks, pipeline, i/o redirection</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.4.26">
+<span id="notes/c/S-1-2.4.26">2.4.26</span>
+Forground & Background</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.4.27">
+<span id="notes/c/S-1-2.4.27">2.4.27</span>
+Process Suspend</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.4.28">
+<span id="notes/c/S-1-2.4.28">2.4.28</span>
+signal</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.4.29">
+<span id="notes/c/S-1-2.4.29">2.4.29</span>
+Terminal Reuse</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.4.30">
+<span id="notes/c/S-1-2.4.30">2.4.30</span>
+Aliasing</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.4.31">
+<span id="notes/c/S-1-2.4.31">2.4.31</span>
+SSH</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.4.32">
+<span id="notes/c/S-1-2.4.32">2.4.32</span>
+Shell substitution</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.4.33">
+<span id="notes/c/S-1-2.4.33">2.4.33</span>
+Command line Editor</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.4.34">
+<span id="notes/c/S-1-2.4.34">2.4.34</span>
+Version Control</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/c/S-1-2.4.35">
+<span id="notes/c/S-1-2.4.35">2.4.35</span>
+Build System</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+
+            </ul>
+        </div>
+    </nav>
+ 
+  </div>
+
+
+</body>
+</html>

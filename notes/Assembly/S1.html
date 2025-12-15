@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Assembly, Constitution Principle of Computer, Computer Organization and Architecture and Operating System (Section I)</title>
+  <link href="/schemas/page.css" rel="stylesheet"/>
+  <link href="/math-block.css" rel="stylesheet"/>
+  <link href="/math-inline.css" rel="stylesheet"/>
+  <link href="/mathyml.css" rel="stylesheet"/>
+  <link href="/inline-fold.css" rel="stylesheet"/>
+  <link crossorigin="true" href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@700&display=swap" rel="stylesheet">
+  
+  <link href="/components/sidebar.css" rel="stylesheet">
+  <script>
+    setInterval(async () => {
+      const res = await fetch('/_reload')
+      if (await res.text() === '1') {
+        location.reload()
+      }
+    }, 500)
+  </script>
+  <link href="/rewrite/code_inline.css" rel="stylesheet">
+  
+  <link href="https://fred-wang.github.io/MathFonts/NewComputerModern/mathfonts.css" rel="stylesheet">
+</head>
+<body>
+
+  <header class="header" parent="true">
+    <nav class="nav">
+      <div class="logo">
+        <span onclick="window.location.href='/index'" title="GitHub@mujiu555's page [/index]">« GitHub@mujiu555's page</span>
+      </div>
+    </nav>
+  </header>
+  <div id="grid-wrapper" sidebar="true">
+    <article>
+      <section class="block" id="notes/Assembly/S1">
+        <details open="">
+          <summary>
+            <header class="top-header" show-metadata="true">
+              <h1>
+                Assembly, Constitution Principle of Computer, Computer Organization and Architecture and Operating System (Section I) 
+              </h1>
+              <div class="metadata">
+                <ul>
+                  <li class="meta-item">
+                    <span class="link external"><a href="https://github.com/mujiu555" title="https://github.com/mujiu555">GitHub@mujiu555</a></span>
+                  </li>
+                  <li class="meta-item">
+                    2025-12-14 23:46
+                  </li>
+                  <li class="meta-item">
+                    <span class="link local"><a href="https://github.com/mujiu555/Wishful-Thinking/tree/main/site" title="Source [https://github.com/mujiu555/Wishful-Thinking/tree/main/site]">Source</a></span>
+                  </li>
+                </ul>
+              </div>
+            </header>
+          </summary>
+          
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1">1</span>
+ Assembly, Constitution Principle of Computer, Computer Organization and Architecture and Operating System</summary>
+      
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.1">1.1</span>
+ Section I: Basis Assembly</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.2">1.2</span>
+ Coding, Numeration, Radix</summary>
+      <p>Values, plain bits, expressed in high or low electronic levels, may represent some information. With corresponding context or encoding, together with its own properties, like name, can be then interpreted as real information, the data. Raw information, data, must have some way to be stored. And the way to translate original data into values can be stored in computer, it then called, "coding". Encoding converting data into a specific format or representation.</p>
+    <p>Coding help people understand data.</p>
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.2.1">1.2.1</span>
+ Symbol, Calculation & Presentation</summary>
+      <p>Calculation are some relation between different data. Directly, manipulate different value in different coding.</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.2.2">1.2.2</span>
+ Decimal</summary>
+      <p>Decimal integers are numbers based on ten, which means every number represented in decimal form may contains only 0-9. Every digit's value based on position dependent power of 10.</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.2.3">1.2.3</span>
+ Binary</summary>
+      <p>Binary integers are numbers based on two, every time a digit has value of 2, will result in carry. Digits in binary representation called "bits". Thus only 0, 1 will appear in binary representation.</p>
+    <p>Every bit's value based on position dependent power of 2.</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.2.4">1.2.4</span>
+ Hexadecimal, Octal</summary>
+      <p>Hexadecimal numbers based on 16 while Octal numbers based on 8.</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.2.5">1.2.5</span>
+ Radix conversion</summary>
+      <p>Referencing <span class="link external"><a href="https://github.com/mujiu555/Wishful-Thinking/blob/main/doc/root/c/typ/S1.typ" title="https://github.com/mujiu555/Wishful-Thinking/blob/main/doc/root/c/typ/S1.typ">redix</a></span>.</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.2.6">1.2.6</span>
+ Data, Numbers, Computer</summary>
+      <p>Data is presented in binary number in computer.</p>
+    <p>For each cell of calculation unit can only have two state, open and close. Which has natural one-to-one correspondence with binary bits.</p>
+    </details>
+  </section>
+  
+
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.3">1.3</span>
+ CPU, BUS, Memory</summary>
+      <p>Most important part of a computer is CPU. CPU, central processing unit, controls almost all calculation process of computer.</p>
+    <p>And, further more, ALU, arithmetic logic unit, is kernel of CPU. The ALU is responsible for arithmetic and logical computations. Without an ALU, the CPU would be unable to perform its core operations.</p>
+    <p>Registers are another kernel of CPU, which provides ability for CPU to store data.</p>
+    <p>CU, front-end of a CPU, controls the behaviour of whole CPU. CU may fetch commands, do preprocessing and instruct command execution order. Preprocessing for commands can be <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">PreDecode</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">PreDecode</span></code>
+</span>, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Decode</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Decode</span></code>
+</span>, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Micro-Fusion</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Micro-Fusion</span></code>
+</span>/<span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Macro-Fusion</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Macro-Fusion</span></code>
+</span>, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Branch Prediction</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Branch Prediction</span></code>
+</span> and <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Static Prediction</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Static Prediction</span></code>
+</span>.</p>
+    <p>To boost execution for float point number calculation, some CPU may also have FPU, floating point unit.</p>
+    <p>Memory access is another function a CPU must have, so, AGU, address generation unit, or ACU, address calculation unit, will help CPU calculating address offset of main memory.</p>
+    <p>MMU, memory management unit, a control unit maybe outside CPU, controls memory, maps logical memory from to physical address.</p>
+    <p>TLB, translation lookaside buffer, a critical cache for memory management, every time CPU try to map and fetch data from memory, it may visit TLB, so that memory address translation may speed up by checking existing mapping entry.</p>
+    <p>Cache, a general purpose buffer for data fetch from memory, once data caches, it can be access much faster than other data still exist only in main memory later. When data accessed, changed and used, it may also be written back to memory when every thing finished.</p>
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.3.1">1.3.1</span>
+ Data, Instructions</summary>
+      <p>Data, the raw information, may has some specified meaning after interpreting by associating it together with context and name. Instruction, represented in same way as regular data, in binary number.</p>
+    <p>Data is what a computer processes, and instructions specify how to do so.</p>
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.3.1.1">1.3.1.1</span>
+ Dimension, Unit</summary>
+      <p>To measure how much data there are, it is needed to specify units.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Unit</th>
+          <th>Conversion</th>
+          <th>From</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">bit</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">bit</span></code>
+</span></td>
+          <td>/</td>
+          <td>None</td>
+        </tr>
+        <tr>
+          <td><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Byte</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Byte</span></code>
+</span></td>
+          <td>8</td>
+          <td><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">bit</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">bit</span></code>
+</span></td>
+        </tr>
+        <tr>
+          <td><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">KiB</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">KiB</span></code>
+</span></td>
+          <td>1024</td>
+          <td><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Byte</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Byte</span></code>
+</span></td>
+        </tr>
+        <tr>
+          <td><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">MiB</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">MiB</span></code>
+</span></td>
+          <td>1024</td>
+          <td><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">KiB</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">KiB</span></code>
+</span></td>
+        </tr>
+        <tr>
+          <td><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">GiB</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">GiB</span></code>
+</span></td>
+          <td>1024</td>
+          <td><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">MiB</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">MiB</span></code>
+</span></td>
+        </tr>
+        <tr>
+          <td><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">TiB</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">TiB</span></code>
+</span></td>
+          <td>1024</td>
+          <td><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">GiB</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">GiB</span></code>
+</span></td>
+        </tr>
+        <tr>
+          <td><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">EiB</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">EiB</span></code>
+</span></td>
+          <td>1024</td>
+          <td><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">TiB</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">TiB</span></code>
+</span></td>
+        </tr>
+        <tr>
+          <td><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">kB</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">kB</span></code>
+</span></td>
+          <td>1000</td>
+          <td><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Byte</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Byte</span></code>
+</span></td>
+        </tr>
+        <tr>
+          <td><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">mB</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">mB</span></code>
+</span></td>
+          <td>1000</td>
+          <td><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">kB</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">kB</span></code>
+</span></td>
+        </tr>
+        <tr>
+          <td><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">gB</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">gB</span></code>
+</span></td>
+          <td>1000</td>
+          <td><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">mB</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">mB</span></code>
+</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p>Most common used unit in computer is Byte, it is also the smallest data unit a computer can handle (for most computer).</p>
+    <p>As for information theory, smallest unit is bit, which is also the smallest unit to weigh memory. For most memory (SRAM, DRAM), the smallest storage unit is also bit. In most architecture, memory is visited in bytes, but there still some special processor can address using bit. Some even special ones may address by word, or double word.</p>
+    <p>Processors may treat data different as well. As for processing granularity, a byte is typically the smallest independently loadable/storable object, whereas the minimum operand width for arithmetic/logic operations depends on the ISA (commonly 8/16/32/64 bits).</p>
+    </details>
+  </section>
+  
+
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.3.2">1.3.2</span>
+ Harvard, von Neumann Architecture</summary>
+      <p>As we mentioned before, data and instructions both stored in binary form. So, CPU cannot actually tell whether some memory storing data or instructions.</p>
+    <p>Thus there are two method to store them.</p>
+    <p>One is "von Neumann Architecture", data and instructions share same memory space. In this way, it depends on context to distinct which one is data and which one is instruction.</p>
+    <p>Another way called "Harvard Architecture", for which data and instructions are stored in two different memory.</p>
+    <p>von Neumann architecture provides programmers with flexibility to treat data as instructions, so that some self-modifying code can be possible. For example, some JIT compiler are implemented in such way.</p>
+    <p>Harvard architecture, however, prevent data from being treated as instruction. Though it reduces flexibility, ambiguity are prevented.</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.3.3">1.3.3</span>
+ Program Counter, Instruction Register</summary>
+      <p>How a program executes? CPU reads instruction, and them executes them. Both Harvard and von Neumann architecture will follow this process.</p>
+    <p>But how CPU read instructions then? Let's concerning von Neumann architecture first: Data and instructions are mixed up in memory for a von Neumann processor. Thus, there must have something can record which one is instruction, so that processor may not read wrong memory. Each time processor want to execute next instruction, it will refer to the thing. And after processor executed one instruction, it may move to next instruction, so that processor can execute whole program in specified sequence, rather than just execute one instruction repeatedly. What will happened when we switch to Harvard architecture processor? Still, though where instructions are placed is fixed for computer during a program's execution. The processor must know, how many instructions it has executed and where next instruction is.</p>
+    <p>Thus, in practice, there must exist a abstract register called "Program Counter Register" tracks instruction execution.</p>
+    <p>But, where shall CPU read instructions to? To parse and knowing detailed execution information, CPU first read instructions according to PC, and then put what it reads to IR, "Instruction Register".</p>
+    <p>Those instructions then parsed and analyzed, and take effects.</p>
+    <p>PC and IR are both abstracted concept of physical registers. They may not exists in real CPU, but there must exist a, or group of, register(s) do the function they describes.</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.3.4">1.3.4</span>
+ Memory Address Register, Memory Buffer Register, Memory Data Register & Memory</summary>
+      <p>When CPU try to visit memory, it also needs something to record where it meant to read. Just like PC records which instruction should execute next. MAR, "Memory Address Register" records which memory should be read next. And just like IR records instruction read, MBR caches data read from memory.</p>
+    <p>In some case, MBR can also be called as "Memory, Data Register", MDR.</p>
+    <p>Furthermore, most important, MAR, MBR still not the real register.</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.3.5">1.3.5</span>
+ Fetch-Execute Cycle</summary>
+      <p>When CPU executing programs, it follows the fetch-execute cycle. Until it receives halt instruction, it will repeat read, decode, execute process.</p>
+    <p>Instructions are stored in memory, and CPU must read them so that it can be decode then. CU, controls the whole process of reading and decode.</p>
+    <p>CPU first determine logical memory address according to PC, and then send the memory request to MAR. MAR store the command and communicate with main memory. Main memory pass requested data, or instructions to CPU by bus, and then store those data in MBR. IR then fetch instruction from MBR, split full instruction into Operator part and address part. Calling ALU to actually execute the instruction.</p>
+    <p>This is a full fetch-execute cycle for CPU.</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.3.6">1.3.6</span>
+ CISC & RISC</summary>
+      <p>CISC, Complex Instruction Set Computer, a collection of architecture, try to improve computer performance by decrease instruction number of some specify operations. In general, CISC computer may have more special purpose instruction, so that it can perform different complex operation within one execution cycle. Instructions used by CISC, sometimes are multiple-bytes, and may vary with its purpose. Total CPU cycle consumed by a instruction may also vary. But they always provides various method for memory accessing.</p>
+    <p>While RISC, Reduced Instruction Set Computer, try to reduce type of instructions. Since most instructions in CISC may not used frequently, and some of those instruction can be seen as combination of other simpler high-frequent instructions, improve the performance of basic instructions may have higher performance overall, and this can make ISA design simpler as well. Instructions are all fixed byte and most of them consume only 1 CPU cycle strictly in RISC. CPU pipeline can even shrink some instructions' execution less than 1 CPU cycle. Memory addressing method are limited and most operations are finished in register.</p>
+    <p>Most register in CISC may have its own function but those in RISC are mostly general purposed. Furthermore, overall number of registers in RISC are more than those in CISC.</p>
+    <p>CPU control method adopted by those two type of architecture are also different, CISC often uses micro program to control whole CPU, while RISC uses logical circuit.</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.3.7">1.3.7</span>
+ Cache</summary>
+      <p>Inside CPU, it is too slow to fetch outside registers, so cache some frequent used data is a good idea. Cache may have multiple level, each get far away from core.</p>
+    <p>L1, L2 cache may spare within one core, and L3 cache may be used commonly by whole CPU.</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.3.8">1.3.8</span>
+ Memory</summary>
+      <p>Memory, most data and instructions are stored here, CPU use it to cache data, store results and communicate with other components.</p>
+    <p>Primary memory, often RAM, random access memory, have different kind of distribution. Mainly there are two different RAM,</p>
+    <ul>
+      <li>
+        <p>Static RAM, SRAM, RAM that designed using flip-flop to store bits. "Static" means that SRAM need not extra operations to keep data. And have relative faster access speed among all kind of memory.</p>
+        <ul>
+          <li>Sync SRAM</li>
+          <li>Async SRAM</li>
+          <li>Burst SRAM</li>
+        </ul>
+      </li>
+      <li>
+        <p>Dynamic RAM, DRAM, RAM that designed using capacitor. "Dynamic", in contrast, needs refresh regularly, for capacitor lacks electron as time. DRAM always have smaller size, lower electronic level, but slower speed.</p>
+        <ul>
+          <li>DDR</li>
+          <li>LPDDR</li>
+        </ul>
+      </li>
+    </ul>
+    <p>On the other part, memory can also distinct by memory Error Check and Correct ability,</p>
+    <ul>
+      <li>Regular memory</li>
+      <li>ECC memory</li>
+    </ul>
+    <p>Recently (but not that recently), there are a new kind of memory, Optane memory, it can even store data after power-off.</p>
+    <p>Devices other than main memory still have their own memory, for example, hard drivers, may have their own cache (a memory) to exchange information with CPU.</p>
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.3.8.1">1.3.8.1</span>
+ Address</summary>
+      <p>Memory is a kind of physical device, but it is not possible to access memory through its physical information, otherwise, every program vendor must provide different program instance for every combination of memory, CPU, and other hardware. Concerning size of memory, design of memory, even id of memory.</p>
+    <p>So, mapping physical memory unit into logical memory is essential. In computer, we assume memory are continuous, no matter how many memory card you installed, and no matter what size each memory card have. And then, we split this continuous space into pieces with same logical size. Assign each logical piece with an id, for referencing. Those ID for memory space, just like id for bank safe, by accessing corresponding bank safe, we can store or withdraw things in it.</p>
+    <p>Even, you may store a id represent another bank safe inside. And we can than find another bank safe by the one you holds.</p>
+    <p>Other memories (or some special device can abstract as memory) will also be mapped and concatenated into the logical memory. And then CPU can access those devices without specify its hardware information.</p>
+    <p>This id, we call it "Address". Every address indexes a space of memory.</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.3.8.2">1.3.8.2</span>
+ Bytes, Word, Double Word and Half-Word</summary>
+      <p>In assembly, or CPU design, there are another measurement for data,</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Conversion</th>
+          <th>From</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">bit</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">bit</span></code>
+</span></td>
+          <td>/</td>
+          <td>None</td>
+        </tr>
+        <tr>
+          <td><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Byte</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Byte</span></code>
+</span></td>
+          <td>8</td>
+          <td><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">bit</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">bit</span></code>
+</span></td>
+        </tr>
+        <tr>
+          <td><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Half</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Half</span></code>
+</span></td>
+          <td>4</td>
+          <td><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">bit</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">bit</span></code>
+</span></td>
+        </tr>
+        <tr>
+          <td><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Word</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Word</span></code>
+</span></td>
+          <td>2</td>
+          <td><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Byte</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Byte</span></code>
+</span></td>
+        </tr>
+        <tr>
+          <td><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Double Word</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Double Word</span></code>
+</span></td>
+          <td>2</td>
+          <td><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Word</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Word</span></code>
+</span></td>
+        </tr>
+        <tr>
+          <td><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Quad Word</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Quad Word</span></code>
+</span></td>
+          <td>4</td>
+          <td><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Word</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Word</span></code>
+</span></td>
+        </tr>
+        <tr>
+          <td><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Paragraph</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Paragraph</span></code>
+</span></td>
+          <td>8</td>
+          <td><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Word</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Word</span></code>
+</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p>Those units measure the data computer can manipulate DIRECTLY.</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.3.8.3">1.3.8.3</span>
+ Direct Memory Access</summary>
+      <p>Most time, CPU do calculating work, this takes relative small times. But when CPU have to access memory or other device, it must take multiple cycles to fetch data. Transfer data from and between memory.</p>
+    <p>Thus, it is natural to have a special designed device fetching data for CPU. When CPU have to fetch data from peripheral, DMA will take this job and copy information from those devices into memory, while CPU do its own calculating job.</p>
+    </details>
+  </section>
+  
+
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.3.9">1.3.9</span>
+ ROM</summary>
+      <p>Outside memory, there are another kind of data storage, ROM, Read-Only Memory.</p>
+    <p>This kind of flash, can store data without electronic refresh. So, even power-off may not delete required data, thus, it always used for BIOS storage.</p>
+    <p>As time goes, ROM soon developed into EPROM, EEPROM and NAND Flash. Which can be read and rewritten using special tool, can be covered using light or other method, and Write-Rewrite using only electron. NADA Flash is the basis of USB Memory Driver and SSD.</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.3.10">1.3.10</span>
+ Storage</summary>
+      <p>Hard drivers, together old school soft drivers, are storage for computer, which have larger space, more reliable storage ability than memory. Always have the responsibility for keep data.</p>
+    <p>But the speed of storage are much slower than memory.</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.3.11">1.3.11</span>
+ BUS</summary>
+      <p>How CPU access its desired data, how CPU touches its required devices indeed?</p>
+    <p>In modern computer system, CPU communicate with other devices through BUS.</p>
+    <p>Why we need BUS, rather than other communicate architecture?</p>
+    <ul>
+      <li>BUS can decrease complexity: In other system, like directly communicate, if we have N devices to communicate, then there must have at least <span><math><msubsup><mi>𝐶</mi><mi>𝑁</mi><mn>2</mn></msubsup></math></span> circuit. But with BUS, N-N network topology can be then reduced to N-1-N topology or N-1-Adapter-1-N bus-star topology.</li>
+      <li>BUS also standardize interfaces for devices. Before PCIe, there are multiple different connector for devices.</li>
+    </ul>
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.3.11.1">1.3.11.1</span>
+ Address BUS</summary>
+      <p>Address Bus, as its name, used for transfer memory address. With address bus, CPU then can visit its wanted memory.</p>
+    <p>Address Bus transfer address information, and only pass from controller to terminal device. Width of address bus determine the largest memory space a computer can visit.</p>
+    <p>With a 32-bit address bus, CPU can visit maximum 4GB data.</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.3.11.2">1.3.11.2</span>
+ Data BUS</summary>
+      <p>Data Bus transfer actual data, as CPU specify its wanted data space address by Address Bus. The terminal device may return actual data the space stores back towards CPU using Data Bus. Also, CPU may write its result to memory by Data Bus.</p>
+    <p>Data Bus transfer data, Data Bus can transfer data towards both side. No matter data from CPU and write to terminal device, or come from terminal and fetched by CPU. Width of Data Bus limits maximum size of data a CPU can fetch or write.</p>
+    <p>With a CPU with register size 64, Data Bus width 64, whole register can be stored directly.</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.3.11.3">1.3.11.3</span>
+ Control BUS</summary>
+      <p>Control Bus transfer control or status signal. Both side can send or receive signal transferred by Control Bus. Width of Control Bus can affect operations of CPU.</p>
+    <p>Signals send by Control Bus controls the behaviour of devices, for example, write or read signal send to storage will instruction storage which data to read or how to store some data. Also, signals send by terminal devices may also affect CPU, for example, I/O finish interrupt signal may tell CPU some data finish reading.</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.3.11.4">1.3.11.4</span>
+ Dual Independent BUS: North, South Bridge</summary>
+      <p>In traditional bus system, bus connects all components of a computer. This result in long time waste when I/O transfer.</p>
+    <p>Then it is possible to spare high-speed devices and low-speed devices into two bus.</p>
+    <p>Back Side Bus, inside CPU, connect each kernel of CPU, ALU, CU and so on. Front Side Bus, outside CPU, connect CPU with North and South Bridge.</p>
+    <ul>
+      <li>North Bridge, connects CPU, North Bridge and other high speed devices. Main Memory and high speed caches</li>
+      <li>
+        <p>South Bridge, connects to North Bridge and other low speed devices.</p>
+        <ul>
+          <li>PCI: high speed I/O devices</li>
+          <li>ISA: low speed I/O devices</li>
+        </ul>
+      </li>
+    </ul>
+    </details>
+  </section>
+  
+
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.3.12">1.3.12</span>
+ Stack</summary>
+      <p>Since memory is represented in large continuous space logically. Find methods for data management is a large problem.</p>
+    <p>A simple way to manage data is stack.</p>
+    <p>Stack is a linear first-in-last-out data structure. First choose an address as base of stack, and then we can push data and pop data out of the stack. On the other way, it is possible to index element inside a stack by offset.</p>
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.3.12.1">1.3.12.1</span>
+ Stack grows downwards</summary>
+      <p>In computer, continuous memory have address, and then some address with larger value can be seen as high address, and thus we can define the side of stack.</p>
+    <p>In general, we always choose higher address as the base of stack, and then stack increment will result in stack grown towards lower address.</p>
+    <p>Why stack always choose higher address: <span class="link external"><a href="https://github.com/mujiu555/Wishful-Thinking/blob/mujiu555@feat/c/doc/root/c/typ/S1.typ" title="https://github.com/mujiu555/Wishful-Thinking/blob/mujiu555@feat/c/doc/root/c/typ/S1.typ">https://github.com/mujiu555/Wishful-Thinking/blob/mujiu555@feat/c/doc/root/c/typ/S1.typ</a></span>.</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.3.12.2">1.3.12.2</span>
+ Push</summary>
+      <p>Push operations to stack eventually lead to stack growth. It first add new element onto the top of stack, and then increase stack top pointer.</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.3.12.3">1.3.12.3</span>
+ Pop</summary>
+      <p>Pop operation to stack eventually lead to stack shrink. It store the value store at top to somewhere, and then decrease stack top pointer.</p>
+    </details>
+  </section>
+  
+
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.3.13">1.3.13</span>
+ Registers</summary>
+      <p>Registers in CPU, is the most basic function unit. They have the function to store data, and put them into calculating.</p>
+    <p>Following are registers commonly used in <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">8086</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">8086</span></code>
+</span>, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">i386</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">i386</span></code>
+</span>, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">x86</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">x86</span></code>
+</span>, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">ia32</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">ia32</span></code>
+</span>, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">amd64</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">amd64</span></code>
+</span>(<span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">x86_64</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">x86_64</span></code>
+</span>).</p>
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.3.13.1">1.3.13.1</span>
+ AX(Accumulator), BX(Base Address), CX(Counter), DX(Data)</summary>
+      <p>In x86_64, there are four general purpose registers. They are <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">*AX</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">*AX</span></code>
+</span>, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">*BX</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">*BX</span></code>
+</span>, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">*CX</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">*CX</span></code>
+</span>, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">*DX</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">*DX</span></code>
+</span>.</p>
+    <p>Those general purpose registers can be divide, and used as smaller registers.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Representation</th>
+          <th>x64</th>
+          <th>x86</th>
+          <th>x16</th>
+          <th>8</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Accumulator</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Accumulator</span></code>
+</span></td>
+          <td>*AX</td>
+          <td>RAX</td>
+          <td>EAX</td>
+          <td>AX</td>
+          <td>AH, AL</td>
+        </tr>
+        <tr>
+          <td><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Base Address</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Base Address</span></code>
+</span></td>
+          <td>*BX</td>
+          <td>RBX</td>
+          <td>EBX</td>
+          <td>BX</td>
+          <td>BH, BL</td>
+        </tr>
+        <tr>
+          <td><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Counter</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Counter</span></code>
+</span></td>
+          <td>*CX</td>
+          <td>RCX</td>
+          <td>ECX</td>
+          <td>CX</td>
+          <td>CH, CL</td>
+        </tr>
+        <tr>
+          <td><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Data</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Data</span></code>
+</span></td>
+          <td>*DX</td>
+          <td>RDX</td>
+          <td>EDX</td>
+          <td>DX</td>
+          <td>DH, DL</td>
+        </tr>
+      </tbody>
+    </table>
+    <ul>
+      <li>*AX register always join calculation, and can store results in <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">mut</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">mut</span></code>
+</span>, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">div</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">div</span></code>
+</span> operation, or function call returning value.</li>
+      <li>*BX register always join rebase operation, used as memory access offset.</li>
+      <li>*CX register always treat as counter, and will automatically decrease in loop.</li>
+      <li>*DX register always transfer arguments, do I/O operation.</li>
+    </ul>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.3.13.2">1.3.13.2</span>
+ CS:IP(Code Segment: Instruction Pointer)</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.3.13.3">1.3.13.3</span>
+ SS:BP, SS:SP (Stack Segment: Base Pointer, Stack Segment: Stack Pointer)</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.3.13.4">1.3.13.4</span>
+ SI, DI (Source Index, Destination Index)</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.3.13.5">1.3.13.5</span>
+ DS (Data Segment)</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.3.13.6">1.3.13.6</span>
+ ES (Extra Segment)</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.3.13.7">1.3.13.7</span>
+ FLAGs</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.3.13.8">1.3.13.8</span>
+ R8, R9, R10, …, R15</summary>
+      
+    </details>
+  </section>
+  
+
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.3.14">1.3.14</span>
+ Heap</summary>
+      
+    </details>
+  </section>
+  
+
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.4">1.4</span>
+ Syntax</summary>
+      
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.4.1">1.4.1</span>
+ Operator, Operand</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.4.2">1.4.2</span>
+ Comment</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.4.3">1.4.3</span>
+ Memory Access</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.4.4">1.4.4</span>
+ Labels</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Assembly/S1-1.4.5">1.4.5</span>
+ Macro</summary>
+      
+    </details>
+  </section>
+  
+
+    </details>
+  </section>
+  
+
+    </details>
+  </section>
+  
+
+ 
+        </details>
+      </section>
+      
+    
+
+
+    </article>
+    
+    <nav id="toc">
+        <div class="block">
+            <h1>Table of Contents</h1>
+            <ul class="block">
+            
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1">
+<span id="notes/Assembly/S1"></span>
+Assembly, Constitution Principle of Computer, Computer Organization and Architecture and Operating System (Section I)</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1">
+<span id="notes/Assembly/S1-1">1</span>
+Assembly, Constitution Principle of Computer, Computer Organization and Architecture and Operating System</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.1">
+<span id="notes/Assembly/S1-1.1">1.1</span>
+Section I: Basis Assembly</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.2">
+<span id="notes/Assembly/S1-1.2">1.2</span>
+Coding, Numeration, Radix</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.2.1">
+<span id="notes/Assembly/S1-1.2.1">1.2.1</span>
+Symbol, Calculation & Presentation</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.2.2">
+<span id="notes/Assembly/S1-1.2.2">1.2.2</span>
+Decimal</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.2.3">
+<span id="notes/Assembly/S1-1.2.3">1.2.3</span>
+Binary</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.2.4">
+<span id="notes/Assembly/S1-1.2.4">1.2.4</span>
+Hexadecimal, Octal</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.2.5">
+<span id="notes/Assembly/S1-1.2.5">1.2.5</span>
+Radix conversion</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.2.6">
+<span id="notes/Assembly/S1-1.2.6">1.2.6</span>
+Data, Numbers, Computer</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.3">
+<span id="notes/Assembly/S1-1.3">1.3</span>
+CPU, BUS, Memory</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.3.1">
+<span id="notes/Assembly/S1-1.3.1">1.3.1</span>
+Data, Instructions</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.3.1.1">
+<span id="notes/Assembly/S1-1.3.1.1">1.3.1.1</span>
+Dimension, Unit</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.3.2">
+<span id="notes/Assembly/S1-1.3.2">1.3.2</span>
+Harvard, von Neumann Architecture</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.3.3">
+<span id="notes/Assembly/S1-1.3.3">1.3.3</span>
+Program Counter, Instruction Register</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.3.4">
+<span id="notes/Assembly/S1-1.3.4">1.3.4</span>
+Memory Address Register, Memory Buffer Register, Memory Data Register & Memory</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.3.5">
+<span id="notes/Assembly/S1-1.3.5">1.3.5</span>
+Fetch-Execute Cycle</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.3.6">
+<span id="notes/Assembly/S1-1.3.6">1.3.6</span>
+CISC & RISC</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.3.7">
+<span id="notes/Assembly/S1-1.3.7">1.3.7</span>
+Cache</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.3.8">
+<span id="notes/Assembly/S1-1.3.8">1.3.8</span>
+Memory</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.3.8.1">
+<span id="notes/Assembly/S1-1.3.8.1">1.3.8.1</span>
+Address</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.3.8.2">
+<span id="notes/Assembly/S1-1.3.8.2">1.3.8.2</span>
+Bytes, Word, Double Word and Half-Word</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.3.8.3">
+<span id="notes/Assembly/S1-1.3.8.3">1.3.8.3</span>
+Direct Memory Access</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.3.9">
+<span id="notes/Assembly/S1-1.3.9">1.3.9</span>
+ROM</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.3.10">
+<span id="notes/Assembly/S1-1.3.10">1.3.10</span>
+Storage</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.3.11">
+<span id="notes/Assembly/S1-1.3.11">1.3.11</span>
+BUS</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.3.11.1">
+<span id="notes/Assembly/S1-1.3.11.1">1.3.11.1</span>
+Address BUS</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.3.11.2">
+<span id="notes/Assembly/S1-1.3.11.2">1.3.11.2</span>
+Data BUS</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.3.11.3">
+<span id="notes/Assembly/S1-1.3.11.3">1.3.11.3</span>
+Control BUS</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.3.11.4">
+<span id="notes/Assembly/S1-1.3.11.4">1.3.11.4</span>
+Dual Independent BUS: North, South Bridge</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.3.12">
+<span id="notes/Assembly/S1-1.3.12">1.3.12</span>
+Stack</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.3.12.1">
+<span id="notes/Assembly/S1-1.3.12.1">1.3.12.1</span>
+Stack grows downwards</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.3.12.2">
+<span id="notes/Assembly/S1-1.3.12.2">1.3.12.2</span>
+Push</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.3.12.3">
+<span id="notes/Assembly/S1-1.3.12.3">1.3.12.3</span>
+Pop</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.3.13">
+<span id="notes/Assembly/S1-1.3.13">1.3.13</span>
+Registers</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.3.13.1">
+<span id="notes/Assembly/S1-1.3.13.1">1.3.13.1</span>
+AX(Accumulator), BX(Base Address), CX(Counter), DX(Data)</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.3.13.2">
+<span id="notes/Assembly/S1-1.3.13.2">1.3.13.2</span>
+CS:IP(Code Segment: Instruction Pointer)</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.3.13.3">
+<span id="notes/Assembly/S1-1.3.13.3">1.3.13.3</span>
+SS:BP, SS:SP (Stack Segment: Base Pointer, Stack Segment: Stack Pointer)</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.3.13.4">
+<span id="notes/Assembly/S1-1.3.13.4">1.3.13.4</span>
+SI, DI (Source Index, Destination Index)</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.3.13.5">
+<span id="notes/Assembly/S1-1.3.13.5">1.3.13.5</span>
+DS (Data Segment)</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.3.13.6">
+<span id="notes/Assembly/S1-1.3.13.6">1.3.13.6</span>
+ES (Extra Segment)</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.3.13.7">
+<span id="notes/Assembly/S1-1.3.13.7">1.3.13.7</span>
+FLAGs</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.3.13.8">
+<span id="notes/Assembly/S1-1.3.13.8">1.3.13.8</span>
+R8, R9, R10, …, R15</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.3.14">
+<span id="notes/Assembly/S1-1.3.14">1.3.14</span>
+Heap</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.4">
+<span id="notes/Assembly/S1-1.4">1.4</span>
+Syntax</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.4.1">
+<span id="notes/Assembly/S1-1.4.1">1.4.1</span>
+Operator, Operand</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.4.2">
+<span id="notes/Assembly/S1-1.4.2">1.4.2</span>
+Comment</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.4.3">
+<span id="notes/Assembly/S1-1.4.3">1.4.3</span>
+Memory Access</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.4.4">
+<span id="notes/Assembly/S1-1.4.4">1.4.4</span>
+Labels</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Assembly/S1-1.4.5">
+<span id="notes/Assembly/S1-1.4.5">1.4.5</span>
+Macro</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+
+            </ul>
+        </div>
+    </nav>
+ 
+  </div>
+
+
+</body>
+</html>
