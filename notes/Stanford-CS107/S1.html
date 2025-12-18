@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Stanford CS107: Programming Paradigm</title>
+  <link href="/schemas/page.css" rel="stylesheet"/>
+  <link href="/math-block.css" rel="stylesheet"/>
+  <link href="/math-inline.css" rel="stylesheet"/>
+  <link href="/mathyml.css" rel="stylesheet"/>
+  <link href="/inline-fold.css" rel="stylesheet"/>
+  <link crossorigin="true" href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@700&display=swap" rel="stylesheet">
+  
+  <link href="/components/sidebar.css" rel="stylesheet">
+  <script>
+    setInterval(async () => {
+      const res = await fetch('/_reload')
+      if (await res.text() === '1') {
+        location.reload()
+      }
+    }, 500)
+  </script>
+  <link href="/rewrite/code_inline.css" rel="stylesheet">
+  <link href="/rewrite/code_block.css" rel="stylesheet">
+  
+  <link href="https://fred-wang.github.io/MathFonts/NewComputerModern/mathfonts.css" rel="stylesheet">
+</head>
+<body>
+
+  <header class="header" parent="true">
+    <nav class="nav">
+      <div class="logo">
+        <span onclick="window.location.href='/index'" title="GitHub@mujiu555's page [/index]">« GitHub@mujiu555's page</span>
+      </div>
+    </nav>
+  </header>
+  <div id="grid-wrapper" sidebar="true">
+    <article>
+      <section class="block" id="notes/Stanford-CS107/S1">
+        <details open="">
+          <summary>
+            <header class="top-header" show-metadata="true">
+              <h1>
+                Stanford CS107: Programming Paradigm 
+              </h1>
+              <div class="metadata">
+                <ul>
+                  <li class="meta-item">
+                    <span class="link external"><a href="https://github.com/mujiu555" title="https://github.com/mujiu555">GitHub@mujiu555</a></span>
+                  </li>
+                  <li class="meta-item">
+                    2025-12-17 15:56
+                  </li>
+                  <li class="meta-item">
+                    <span class="link local"><a href="https://github.com/mujiu555/Wishful-Thinking/tree/main/site" title="Source [https://github.com/mujiu555/Wishful-Thinking/tree/main/site]">Source</a></span>
+                  </li>
+                </ul>
+              </div>
+            </header>
+          </summary>
+          
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Stanford-CS107/S1-1">1</span>
+ Data Types and Conversion</summary>
+      
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Stanford-CS107/S1-1.1">1.1</span>
+ Binary Numbers</summary>
+      <p>对于正数, 直接相加即可得到结果(在范围内)</p>
+    <p>对于含负数数, 需要通过一种方式表示它的正负性</p>
+    <ol>
+      <li>
+        <p>原码: 选取数值的最高位, 0为正1为负.</p>
+        <p>直接用最高位为1的数表示, 与正数相加时可能会取得不正确的结果. 对于一个负数, 不能采用通常二进制加法, 简单将最高位置1.</p>
+  <pre color-scheme="light"><code><span style="color:#5c6a72;">   00000000 000000111   (+7)
+</span><span style="color:#5c6a72;"> + 10000000 000000111   (-7)
+</span><span style="color:#5c6a72;">----------------------
+</span><span style="color:#5c6a72;">   10000000 000001110   (-14)</span></code></pre>
+  
+  <pre color-scheme="dark"><code><span style="color:#d3c6aa;">   00000000 000000111   (+7)
+</span><span style="color:#d3c6aa;"> + 10000000 000000111   (-7)
+</span><span style="color:#d3c6aa;">----------------------
+</span><span style="color:#d3c6aa;">   10000000 000001110   (-14)</span></code></pre>
+<p>需要保证运算过后, 可以使得负数与对应正数相加值为0(最高位1溢出).</p>
+      </li>
+      <li>
+        <p>反码 1's complement: 将数值原样取反.</p>
+        <p>正数与绝对值相同的负数相加, 和为全1, 会造成＋0和－0问题</p>
+  <pre color-scheme="light"><code><span style="color:#5c6a72;">   00000000 000000111   (+7)
+</span><span style="color:#5c6a72;"> + 11111111 111111000   (-7)
+</span><span style="color:#5c6a72;">----------------------
+</span><span style="color:#5c6a72;">   11111111 111111111   (0xffff)</span></code></pre>
+  
+  <pre color-scheme="dark"><code><span style="color:#d3c6aa;">   00000000 000000111   (+7)
+</span><span style="color:#d3c6aa;"> + 11111111 111111000   (-7)
+</span><span style="color:#d3c6aa;">----------------------
+</span><span style="color:#d3c6aa;">   11111111 111111111   (0xffff)</span></code></pre>
+</li>
+      <li>
+        <p>补码 2's complement: 将2中结果＋1, 则为所需结果, 对于实用, 将值加到负数中</p>
+  <pre color-scheme="light"><code><span style="color:#5c6a72;">   00000000 000000111   (+7)
+</span><span style="color:#5c6a72;"> + 11111111 111111001   (-7)
+</span><span style="color:#5c6a72;">----------------------
+</span><span style="color:#5c6a72;">(0)00000000 000000000   (0x0000)</span></code></pre>
+  
+  <pre color-scheme="dark"><code><span style="color:#d3c6aa;">   00000000 000000111   (+7)
+</span><span style="color:#d3c6aa;"> + 11111111 111111001   (-7)
+</span><span style="color:#d3c6aa;">----------------------
+</span><span style="color:#d3c6aa;">(0)00000000 000000000   (0x0000)</span></code></pre>
+<p>补码的数学含义: 模数加法构成阿贝尔群: 正整数的加法逆元</p>
+      </li>
+    </ol>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Stanford-CS107/S1-1.2">1.2</span>
+ Characters</summary>
+      <p>字符本身即为数字</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Stanford-CS107/S1-1.3">1.3</span>
+ Convert</summary>
+      <p>小数值的赋值近似直接将对应值赋值到大数值的低位</p>
+    <p>大数值赋值到小数值空间, 直接抛弃高位</p>
+    <p>负数赋值会用符号位填充高位(逻辑赋值), 或填0</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Stanford-CS107/S1-1.4">1.4</span>
+ Floats</summary>
+      <ol>
+      <li>
+        <p>定点二进制小数: 采用几个位数表示 <span><math><mrow></mrow></math></span> 2^{-n} <span><math><mrow></mrow></math></span></p>
+        <p>可以表示的整数和小数的位数一定,</p>
+        <p>浮点数, 用以有限位数和精度逼近稠密数域上的精确小数</p>
+      </li>
+      <li>
+        <p>float 32: IEEE 754 2-based float number</p>
+  <pre color-scheme="light"><code><span style="color:#5c6a72;">[sign] [&lt;&lt;--- mangnitude --&gt;&gt;] [&lt;-fractions&gt;]
+</span><span style="color:#5c6a72;">[1/0 ] [exp(unsigned integer)] [base(2^{-n})]</span></code></pre>
+  
+  <pre color-scheme="dark"><code><span style="color:#d3c6aa;">[sign] [&lt;&lt;--- mangnitude --&gt;&gt;] [&lt;-fractions&gt;]
+</span><span style="color:#d3c6aa;">[1/0 ] [exp(unsigned integer)] [base(2^{-n})]</span></code></pre>
+<p>实际上来说, <span><math><mrow><mrow><mtext>val</mtext><mrow><mo>(</mo><mn>10</mn><mo>)</mo></mrow></mrow><mo>=</mo><msup><mrow><mo>(</mo><mrow><mo>−</mo><mn>1</mn></mrow><mo>)</mo></mrow><mtext> sign </mtext></msup><mo>×</mo><mrow><mn>1</mn><mo>.</mo><msup><mtext>base</mtext><mrow><mi mathvariant="normal">exp</mi><mo>−</mo><msup><mn>2</mn><mrow><mrow><mtext>bits</mtext><mrow><mo>(</mo><mi mathvariant="normal">exp</mi><mo>)</mo></mrow></mrow><mo>−</mo><mn>1</mn></mrow></msup><mo>+</mo><mn>1</mn></mrow></msup></mrow></mrow></math></span></p>
+      </li>
+    </ol>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Stanford-CS107/S1-1.5">1.5</span>
+ Endian</summary>
+      <p>最高位所在的字节称为大端，最低位所在的字节称为小端.</p>
+    <p>小端序: 高位在低字节 大端序: 高位在高字节</p>
+    <p>大端符合人类阅读习惯</p>
+    <p>指针指向会被字节序影响</p>
+    </details>
+  </section>
+  
+
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Stanford-CS107/S1-2">2</span>
+ Structure (<span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">struct</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">struct</span></code>
+</span>)</summary>
+      <p>指针指向结构的起始地址, 其他元素通过相对于起始地址 (基地址,类似汇编的基地址和偏移地址的关系, 汇编的偏移地址以0x10为基, 此处偏移地址以0x1为基且偏移地址的值相等于之前变量的长度的总和) 的偏移访问.</p>
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Stanford-CS107/S1-2.1">2.1</span>
+ Array</summary>
+      <p>指针指向数组的起始地址, 其他元素通过相对于起始地址的偏移访问. 总体类似于结构, 但是偏移地址的长度等于n倍的元素变量长度</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Stanford-CS107/S1-2.2">2.2</span>
+ Generic</summary>
+      <p>c风格的泛型,</p>
+  <pre color-scheme="light"><code><span style="color:#3a94c5;">void</span><span style="color:#5c6a72;"> </span><span style="color:#8da101;">swap</span><span style="color:#5c6a72;">(</span><span style="color:#3a94c5;">void</span><span style="color:#f57d26;">*</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">ap</span><span style="color:#5c6a72;">,</span><span style="color:#8da101;"> </span><span style="color:#3a94c5;">void</span><span style="color:#f57d26;">*</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">bp</span><span style="color:#5c6a72;">,</span><span style="color:#8da101;"> </span><span style="color:#3a94c5;">size_t</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">size</span><span style="color:#5c6a72;">)</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">{</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">  byte_t tmp</span><span style="color:#5c6a72;">[</span><span style="color:#8da101;">size</span><span style="color:#5c6a72;">]</span><span style="color:#5c6a72;">;</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">  </span><span style="color:#8da101;">memcpy</span><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">tmp</span><span style="color:#5c6a72;">,</span><span style="color:#5c6a72;"> a</span><span style="color:#5c6a72;">,</span><span style="color:#5c6a72;"> size</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;">;</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">  </span><span style="color:#8da101;">memcpy</span><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">a</span><span style="color:#5c6a72;">,</span><span style="color:#5c6a72;"> b</span><span style="color:#5c6a72;">,</span><span style="color:#5c6a72;"> size</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;">;</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">  </span><span style="color:#8da101;">memcpy</span><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">b</span><span style="color:#5c6a72;">,</span><span style="color:#5c6a72;"> tmp</span><span style="color:#5c6a72;">,</span><span style="color:#5c6a72;"> size</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;">;</span><span style="color:#8da101;">
+</span><span style="color:#5c6a72;">}</span></code></pre>
+  
+  <pre color-scheme="dark"><code><span style="color:#7fbbb3;">void</span><span style="color:#d3c6aa;"> </span><span style="color:#a7c080;">swap</span><span style="color:#d3c6aa;">(</span><span style="color:#7fbbb3;">void</span><span style="color:#e69875;">*</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">ap</span><span style="color:#d3c6aa;">,</span><span style="color:#a7c080;"> </span><span style="color:#7fbbb3;">void</span><span style="color:#e69875;">*</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">bp</span><span style="color:#d3c6aa;">,</span><span style="color:#a7c080;"> </span><span style="color:#7fbbb3;">size_t</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">size</span><span style="color:#d3c6aa;">)</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">{</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">  byte_t tmp</span><span style="color:#d3c6aa;">[</span><span style="color:#a7c080;">size</span><span style="color:#d3c6aa;">]</span><span style="color:#d3c6aa;">;</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">  </span><span style="color:#a7c080;">memcpy</span><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">tmp</span><span style="color:#d3c6aa;">,</span><span style="color:#d3c6aa;"> a</span><span style="color:#d3c6aa;">,</span><span style="color:#d3c6aa;"> size</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;">;</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">  </span><span style="color:#a7c080;">memcpy</span><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">a</span><span style="color:#d3c6aa;">,</span><span style="color:#d3c6aa;"> b</span><span style="color:#d3c6aa;">,</span><span style="color:#d3c6aa;"> size</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;">;</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">  </span><span style="color:#a7c080;">memcpy</span><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">b</span><span style="color:#d3c6aa;">,</span><span style="color:#d3c6aa;"> tmp</span><span style="color:#d3c6aa;">,</span><span style="color:#d3c6aa;"> size</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;">;</span><span style="color:#a7c080;">
+</span><span style="color:#d3c6aa;">}</span></code></pre>
+<p>相对于模板, c风格的泛型不需要为相同内核的算法生成不同的二进制. 可以规避二进制膨胀问题</p>
+    <p><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">lsearch</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">lsearch</span></code>
+</span> 参考 [ulibs.c: binsearch_linear](<span class="link external"><a href="https://github.com/mujiu555/ublis.c" title="https://github.com/mujiu555/ublis.c">https://github.com/mujiu555/ublis.c</a></span>)</p>
+    <p>Example for generic:</p>
+  <pre color-scheme="light"><code><span style="color:#5c6a72;">c
+</span><span style="color:#5c6a72;">void * lsearch (
+</span><span style="color:#5c6a72;">  void* key,
+</span><span style="color:#5c6a72;">  void * base,
+</span><span style="color:#5c6a72;">  int n,
+</span><span style="color:#5c6a72;">  int elem_size,
+</span><span style="color:#5c6a72;">  int (* cmpfn)(void *, void *)
+</span><span style="color:#5c6a72;">) {
+</span><span style="color:#5c6a72;">  for (int i = 0; i &lt; n; i ++) {
+</span><span style="color:#5c6a72;">    void * elemAddr = (u8_t*) base + i * elem_size;
+</span><span style="color:#5c6a72;">    if (cmpfn (key, elemAddr) == 0) {
+</span><span style="color:#5c6a72;">      return elemAddr;
+</span><span style="color:#5c6a72;">    }
+</span><span style="color:#5c6a72;">  }
+</span><span style="color:#5c6a72;">  return NULL;
+</span><span style="color:#5c6a72;">}</span></code></pre>
+  
+  <pre color-scheme="dark"><code><span style="color:#d3c6aa;">c
+</span><span style="color:#d3c6aa;">void * lsearch (
+</span><span style="color:#d3c6aa;">  void* key,
+</span><span style="color:#d3c6aa;">  void * base,
+</span><span style="color:#d3c6aa;">  int n,
+</span><span style="color:#d3c6aa;">  int elem_size,
+</span><span style="color:#d3c6aa;">  int (* cmpfn)(void *, void *)
+</span><span style="color:#d3c6aa;">) {
+</span><span style="color:#d3c6aa;">  for (int i = 0; i &lt; n; i ++) {
+</span><span style="color:#d3c6aa;">    void * elemAddr = (u8_t*) base + i * elem_size;
+</span><span style="color:#d3c6aa;">    if (cmpfn (key, elemAddr) == 0) {
+</span><span style="color:#d3c6aa;">      return elemAddr;
+</span><span style="color:#d3c6aa;">    }
+</span><span style="color:#d3c6aa;">  }
+</span><span style="color:#d3c6aa;">  return NULL;
+</span><span style="color:#d3c6aa;">}</span></code></pre>
+
+    </details>
+  </section>
+  
+
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Stanford-CS107/S1-3">3</span>
+ Stack</summary>
+      
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Stanford-CS107/S1-3.1">3.1</span>
+ Stack with int</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Stanford-CS107/S1-3.2">3.2</span>
+ Generic Stack</summary>
+      
+    </details>
+  </section>
+  
+
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Stanford-CS107/S1-4">4</span>
+ Memory Management</summary>
+      <p>若需要在析构泛型栈的同时析构内部元素, 则需要提供释放函数, 以便于析构.</p>
+    <p>需要确定指针与地址.</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Stanford-CS107/S1-5">5</span>
+ Memory Segments</summary>
+      <p>Soft managed memory:</p>
+    <p>When a program are loaded to memory, the heap part is managed by <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">malloc</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">malloc</span></code>
+</span>, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">relloc</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">relloc</span></code>
+</span>, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">free</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">free</span></code>
+</span>.</p>
+    <p>The memory space allocated for you will contains more bytes just before the head. The meta data information.</p>
+    <p>Thus, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">free(head+offset);</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">free(head+offset);</span></code>
+</span> is not allowed. For <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">malloc</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">malloc</span></code>
+</span> needs meta data, index with offset will lead to crash.</p>
+    <p>Furthermore, free a array is not allowed, as well. For array are space allocated in stack and managed by compiler. Which also contains no meta data.</p>
+    <p>Memory manager may spilt memory into segments, and just allocate memory space for you within some specify segment if request less than 2^n bytes.</p>
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Stanford-CS107/S1-5.1">5.1</span>
+ Memory compose</summary>
+      <p>Split a large space of memory to handle memory allocation using handler. Handler are some pointer points to the pointer points to actual memory.</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Stanford-CS107/S1-5.2">5.2</span>
+ Stack segment</summary>
+      <p>Stack depth roughly relative with function call count.</p>
+    <p>When define a variable or array within a function, like main, it will create stack frame, increase stack top. (Stack increase towards low address). (Similarly, heap increase towards higher address).</p>
+    <p>Stack top pointer is embedded within stack and split the stack and gap. (Gap is the space between heap and stack)</p>
+    <p>When a function has been called, a stack frame will create for it, when a function exited, stack top pointer will go back to where before frame.</p>
+  <pre color-scheme="light"><code><span style="color:#5c6a72;">Relatively slow RAM (Compared to register):
+</span><span style="color:#5c6a72;">
+</span><span style="color:#5c6a72;">High address        +-----------------------+       +-------------+
+</span><span style="color:#5c6a72;">                    |                       |      /|    ARG-N    |
+</span><span style="color:#5c6a72;">                    |                       |     / |    .....    |
+</span><span style="color:#5c6a72;">                    |                       |    /  |    ARG-1    |
+</span><span style="color:#5c6a72;">                    |                       |   /   |-------------|
+</span><span style="color:#5c6a72;">                    |-----------------------|  /    |  &lt;Ret Addr&gt; | &lt;- BP
+</span><span style="color:#5c6a72;">                    |                       | /    .|-------------|
+</span><span style="color:#5c6a72;">                    |         Stack         |/    / |   &lt;Old SP&gt;  |
+</span><span style="color:#5c6a72;">                    |                       |    /  |-------------|
+</span><span style="color:#5c6a72;">              BP -&gt; |-----------------------| --`   |   Local-1   |
+</span><span style="color:#5c6a72;">                    |         Frame         |       |   .......   |
+</span><span style="color:#5c6a72;">              SP -&gt; |-----------------------| ----. |   Local-N   |
+</span><span style="color:#5c6a72;">                    |                       |\     `|-------------|
+</span><span style="color:#5c6a72;">                    |                       | \     |    ARGs-N   | &lt;- SP
+</span><span style="color:#5c6a72;">                    |                       |  \    |             |
+</span><span style="color:#5c6a72;">                    |                       |   \   |             |
+</span><span style="color:#5c6a72;">                    |                       |    \  |             |
+</span><span style="color:#5c6a72;">                    |                       |     \ +-------------+
+</span><span style="color:#5c6a72;">                    |                       | &lt;- &quot;Gap&quot;
+</span><span style="color:#5c6a72;">                    |                       |
+</span><span style="color:#5c6a72;">                    |                       |
+</span><span style="color:#5c6a72;">                    |                       |
+</span><span style="color:#5c6a72;">                    |                       |
+</span><span style="color:#5c6a72;">                    |                       |
+</span><span style="color:#5c6a72;">                    |-----------------------|
+</span><span style="color:#5c6a72;">                    |                       |
+</span><span style="color:#5c6a72;">                    |                       |
+</span><span style="color:#5c6a72;">                    |         Heap          |
+</span><span style="color:#5c6a72;">                    |                       |
+</span><span style="color:#5c6a72;">                    |                       |
+</span><span style="color:#5c6a72;">                    |                       |
+</span><span style="color:#5c6a72;">                    |-----------------------|
+</span><span style="color:#5c6a72;">                    |                       |
+</span><span style="color:#5c6a72;">                    |     .Section code     |
+</span><span style="color:#5c6a72;">                    |                       |
+</span><span style="color:#5c6a72;">Low address         +-----------------------+</span></code></pre>
+  
+  <pre color-scheme="dark"><code><span style="color:#d3c6aa;">Relatively slow RAM (Compared to register):
+</span><span style="color:#d3c6aa;">
+</span><span style="color:#d3c6aa;">High address        +-----------------------+       +-------------+
+</span><span style="color:#d3c6aa;">                    |                       |      /|    ARG-N    |
+</span><span style="color:#d3c6aa;">                    |                       |     / |    .....    |
+</span><span style="color:#d3c6aa;">                    |                       |    /  |    ARG-1    |
+</span><span style="color:#d3c6aa;">                    |                       |   /   |-------------|
+</span><span style="color:#d3c6aa;">                    |-----------------------|  /    |  &lt;Ret Addr&gt; | &lt;- BP
+</span><span style="color:#d3c6aa;">                    |                       | /    .|-------------|
+</span><span style="color:#d3c6aa;">                    |         Stack         |/    / |   &lt;Old SP&gt;  |
+</span><span style="color:#d3c6aa;">                    |                       |    /  |-------------|
+</span><span style="color:#d3c6aa;">              BP -&gt; |-----------------------| --`   |   Local-1   |
+</span><span style="color:#d3c6aa;">                    |         Frame         |       |   .......   |
+</span><span style="color:#d3c6aa;">              SP -&gt; |-----------------------| ----. |   Local-N   |
+</span><span style="color:#d3c6aa;">                    |                       |\     `|-------------|
+</span><span style="color:#d3c6aa;">                    |                       | \     |    ARGs-N   | &lt;- SP
+</span><span style="color:#d3c6aa;">                    |                       |  \    |             |
+</span><span style="color:#d3c6aa;">                    |                       |   \   |             |
+</span><span style="color:#d3c6aa;">                    |                       |    \  |             |
+</span><span style="color:#d3c6aa;">                    |                       |     \ +-------------+
+</span><span style="color:#d3c6aa;">                    |                       | &lt;- &quot;Gap&quot;
+</span><span style="color:#d3c6aa;">                    |                       |
+</span><span style="color:#d3c6aa;">                    |                       |
+</span><span style="color:#d3c6aa;">                    |                       |
+</span><span style="color:#d3c6aa;">                    |                       |
+</span><span style="color:#d3c6aa;">                    |                       |
+</span><span style="color:#d3c6aa;">                    |-----------------------|
+</span><span style="color:#d3c6aa;">                    |                       |
+</span><span style="color:#d3c6aa;">                    |                       |
+</span><span style="color:#d3c6aa;">                    |         Heap          |
+</span><span style="color:#d3c6aa;">                    |                       |
+</span><span style="color:#d3c6aa;">                    |                       |
+</span><span style="color:#d3c6aa;">                    |                       |
+</span><span style="color:#d3c6aa;">                    |-----------------------|
+</span><span style="color:#d3c6aa;">                    |                       |
+</span><span style="color:#d3c6aa;">                    |     .Section code     |
+</span><span style="color:#d3c6aa;">                    |                       |
+</span><span style="color:#d3c6aa;">Low address         +-----------------------+</span></code></pre>
+
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Stanford-CS107/S1-5.3">5.3</span>
+ Memory Management</summary>
+      <p>When memory allocating, memory allocator will not only allocate memory you request, but also some extra memory for meta data.</p>
+  <pre color-scheme="light"><code><span style="color:#5c6a72;">text
+</span><span style="color:#5c6a72;">|   total space allocated    |
+</span><span style="color:#5c6a72;">| head | space you allocated |
+</span><span style="color:#5c6a72;">       ^
+</span><span style="color:#5c6a72;">       pointer points to</span></code></pre>
+  
+  <pre color-scheme="dark"><code><span style="color:#d3c6aa;">text
+</span><span style="color:#d3c6aa;">|   total space allocated    |
+</span><span style="color:#d3c6aa;">| head | space you allocated |
+</span><span style="color:#d3c6aa;">       ^
+</span><span style="color:#d3c6aa;">       pointer points to</span></code></pre>
+<p>Some times memory manager may use some free space for storing free space block meta data.</p>
+    <p>Allocate strategy:</p>
+    <ul>
+      <li>Best fit</li>
+      <li>Worst fit</li>
+      <li>First fit</li>
+      <li>Continuous search</li>
+    </ul>
+    <p>Some times memory allocator may return more space you need, but you can only rely on space you request.</p>
+    <p>Compact:</p>
+    </details>
+  </section>
+  
+
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Stanford-CS107/S1-6">6</span>
+ Section IX: Computer architecture</summary>
+      <p>If have code:</p>
+  <pre color-scheme="light"><code><span style="color:#5c6a72;">c
+</span><span style="color:#5c6a72;">int i;
+</span><span style="color:#5c6a72;">int j;
+</span><span style="color:#5c6a72;">
+</span><span style="color:#5c6a72;">i = 10;
+</span><span style="color:#5c6a72;">j = i + 7;
+</span><span style="color:#5c6a72;">j ++;</span></code></pre>
+  
+  <pre color-scheme="dark"><code><span style="color:#d3c6aa;">c
+</span><span style="color:#d3c6aa;">int i;
+</span><span style="color:#d3c6aa;">int j;
+</span><span style="color:#d3c6aa;">
+</span><span style="color:#d3c6aa;">i = 10;
+</span><span style="color:#d3c6aa;">j = i + 7;
+</span><span style="color:#d3c6aa;">j ++;</span></code></pre>
+<p>Assuming memory segment:</p>
+  <pre color-scheme="light"><code><span style="color:#5c6a72;">text
+</span><span style="color:#5c6a72;">       +-----------+
+</span><span style="color:#5c6a72;">0xf000 |           |
+</span><span style="color:#5c6a72;">0xeffc |           |
+</span><span style="color:#5c6a72;">       |   | i |   | &lt;- BP
+</span><span style="color:#5c6a72;">       |   | j |   |
+</span><span style="color:#5c6a72;">       |           | &lt;- SP
+</span><span style="color:#5c6a72;">       |           |
+</span><span style="color:#5c6a72;">       |           |
+</span><span style="color:#5c6a72;">       |           |
+</span><span style="color:#5c6a72;">       |           |
+</span><span style="color:#5c6a72;">       |           |
+</span><span style="color:#5c6a72;">       +- - - - - -+
+</span><span style="color:#5c6a72;">....
+</span><span style="color:#5c6a72;">       +- - - - - -+
+</span><span style="color:#5c6a72;">0x1000 |           |
+</span><span style="color:#5c6a72;">       +-----------+</span></code></pre>
+  
+  <pre color-scheme="dark"><code><span style="color:#d3c6aa;">text
+</span><span style="color:#d3c6aa;">       +-----------+
+</span><span style="color:#d3c6aa;">0xf000 |           |
+</span><span style="color:#d3c6aa;">0xeffc |           |
+</span><span style="color:#d3c6aa;">       |   | i |   | &lt;- BP
+</span><span style="color:#d3c6aa;">       |   | j |   |
+</span><span style="color:#d3c6aa;">       |           | &lt;- SP
+</span><span style="color:#d3c6aa;">       |           |
+</span><span style="color:#d3c6aa;">       |           |
+</span><span style="color:#d3c6aa;">       |           |
+</span><span style="color:#d3c6aa;">       |           |
+</span><span style="color:#d3c6aa;">       |           |
+</span><span style="color:#d3c6aa;">       +- - - - - -+
+</span><span style="color:#d3c6aa;">....
+</span><span style="color:#d3c6aa;">       +- - - - - -+
+</span><span style="color:#d3c6aa;">0x1000 |           |
+</span><span style="color:#d3c6aa;">       +-----------+</span></code></pre>
+<p>Assume i, j are packed together within stack. BP storing stack base address.</p>
+    <p>To visit variable <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">i</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">i</span></code>
+</span>, using <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">[SP+4]</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">[SP+4]</span></code>
+</span>. Thus, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">i = 10;</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">i = 10;</span></code>
+</span> could be written as <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">mov [sp+4], 10</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">mov [sp+4], 10</span></code>
+</span></p>
+    <p>For <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">j = i + 7</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">j = i + 7</span></code>
+</span>, it should first load <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">i</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">i</span></code>
+</span> and then do ALU operation.</p>
+    <ul>
+      <li>load <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">i</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">i</span></code>
+</span>: <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">mov r1, [sp+4]</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">mov r1, [sp+4]</span></code>
+</span></li>
+      <li>add: <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">add r2, 7</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">add r2, 7</span></code>
+</span></li>
+    </ul>
+    <p>Then, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">mov [sp], r2</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">mov [sp], r2</span></code>
+</span>. And, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">inc [sp]</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">inc [sp]</span></code>
+</span></p>
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Stanford-CS107/S1-6.1">6.1</span>
+ Load / Store, ALU Operations</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Stanford-CS107/S1-6.2">6.2</span>
+ force conversion</summary>
+      <p>Force conversion just cheat compiler rather than assembler. Assembler knows only address.</p>
+    </details>
+  </section>
+  
+
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Stanford-CS107/S1-7">7</span>
+ activate record: function call frame</summary>
+      <p>If have: prototype:</p>
+  <pre color-scheme="light"><code><span style="color:#3a94c5;">void</span><span style="color:#5c6a72;"> </span><span style="color:#8da101;">foo</span><span style="color:#5c6a72;">(</span><span style="color:#3a94c5;">int</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">bar</span><span style="color:#5c6a72;">,</span><span style="color:#8da101;"> </span><span style="color:#3a94c5;">int</span><span style="color:#8da101;"> </span><span style="color:#f57d26;">*</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">baz</span><span style="color:#5c6a72;">)</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">{</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">  </span><span style="color:#3a94c5;">char</span><span style="color:#8da101;"> sninke</span><span style="color:#5c6a72;">[</span><span style="color:#df69ba;">4</span><span style="color:#5c6a72;">]</span><span style="color:#5c6a72;">;</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">  </span><span style="color:#3a94c5;">short</span><span style="color:#8da101;"> </span><span style="color:#f57d26;">*</span><span style="color:#8da101;"> why</span><span style="color:#5c6a72;">;</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">  </span><span style="font-style:italic;color:#939f91;">//</span><span style="font-style:italic;color:#939f91;"> ...
+</span><span style="color:#5c6a72;">}</span></code></pre>
+  
+  <pre color-scheme="dark"><code><span style="color:#7fbbb3;">void</span><span style="color:#d3c6aa;"> </span><span style="color:#a7c080;">foo</span><span style="color:#d3c6aa;">(</span><span style="color:#7fbbb3;">int</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">bar</span><span style="color:#d3c6aa;">,</span><span style="color:#a7c080;"> </span><span style="color:#7fbbb3;">int</span><span style="color:#a7c080;"> </span><span style="color:#e69875;">*</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">baz</span><span style="color:#d3c6aa;">)</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">{</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">  </span><span style="color:#7fbbb3;">char</span><span style="color:#a7c080;"> sninke</span><span style="color:#d3c6aa;">[</span><span style="color:#d699b6;">4</span><span style="color:#d3c6aa;">]</span><span style="color:#d3c6aa;">;</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">  </span><span style="color:#7fbbb3;">short</span><span style="color:#a7c080;"> </span><span style="color:#e69875;">*</span><span style="color:#a7c080;"> why</span><span style="color:#d3c6aa;">;</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">  </span><span style="font-style:italic;color:#859289;">//</span><span style="font-style:italic;color:#859289;"> ...
+</span><span style="color:#d3c6aa;">}</span></code></pre>
+<p>The argument of corresponding parameter and the local variables are placed in almost close place.</p>
+  <pre color-scheme="light"><code><span style="color:#5c6a72;">4 byte
+</span><span style="color:#5c6a72;">        |         | baz
+</span><span style="color:#5c6a72;">        |         | bar
+</span><span style="color:#5c6a72;">        | &lt; ret &gt; |
+</span><span style="color:#5c6a72;">        |         | snike
+</span><span style="color:#5c6a72;">        |         | why</span></code></pre>
+  
+  <pre color-scheme="dark"><code><span style="color:#d3c6aa;">4 byte
+</span><span style="color:#d3c6aa;">        |         | baz
+</span><span style="color:#d3c6aa;">        |         | bar
+</span><span style="color:#d3c6aa;">        | &lt; ret &gt; |
+</span><span style="color:#d3c6aa;">        |         | snike
+</span><span style="color:#d3c6aa;">        |         | why</span></code></pre>
+<p>When calling within other functions: like <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">main</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">main</span></code>
+</span>:</p>
+  <pre color-scheme="light"><code><span style="color:#3a94c5;">int</span><span style="color:#5c6a72;"> </span><span style="color:#8da101;">main</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">(</span><span style="color:#3a94c5;">int</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">argc</span><span style="color:#5c6a72;">,</span><span style="color:#8da101;"> </span><span style="color:#3a94c5;">char</span><span style="color:#8da101;"> </span><span style="color:#f57d26;">*</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">argv</span><span style="color:#5c6a72;">[</span><span style="color:#5c6a72;">]</span><span style="color:#5c6a72;">)</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">{</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">  </span><span style="color:#3a94c5;">int</span><span style="color:#8da101;"> i </span><span style="color:#f57d26;">=</span><span style="color:#8da101;"> </span><span style="color:#df69ba;">4</span><span style="color:#5c6a72;">;</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">  </span><span style="color:#5c6a72;">foo</span><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">i</span><span style="color:#5c6a72;">,</span><span style="color:#5c6a72;"> </span><span style="color:#f57d26;">&amp;</span><span style="color:#5c6a72;">i</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;">;</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">  </span><span style="color:#f85552;">return</span><span style="color:#8da101;"> </span><span style="color:#df69ba;">0</span><span style="color:#5c6a72;">;</span><span style="color:#8da101;">
+</span><span style="color:#5c6a72;">}</span></code></pre>
+  
+  <pre color-scheme="dark"><code><span style="color:#7fbbb3;">int</span><span style="color:#d3c6aa;"> </span><span style="color:#a7c080;">main</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">(</span><span style="color:#7fbbb3;">int</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">argc</span><span style="color:#d3c6aa;">,</span><span style="color:#a7c080;"> </span><span style="color:#7fbbb3;">char</span><span style="color:#a7c080;"> </span><span style="color:#e69875;">*</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">argv</span><span style="color:#d3c6aa;">[</span><span style="color:#d3c6aa;">]</span><span style="color:#d3c6aa;">)</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">{</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">  </span><span style="color:#7fbbb3;">int</span><span style="color:#a7c080;"> i </span><span style="color:#e69875;">=</span><span style="color:#a7c080;"> </span><span style="color:#d699b6;">4</span><span style="color:#d3c6aa;">;</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">  </span><span style="color:#d3c6aa;">foo</span><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">i</span><span style="color:#d3c6aa;">,</span><span style="color:#d3c6aa;"> </span><span style="color:#e69875;">&amp;</span><span style="color:#d3c6aa;">i</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;">;</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">  </span><span style="color:#e67e80;">return</span><span style="color:#a7c080;"> </span><span style="color:#d699b6;">0</span><span style="color:#d3c6aa;">;</span><span style="color:#a7c080;">
+</span><span style="color:#d3c6aa;">}</span></code></pre>
+<p>We may have:</p>
+  <pre color-scheme="light"><code><span style="color:#5c6a72;">4 byte
+</span><span style="color:#5c6a72;">0xffff  |         | argv -&gt; |  ||||
+</span><span style="color:#5c6a72;">0xfffc  |         | argc
+</span><span style="color:#5c6a72;">        | &lt; ret &gt; | Saved PC &lt;- sp</span></code></pre>
+  
+  <pre color-scheme="dark"><code><span style="color:#d3c6aa;">4 byte
+</span><span style="color:#d3c6aa;">0xffff  |         | argv -&gt; |  ||||
+</span><span style="color:#d3c6aa;">0xfffc  |         | argc
+</span><span style="color:#d3c6aa;">        | &lt; ret &gt; | Saved PC &lt;- sp</span></code></pre>
+<p>at initial.</p>
+    <p>Then, allocate space for variable <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">i</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">i</span></code>
+</span>:</p>
+  <pre color-scheme="light"><code><span style="color:#5c6a72;">4 byte
+</span><span style="color:#5c6a72;">0xffff  |         | argv -&gt; |  ||||
+</span><span style="color:#5c6a72;">0xfffc  |         | argc
+</span><span style="color:#5c6a72;">        | &lt; ret &gt; | Saved PC
+</span><span style="color:#5c6a72;">        |         |      &lt;- sp</span></code></pre>
+  
+  <pre color-scheme="dark"><code><span style="color:#d3c6aa;">4 byte
+</span><span style="color:#d3c6aa;">0xffff  |         | argv -&gt; |  ||||
+</span><span style="color:#d3c6aa;">0xfffc  |         | argc
+</span><span style="color:#d3c6aa;">        | &lt; ret &gt; | Saved PC
+</span><span style="color:#d3c6aa;">        |         |      &lt;- sp</span></code></pre>
+<p>Assign for <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">i</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">i</span></code>
+</span>:</p>
+  <pre color-scheme="light"><code><span style="color:#5c6a72;">4 byte
+</span><span style="color:#5c6a72;">0xffff  |         | argv -&gt; |  ||||
+</span><span style="color:#5c6a72;">0xfffc  |         | argc
+</span><span style="color:#5c6a72;">        | &lt; ret &gt; | Saved PC
+</span><span style="color:#5c6a72;">        |    4    | i    &lt;- sp</span></code></pre>
+  
+  <pre color-scheme="dark"><code><span style="color:#d3c6aa;">4 byte
+</span><span style="color:#d3c6aa;">0xffff  |         | argv -&gt; |  ||||
+</span><span style="color:#d3c6aa;">0xfffc  |         | argc
+</span><span style="color:#d3c6aa;">        | &lt; ret &gt; | Saved PC
+</span><span style="color:#d3c6aa;">        |    4    | i    &lt;- sp</span></code></pre>
+<p>When calling <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">foo</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">foo</span></code>
+</span>: pushing argument to stack for <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">foo</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">foo</span></code>
+</span>:</p>
+  <pre color-scheme="light"><code><span style="color:#5c6a72;">4 byte
+</span><span style="color:#5c6a72;">0xffff  |         | argv -&gt; |  ||||
+</span><span style="color:#5c6a72;">0xfffc  |         | argc
+</span><span style="color:#5c6a72;">        | &lt; ret &gt; | Saved PC
+</span><span style="color:#5c6a72;">        |         | i
+</span><span style="color:#5c6a72;">        | argument| i
+</span><span style="color:#5c6a72;">        | argument| &amp;i   &lt;- sp</span></code></pre>
+  
+  <pre color-scheme="dark"><code><span style="color:#d3c6aa;">4 byte
+</span><span style="color:#d3c6aa;">0xffff  |         | argv -&gt; |  ||||
+</span><span style="color:#d3c6aa;">0xfffc  |         | argc
+</span><span style="color:#d3c6aa;">        | &lt; ret &gt; | Saved PC
+</span><span style="color:#d3c6aa;">        |         | i
+</span><span style="color:#d3c6aa;">        | argument| i
+</span><span style="color:#d3c6aa;">        | argument| &amp;i   &lt;- sp</span></code></pre>
+
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Stanford-CS107/S1-8">8</span>
+ Section XI: Swap, call in assembly</summary>
+      
+  <pre color-scheme="light"><code><span style="color:#3a94c5;">void</span><span style="color:#5c6a72;"> </span><span style="color:#8da101;">foo</span><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">)</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">{</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">  </span><span style="color:#3a94c5;">int</span><span style="color:#8da101;"> x </span><span style="color:#f57d26;">=</span><span style="color:#8da101;"> </span><span style="color:#df69ba;">11</span><span style="color:#5c6a72;">;</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">  </span><span style="color:#3a94c5;">int</span><span style="color:#8da101;"> y </span><span style="color:#f57d26;">=</span><span style="color:#8da101;"> </span><span style="color:#df69ba;">17</span><span style="color:#5c6a72;">;</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">  </span><span style="color:#5c6a72;">swap</span><span style="color:#5c6a72;">(</span><span style="color:#f57d26;">&amp;</span><span style="color:#5c6a72;">x</span><span style="color:#5c6a72;">,</span><span style="color:#5c6a72;"> </span><span style="color:#f57d26;">&amp;</span><span style="color:#5c6a72;">y</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;">;</span><span style="color:#8da101;">
+</span><span style="color:#5c6a72;">}</span></code></pre>
+  
+  <pre color-scheme="dark"><code><span style="color:#7fbbb3;">void</span><span style="color:#d3c6aa;"> </span><span style="color:#a7c080;">foo</span><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">)</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">{</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">  </span><span style="color:#7fbbb3;">int</span><span style="color:#a7c080;"> x </span><span style="color:#e69875;">=</span><span style="color:#a7c080;"> </span><span style="color:#d699b6;">11</span><span style="color:#d3c6aa;">;</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">  </span><span style="color:#7fbbb3;">int</span><span style="color:#a7c080;"> y </span><span style="color:#e69875;">=</span><span style="color:#a7c080;"> </span><span style="color:#d699b6;">17</span><span style="color:#d3c6aa;">;</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">  </span><span style="color:#d3c6aa;">swap</span><span style="color:#d3c6aa;">(</span><span style="color:#e69875;">&amp;</span><span style="color:#d3c6aa;">x</span><span style="color:#d3c6aa;">,</span><span style="color:#d3c6aa;"> </span><span style="color:#e69875;">&amp;</span><span style="color:#d3c6aa;">y</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;">;</span><span style="color:#a7c080;">
+</span><span style="color:#d3c6aa;">}</span></code></pre>
+<p>In assembly, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">_cdecl</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">_cdecl</span></code>
+</span>, arguments are pushed in reverse order:</p>
+  <pre color-scheme="light"><code><span style="color:#8da101;">_</span><span style="color:#8da101;">f</span><span style="color:#8da101;">o</span><span style="color:#8da101;">o</span><span style="color:#8da101;">:</span><span style="color:#5c6a72;">
+</span><span style="color:#8da101;"> </span><span style="color:#8da101;"> </span><span style="color:#f85552;">push</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">rbp</span><span style="color:#5c6a72;">
+</span><span style="color:#8da101;"> </span><span style="color:#8da101;"> </span><span style="color:#f85552;">mov</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">rbp</span><span style="color:#5c6a72;">,</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">rsp</span><span style="color:#5c6a72;">
+</span><span style="color:#5c6a72;">
+</span><span style="color:#8da101;"> </span><span style="color:#8da101;"> </span><span style="color:#f85552;">sub</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">rsp</span><span style="color:#5c6a72;">,</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">8</span><span style="font-style:italic;color:#939f91;">              ; x, y are 4 bytes each, total 8 bytes</span><span style="color:#5c6a72;">
+</span><span style="color:#8da101;"> </span><span style="color:#8da101;"> </span><span style="color:#f85552;">mov</span><span style="color:#8da101;"> </span><span style="color:#8da101;">dword</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">[</span><span style="color:#5c6a72;">rsp</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">+</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">4</span><span style="color:#5c6a72;">]</span><span style="color:#5c6a72;">,</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">11</span><span style="font-style:italic;color:#939f91;"> ; x = 11</span><span style="color:#5c6a72;">
+</span><span style="color:#8da101;"> </span><span style="color:#8da101;"> </span><span style="color:#f85552;">mov</span><span style="color:#8da101;"> </span><span style="color:#8da101;">dword</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">[</span><span style="color:#5c6a72;">rsp</span><span style="color:#5c6a72;">]</span><span style="color:#5c6a72;">,</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">17</span><span style="font-style:italic;color:#939f91;">     ; y = 17</span><span style="color:#5c6a72;">
+</span><span style="color:#5c6a72;">
+</span><span style="color:#8da101;"> </span><span style="color:#8da101;"> </span><span style="color:#f85552;">push</span><span style="color:#8da101;"> </span><span style="color:#8da101;">qword</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">[</span><span style="color:#5c6a72;">rsp</span><span style="color:#5c6a72;">]</span><span style="color:#5c6a72;">
+</span><span style="color:#8da101;"> </span><span style="color:#8da101;"> </span><span style="color:#f85552;">add</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">rsp</span><span style="color:#5c6a72;">,</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">8</span><span style="font-style:italic;color:#939f91;">              ; clean up stack after call</span><span style="color:#5c6a72;">
+</span><span style="color:#5c6a72;">
+</span><span style="color:#8da101;"> </span><span style="color:#8da101;"> </span><span style="color:#f85552;">mov</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">rax</span><span style="color:#5c6a72;">,</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">60</span><span style="color:#5c6a72;">
+</span><span style="color:#8da101;"> </span><span style="color:#8da101;"> </span><span style="color:#f85552;">mov</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">rdi</span><span style="color:#5c6a72;">,</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">0</span><span style="color:#5c6a72;">
+</span><span style="color:#8da101;"> </span><span style="color:#8da101;"> </span><span style="color:#f85552;">syscall</span><span style="color:#5c6a72;">
+</span><span style="color:#5c6a72;">
+</span><span style="color:#8da101;"> </span><span style="color:#8da101;"> </span><span style="color:#f85552;">mov</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">rsp</span><span style="color:#5c6a72;">,</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">rbp</span><span style="color:#5c6a72;">
+</span><span style="color:#8da101;"> </span><span style="color:#8da101;"> </span><span style="color:#f85552;">pop</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">rbp</span></code></pre>
+  
+  <pre color-scheme="dark"><code><span style="color:#a7c080;">_</span><span style="color:#a7c080;">f</span><span style="color:#a7c080;">o</span><span style="color:#a7c080;">o</span><span style="color:#a7c080;">:</span><span style="color:#d3c6aa;">
+</span><span style="color:#a7c080;"> </span><span style="color:#a7c080;"> </span><span style="color:#e67e80;">push</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">rbp</span><span style="color:#d3c6aa;">
+</span><span style="color:#a7c080;"> </span><span style="color:#a7c080;"> </span><span style="color:#e67e80;">mov</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">rbp</span><span style="color:#d3c6aa;">,</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">rsp</span><span style="color:#d3c6aa;">
+</span><span style="color:#d3c6aa;">
+</span><span style="color:#a7c080;"> </span><span style="color:#a7c080;"> </span><span style="color:#e67e80;">sub</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">rsp</span><span style="color:#d3c6aa;">,</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">8</span><span style="font-style:italic;color:#859289;">              ; x, y are 4 bytes each, total 8 bytes</span><span style="color:#d3c6aa;">
+</span><span style="color:#a7c080;"> </span><span style="color:#a7c080;"> </span><span style="color:#e67e80;">mov</span><span style="color:#a7c080;"> </span><span style="color:#a7c080;">dword</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">[</span><span style="color:#d3c6aa;">rsp</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">+</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">4</span><span style="color:#d3c6aa;">]</span><span style="color:#d3c6aa;">,</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">11</span><span style="font-style:italic;color:#859289;"> ; x = 11</span><span style="color:#d3c6aa;">
+</span><span style="color:#a7c080;"> </span><span style="color:#a7c080;"> </span><span style="color:#e67e80;">mov</span><span style="color:#a7c080;"> </span><span style="color:#a7c080;">dword</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">[</span><span style="color:#d3c6aa;">rsp</span><span style="color:#d3c6aa;">]</span><span style="color:#d3c6aa;">,</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">17</span><span style="font-style:italic;color:#859289;">     ; y = 17</span><span style="color:#d3c6aa;">
+</span><span style="color:#d3c6aa;">
+</span><span style="color:#a7c080;"> </span><span style="color:#a7c080;"> </span><span style="color:#e67e80;">push</span><span style="color:#a7c080;"> </span><span style="color:#a7c080;">qword</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">[</span><span style="color:#d3c6aa;">rsp</span><span style="color:#d3c6aa;">]</span><span style="color:#d3c6aa;">
+</span><span style="color:#a7c080;"> </span><span style="color:#a7c080;"> </span><span style="color:#e67e80;">add</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">rsp</span><span style="color:#d3c6aa;">,</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">8</span><span style="font-style:italic;color:#859289;">              ; clean up stack after call</span><span style="color:#d3c6aa;">
+</span><span style="color:#d3c6aa;">
+</span><span style="color:#a7c080;"> </span><span style="color:#a7c080;"> </span><span style="color:#e67e80;">mov</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">rax</span><span style="color:#d3c6aa;">,</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">60</span><span style="color:#d3c6aa;">
+</span><span style="color:#a7c080;"> </span><span style="color:#a7c080;"> </span><span style="color:#e67e80;">mov</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">rdi</span><span style="color:#d3c6aa;">,</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">0</span><span style="color:#d3c6aa;">
+</span><span style="color:#a7c080;"> </span><span style="color:#a7c080;"> </span><span style="color:#e67e80;">syscall</span><span style="color:#d3c6aa;">
+</span><span style="color:#d3c6aa;">
+</span><span style="color:#a7c080;"> </span><span style="color:#a7c080;"> </span><span style="color:#e67e80;">mov</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">rsp</span><span style="color:#d3c6aa;">,</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">rbp</span><span style="color:#d3c6aa;">
+</span><span style="color:#a7c080;"> </span><span style="color:#a7c080;"> </span><span style="color:#e67e80;">pop</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">rbp</span></code></pre>
+<p>While <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">swap</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">swap</span></code>
+</span> may written as:</p>
+  <pre color-scheme="light"><code><span style="color:#3a94c5;">void</span><span style="color:#5c6a72;"> </span><span style="color:#8da101;">swap</span><span style="color:#5c6a72;">(</span><span style="color:#3a94c5;">int</span><span style="color:#8da101;"> </span><span style="color:#f57d26;">*</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">a</span><span style="color:#5c6a72;">,</span><span style="color:#8da101;"> </span><span style="color:#3a94c5;">int</span><span style="color:#8da101;"> </span><span style="color:#f57d26;">*</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">b</span><span style="color:#5c6a72;">)</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">{</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">  </span><span style="color:#3a94c5;">int</span><span style="color:#8da101;"> tmp </span><span style="color:#f57d26;">=</span><span style="color:#8da101;"> </span><span style="color:#f57d26;">*</span><span style="color:#8da101;">a</span><span style="color:#5c6a72;">;</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">  </span><span style="color:#f57d26;">*</span><span style="color:#8da101;">a </span><span style="color:#f57d26;">=</span><span style="color:#8da101;"> </span><span style="color:#f57d26;">*</span><span style="color:#8da101;">b</span><span style="color:#5c6a72;">;</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">  </span><span style="color:#f57d26;">*</span><span style="color:#8da101;">b </span><span style="color:#f57d26;">=</span><span style="color:#8da101;"> tmp</span><span style="color:#5c6a72;">;</span><span style="color:#8da101;">
+</span><span style="color:#5c6a72;">}</span></code></pre>
+  
+  <pre color-scheme="dark"><code><span style="color:#7fbbb3;">void</span><span style="color:#d3c6aa;"> </span><span style="color:#a7c080;">swap</span><span style="color:#d3c6aa;">(</span><span style="color:#7fbbb3;">int</span><span style="color:#a7c080;"> </span><span style="color:#e69875;">*</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">a</span><span style="color:#d3c6aa;">,</span><span style="color:#a7c080;"> </span><span style="color:#7fbbb3;">int</span><span style="color:#a7c080;"> </span><span style="color:#e69875;">*</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">b</span><span style="color:#d3c6aa;">)</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">{</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">  </span><span style="color:#7fbbb3;">int</span><span style="color:#a7c080;"> tmp </span><span style="color:#e69875;">=</span><span style="color:#a7c080;"> </span><span style="color:#e69875;">*</span><span style="color:#a7c080;">a</span><span style="color:#d3c6aa;">;</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">  </span><span style="color:#e69875;">*</span><span style="color:#a7c080;">a </span><span style="color:#e69875;">=</span><span style="color:#a7c080;"> </span><span style="color:#e69875;">*</span><span style="color:#a7c080;">b</span><span style="color:#d3c6aa;">;</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">  </span><span style="color:#e69875;">*</span><span style="color:#a7c080;">b </span><span style="color:#e69875;">=</span><span style="color:#a7c080;"> tmp</span><span style="color:#d3c6aa;">;</span><span style="color:#a7c080;">
+</span><span style="color:#d3c6aa;">}</span></code></pre>
+<p>8 bytes are reserved for <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">saved pc</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">saved pc</span></code>
+</span> and 16 bytes for 2 arguments. <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">a</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">a</span></code>
+</span> for <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">rsp - 8</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">rsp - 8</span></code>
+</span>, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">b</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">b</span></code>
+</span> for <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">rsp - 16</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">rsp - 16</span></code>
+</span> since the program runs in x86_64 machine. Left most parameter lays at the button of stack frame.</p>
+    <p>In c:</p>
+  <pre color-scheme="light"><code><span style="color:#3a94c5;">void</span><span style="color:#5c6a72;"> </span><span style="color:#f57d26;">__attribute__</span><span style="color:#5c6a72;">((</span><span style="color:#5c6a72;">naked</span><span style="color:#5c6a72;">))</span><span style="color:#5c6a72;"> </span><span style="color:#8da101;">swap</span><span style="color:#5c6a72;">(</span><span style="color:#3a94c5;">int</span><span style="color:#8da101;"> </span><span style="color:#f57d26;">*</span><span style="color:#5c6a72;">ap</span><span style="color:#5c6a72;">,</span><span style="color:#8da101;"> </span><span style="color:#3a94c5;">int</span><span style="color:#8da101;"> </span><span style="color:#f57d26;">*</span><span style="color:#5c6a72;">bp</span><span style="color:#5c6a72;">)</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">{</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">  </span><span style="color:#3a94c5;">asm</span><span style="color:#8da101;"> </span><span style="color:#f57d26;">volatile</span><span style="color:#5c6a72;">(</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">      </span><span style="font-style:italic;color:#939f91;">//</span><span style="font-style:italic;color:#939f91;"> fetch arguments from stack
+</span><span style="color:#8da101;">      </span><span style="color:#dfa000;">&quot;</span><span style="color:#dfa000;">mov rbx, [rsp + 8];</span><span style="color:#8da101;">\n</span><span style="color:#dfa000;">&quot;</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">      </span><span style="color:#dfa000;">&quot;</span><span style="color:#dfa000;">mov eax, [rbx];</span><span style="color:#8da101;">\n</span><span style="color:#dfa000;">&quot;</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">      </span><span style="color:#dfa000;">&quot;</span><span style="color:#dfa000;">mov rbx, [rsp + 16];</span><span style="color:#8da101;">\n</span><span style="color:#dfa000;">&quot;</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">      </span><span style="color:#dfa000;">&quot;</span><span style="color:#dfa000;">xchg eax, [rbx];</span><span style="color:#8da101;">\n</span><span style="color:#dfa000;">&quot;</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">      </span><span style="color:#dfa000;">&quot;</span><span style="color:#dfa000;">mov rbx, [rsp + 8];</span><span style="color:#8da101;">\n</span><span style="color:#dfa000;">&quot;</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">      </span><span style="color:#dfa000;">&quot;</span><span style="color:#dfa000;">mov [rbx], eax;</span><span style="color:#8da101;">\n</span><span style="color:#dfa000;">&quot;</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">      </span><span style="color:#dfa000;">&quot;</span><span style="color:#dfa000;">ret;</span><span style="color:#8da101;">\n</span><span style="color:#dfa000;">&quot;</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">      </span><span style="color:#f57d26;">:</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">      </span><span style="color:#f57d26;">:</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">      </span><span style="color:#f57d26;">:</span><span style="color:#8da101;"> </span><span style="color:#dfa000;">&quot;</span><span style="color:#dfa000;">rsi</span><span style="color:#dfa000;">&quot;</span><span style="color:#5c6a72;">,</span><span style="color:#8da101;"> </span><span style="color:#dfa000;">&quot;</span><span style="color:#dfa000;">rdi</span><span style="color:#dfa000;">&quot;</span><span style="color:#5c6a72;">,</span><span style="color:#8da101;"> </span><span style="color:#dfa000;">&quot;</span><span style="color:#dfa000;">memory</span><span style="color:#dfa000;">&quot;</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;">;</span><span style="color:#8da101;">
+</span><span style="color:#5c6a72;">}</span><span style="color:#5c6a72;">
+</span><span style="color:#5c6a72;">
+</span><span style="color:#3a94c5;">void</span><span style="color:#5c6a72;"> </span><span style="color:#f57d26;">__attribute__</span><span style="color:#5c6a72;">((</span><span style="color:#5c6a72;">naked</span><span style="color:#5c6a72;">))</span><span style="color:#5c6a72;"> </span><span style="color:#8da101;">foo</span><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">)</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">{</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">  </span><span style="color:#3a94c5;">asm</span><span style="color:#8da101;"> </span><span style="color:#f57d26;">volatile</span><span style="color:#5c6a72;">(</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">      </span><span style="font-style:italic;color:#939f91;">//</span><span style="font-style:italic;color:#939f91;"> initialize variables
+</span><span style="color:#8da101;">      </span><span style="font-style:italic;color:#939f91;">//</span><span style="font-style:italic;color:#939f91;"> push rbp;
+</span><span style="color:#8da101;">      </span><span style="font-style:italic;color:#939f91;">//</span><span style="font-style:italic;color:#939f91;"> mov rbp, rsp;
+</span><span style="color:#8da101;">      </span><span style="font-style:italic;color:#939f91;">//</span><span style="font-style:italic;color:#939f91;"> for better if possible
+</span><span style="color:#8da101;">      </span><span style="color:#dfa000;">&quot;</span><span style="color:#dfa000;">sub rsp, 8;</span><span style="color:#8da101;">\n</span><span style="color:#dfa000;">&quot;</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">      </span><span style="color:#dfa000;">&quot;</span><span style="color:#dfa000;">mov dword ptr [rsp + 4], 11;</span><span style="color:#8da101;">\n</span><span style="color:#dfa000;">&quot;</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">      </span><span style="color:#dfa000;">&quot;</span><span style="color:#dfa000;">mov dword ptr [rsp], 17;</span><span style="color:#8da101;">\n</span><span style="color:#dfa000;">&quot;</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">      </span><span style="color:#dfa000;">&quot;</span><span style="color:#dfa000;">lea rax, [rsp + 4];</span><span style="color:#8da101;">\n</span><span style="color:#dfa000;">&quot;</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">      </span><span style="color:#dfa000;">&quot;</span><span style="color:#dfa000;">push rax;</span><span style="color:#8da101;">\n</span><span style="color:#dfa000;">&quot;</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">      </span><span style="color:#dfa000;">&quot;</span><span style="color:#dfa000;">lea rax, [rsp];</span><span style="color:#8da101;">\n</span><span style="color:#dfa000;">&quot;</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">      </span><span style="color:#dfa000;">&quot;</span><span style="color:#dfa000;">push rax;</span><span style="color:#8da101;">\n</span><span style="color:#dfa000;">&quot;</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">      </span><span style="color:#dfa000;">&quot;</span><span style="color:#dfa000;">call swap;</span><span style="color:#8da101;">\n</span><span style="color:#dfa000;">&quot;</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">      </span><span style="color:#dfa000;">&quot;</span><span style="color:#dfa000;">add rsp, 16;</span><span style="color:#8da101;">\n</span><span style="color:#dfa000;">&quot;</span><span style="color:#8da101;"> </span><span style="font-style:italic;color:#939f91;">//</span><span style="font-style:italic;color:#939f91;"> clean up calling
+</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">      </span><span style="font-style:italic;color:#939f91;">//</span><span style="font-style:italic;color:#939f91;"> clean up stack
+</span><span style="color:#8da101;">      </span><span style="font-style:italic;color:#939f91;">//</span><span style="font-style:italic;color:#939f91;"> also possible to use
+</span><span style="color:#8da101;">      </span><span style="font-style:italic;color:#939f91;">//</span><span style="font-style:italic;color:#939f91;"> `mov rsp, rbp; push rbp;`
+</span><span style="color:#8da101;">      </span><span style="font-style:italic;color:#939f91;">//</span><span style="font-style:italic;color:#939f91;"> if bp is set
+</span><span style="color:#8da101;">      </span><span style="color:#dfa000;">&quot;</span><span style="color:#dfa000;">add rsp, 8;</span><span style="color:#8da101;">\n</span><span style="color:#dfa000;">&quot;</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">      </span><span style="color:#dfa000;">&quot;</span><span style="color:#dfa000;">ret;</span><span style="color:#8da101;">\n</span><span style="color:#dfa000;">&quot;</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">      </span><span style="color:#f57d26;">:</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">      </span><span style="color:#f57d26;">:</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">      </span><span style="color:#f57d26;">:</span><span style="color:#8da101;"> </span><span style="color:#dfa000;">&quot;</span><span style="color:#dfa000;">memory</span><span style="color:#dfa000;">&quot;</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;">;</span><span style="color:#8da101;">
+</span><span style="color:#5c6a72;">}</span><span style="color:#5c6a72;">
+</span><span style="color:#5c6a72;">
+</span><span style="color:#3a94c5;">int</span><span style="color:#5c6a72;"> </span><span style="color:#8da101;">main</span><span style="color:#5c6a72;">(</span><span style="color:#3a94c5;">int</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">argc</span><span style="color:#5c6a72;">,</span><span style="color:#8da101;"> </span><span style="color:#3a94c5;">char</span><span style="color:#8da101;"> </span><span style="color:#f57d26;">*</span><span style="color:#5c6a72;">argv</span><span style="color:#5c6a72;">[</span><span style="color:#5c6a72;">]</span><span style="color:#5c6a72;">)</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">{</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">  </span><span style="color:#5c6a72;">foo</span><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;">;</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">  </span><span style="color:#f85552;">return</span><span style="color:#8da101;"> </span><span style="color:#df69ba;">0</span><span style="color:#5c6a72;">;</span><span style="color:#8da101;">
+</span><span style="color:#5c6a72;">}</span></code></pre>
+  
+  <pre color-scheme="dark"><code><span style="color:#7fbbb3;">void</span><span style="color:#d3c6aa;"> </span><span style="color:#e69875;">__attribute__</span><span style="color:#d3c6aa;">((</span><span style="color:#d3c6aa;">naked</span><span style="color:#d3c6aa;">))</span><span style="color:#d3c6aa;"> </span><span style="color:#a7c080;">swap</span><span style="color:#d3c6aa;">(</span><span style="color:#7fbbb3;">int</span><span style="color:#a7c080;"> </span><span style="color:#e69875;">*</span><span style="color:#d3c6aa;">ap</span><span style="color:#d3c6aa;">,</span><span style="color:#a7c080;"> </span><span style="color:#7fbbb3;">int</span><span style="color:#a7c080;"> </span><span style="color:#e69875;">*</span><span style="color:#d3c6aa;">bp</span><span style="color:#d3c6aa;">)</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">{</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">  </span><span style="color:#7fbbb3;">asm</span><span style="color:#a7c080;"> </span><span style="color:#e69875;">volatile</span><span style="color:#d3c6aa;">(</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">      </span><span style="font-style:italic;color:#859289;">//</span><span style="font-style:italic;color:#859289;"> fetch arguments from stack
+</span><span style="color:#a7c080;">      </span><span style="color:#dbbc7f;">&quot;</span><span style="color:#dbbc7f;">mov rbx, [rsp + 8];</span><span style="color:#a7c080;">\n</span><span style="color:#dbbc7f;">&quot;</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">      </span><span style="color:#dbbc7f;">&quot;</span><span style="color:#dbbc7f;">mov eax, [rbx];</span><span style="color:#a7c080;">\n</span><span style="color:#dbbc7f;">&quot;</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">      </span><span style="color:#dbbc7f;">&quot;</span><span style="color:#dbbc7f;">mov rbx, [rsp + 16];</span><span style="color:#a7c080;">\n</span><span style="color:#dbbc7f;">&quot;</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">      </span><span style="color:#dbbc7f;">&quot;</span><span style="color:#dbbc7f;">xchg eax, [rbx];</span><span style="color:#a7c080;">\n</span><span style="color:#dbbc7f;">&quot;</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">      </span><span style="color:#dbbc7f;">&quot;</span><span style="color:#dbbc7f;">mov rbx, [rsp + 8];</span><span style="color:#a7c080;">\n</span><span style="color:#dbbc7f;">&quot;</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">      </span><span style="color:#dbbc7f;">&quot;</span><span style="color:#dbbc7f;">mov [rbx], eax;</span><span style="color:#a7c080;">\n</span><span style="color:#dbbc7f;">&quot;</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">      </span><span style="color:#dbbc7f;">&quot;</span><span style="color:#dbbc7f;">ret;</span><span style="color:#a7c080;">\n</span><span style="color:#dbbc7f;">&quot;</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">      </span><span style="color:#e69875;">:</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">      </span><span style="color:#e69875;">:</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">      </span><span style="color:#e69875;">:</span><span style="color:#a7c080;"> </span><span style="color:#dbbc7f;">&quot;</span><span style="color:#dbbc7f;">rsi</span><span style="color:#dbbc7f;">&quot;</span><span style="color:#d3c6aa;">,</span><span style="color:#a7c080;"> </span><span style="color:#dbbc7f;">&quot;</span><span style="color:#dbbc7f;">rdi</span><span style="color:#dbbc7f;">&quot;</span><span style="color:#d3c6aa;">,</span><span style="color:#a7c080;"> </span><span style="color:#dbbc7f;">&quot;</span><span style="color:#dbbc7f;">memory</span><span style="color:#dbbc7f;">&quot;</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;">;</span><span style="color:#a7c080;">
+</span><span style="color:#d3c6aa;">}</span><span style="color:#d3c6aa;">
+</span><span style="color:#d3c6aa;">
+</span><span style="color:#7fbbb3;">void</span><span style="color:#d3c6aa;"> </span><span style="color:#e69875;">__attribute__</span><span style="color:#d3c6aa;">((</span><span style="color:#d3c6aa;">naked</span><span style="color:#d3c6aa;">))</span><span style="color:#d3c6aa;"> </span><span style="color:#a7c080;">foo</span><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">)</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">{</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">  </span><span style="color:#7fbbb3;">asm</span><span style="color:#a7c080;"> </span><span style="color:#e69875;">volatile</span><span style="color:#d3c6aa;">(</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">      </span><span style="font-style:italic;color:#859289;">//</span><span style="font-style:italic;color:#859289;"> initialize variables
+</span><span style="color:#a7c080;">      </span><span style="font-style:italic;color:#859289;">//</span><span style="font-style:italic;color:#859289;"> push rbp;
+</span><span style="color:#a7c080;">      </span><span style="font-style:italic;color:#859289;">//</span><span style="font-style:italic;color:#859289;"> mov rbp, rsp;
+</span><span style="color:#a7c080;">      </span><span style="font-style:italic;color:#859289;">//</span><span style="font-style:italic;color:#859289;"> for better if possible
+</span><span style="color:#a7c080;">      </span><span style="color:#dbbc7f;">&quot;</span><span style="color:#dbbc7f;">sub rsp, 8;</span><span style="color:#a7c080;">\n</span><span style="color:#dbbc7f;">&quot;</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">      </span><span style="color:#dbbc7f;">&quot;</span><span style="color:#dbbc7f;">mov dword ptr [rsp + 4], 11;</span><span style="color:#a7c080;">\n</span><span style="color:#dbbc7f;">&quot;</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">      </span><span style="color:#dbbc7f;">&quot;</span><span style="color:#dbbc7f;">mov dword ptr [rsp], 17;</span><span style="color:#a7c080;">\n</span><span style="color:#dbbc7f;">&quot;</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">      </span><span style="color:#dbbc7f;">&quot;</span><span style="color:#dbbc7f;">lea rax, [rsp + 4];</span><span style="color:#a7c080;">\n</span><span style="color:#dbbc7f;">&quot;</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">      </span><span style="color:#dbbc7f;">&quot;</span><span style="color:#dbbc7f;">push rax;</span><span style="color:#a7c080;">\n</span><span style="color:#dbbc7f;">&quot;</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">      </span><span style="color:#dbbc7f;">&quot;</span><span style="color:#dbbc7f;">lea rax, [rsp];</span><span style="color:#a7c080;">\n</span><span style="color:#dbbc7f;">&quot;</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">      </span><span style="color:#dbbc7f;">&quot;</span><span style="color:#dbbc7f;">push rax;</span><span style="color:#a7c080;">\n</span><span style="color:#dbbc7f;">&quot;</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">      </span><span style="color:#dbbc7f;">&quot;</span><span style="color:#dbbc7f;">call swap;</span><span style="color:#a7c080;">\n</span><span style="color:#dbbc7f;">&quot;</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">      </span><span style="color:#dbbc7f;">&quot;</span><span style="color:#dbbc7f;">add rsp, 16;</span><span style="color:#a7c080;">\n</span><span style="color:#dbbc7f;">&quot;</span><span style="color:#a7c080;"> </span><span style="font-style:italic;color:#859289;">//</span><span style="font-style:italic;color:#859289;"> clean up calling
+</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">      </span><span style="font-style:italic;color:#859289;">//</span><span style="font-style:italic;color:#859289;"> clean up stack
+</span><span style="color:#a7c080;">      </span><span style="font-style:italic;color:#859289;">//</span><span style="font-style:italic;color:#859289;"> also possible to use
+</span><span style="color:#a7c080;">      </span><span style="font-style:italic;color:#859289;">//</span><span style="font-style:italic;color:#859289;"> `mov rsp, rbp; push rbp;`
+</span><span style="color:#a7c080;">      </span><span style="font-style:italic;color:#859289;">//</span><span style="font-style:italic;color:#859289;"> if bp is set
+</span><span style="color:#a7c080;">      </span><span style="color:#dbbc7f;">&quot;</span><span style="color:#dbbc7f;">add rsp, 8;</span><span style="color:#a7c080;">\n</span><span style="color:#dbbc7f;">&quot;</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">      </span><span style="color:#dbbc7f;">&quot;</span><span style="color:#dbbc7f;">ret;</span><span style="color:#a7c080;">\n</span><span style="color:#dbbc7f;">&quot;</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">      </span><span style="color:#e69875;">:</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">      </span><span style="color:#e69875;">:</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">      </span><span style="color:#e69875;">:</span><span style="color:#a7c080;"> </span><span style="color:#dbbc7f;">&quot;</span><span style="color:#dbbc7f;">memory</span><span style="color:#dbbc7f;">&quot;</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;">;</span><span style="color:#a7c080;">
+</span><span style="color:#d3c6aa;">}</span><span style="color:#d3c6aa;">
+</span><span style="color:#d3c6aa;">
+</span><span style="color:#7fbbb3;">int</span><span style="color:#d3c6aa;"> </span><span style="color:#a7c080;">main</span><span style="color:#d3c6aa;">(</span><span style="color:#7fbbb3;">int</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">argc</span><span style="color:#d3c6aa;">,</span><span style="color:#a7c080;"> </span><span style="color:#7fbbb3;">char</span><span style="color:#a7c080;"> </span><span style="color:#e69875;">*</span><span style="color:#d3c6aa;">argv</span><span style="color:#d3c6aa;">[</span><span style="color:#d3c6aa;">]</span><span style="color:#d3c6aa;">)</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">{</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">  </span><span style="color:#d3c6aa;">foo</span><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;">;</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">  </span><span style="color:#e67e80;">return</span><span style="color:#a7c080;"> </span><span style="color:#d699b6;">0</span><span style="color:#d3c6aa;">;</span><span style="color:#a7c080;">
+</span><span style="color:#d3c6aa;">}</span></code></pre>
+<p><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">swap</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">swap</span></code>
+</span> function does not implemented as code shown in c, but use <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">xchg</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">xchg</span></code>
+</span>.</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Stanford-CS107/S1-9">9</span>
+ Pre-process, Compile, Assemble, Link</summary>
+      <p>Code -> Processed Code -> Assembled Code -> Objected File -> Executable File</p>
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Stanford-CS107/S1-9.1">9.1</span>
+ Preprocessor</summary>
+      
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Stanford-CS107/S1-9.1.1">9.1.1</span>
+ <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">#define</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">#define</span></code>
+</span></summary>
+      <p>Replacement of text appear in source file.</p>
+    <ol>
+      <li>
+        <p>constant replacement</p>
+  <pre color-scheme="light"><code><span style="color:#35a77c;">#define</span><span style="color:#5c6a72;"> </span><span style="color:#5c6a72;">SIZE</span><span style="color:#5c6a72;"> </span><span style="color:#df69ba;">1024</span><span style="color:#5c6a72;">
+</span><span style="color:#3a94c5;">char</span><span style="color:#5c6a72;"> buf</span><span style="color:#5c6a72;">[</span><span style="color:#5c6a72;">SIZE</span><span style="color:#5c6a72;">]</span><span style="color:#5c6a72;">;</span></code></pre>
+  
+  <pre color-scheme="dark"><code><span style="color:#83c092;">#define</span><span style="color:#d3c6aa;"> </span><span style="color:#d3c6aa;">SIZE</span><span style="color:#d3c6aa;"> </span><span style="color:#d699b6;">1024</span><span style="color:#d3c6aa;">
+</span><span style="color:#7fbbb3;">char</span><span style="color:#d3c6aa;"> buf</span><span style="color:#d3c6aa;">[</span><span style="color:#d3c6aa;">SIZE</span><span style="color:#d3c6aa;">]</span><span style="color:#d3c6aa;">;</span></code></pre>
+</li>
+      <li>
+        <p>parameterized macro</p>
+  <pre color-scheme="light"><code><span style="color:#35a77c;">#define</span><span style="color:#5c6a72;"> </span><span style="color:#df69ba;">MAX</span><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">a</span><span style="color:#5c6a72;">,</span><span style="color:#5c6a72;"> </span><span style="color:#5c6a72;">b</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;"> </span><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">a</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;"> </span><span style="color:#f57d26;">&gt;</span><span style="color:#5c6a72;"> </span><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">b</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;"> </span><span style="color:#f57d26;">?</span><span style="color:#5c6a72;"> </span><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">a</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;"> </span><span style="color:#f57d26;">:</span><span style="color:#5c6a72;"> </span><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">b</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;">
+</span><span style="color:#3a94c5;">int</span><span style="color:#5c6a72;"> x </span><span style="color:#f57d26;">=</span><span style="color:#5c6a72;"> </span><span style="color:#5c6a72;">MAX</span><span style="color:#5c6a72;">(</span><span style="color:#df69ba;">3</span><span style="color:#5c6a72;">,</span><span style="color:#5c6a72;"> </span><span style="color:#df69ba;">5</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;">;</span></code></pre>
+  
+  <pre color-scheme="dark"><code><span style="color:#83c092;">#define</span><span style="color:#d3c6aa;"> </span><span style="color:#d699b6;">MAX</span><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">a</span><span style="color:#d3c6aa;">,</span><span style="color:#d3c6aa;"> </span><span style="color:#d3c6aa;">b</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;"> </span><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">a</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;"> </span><span style="color:#e69875;">&gt;</span><span style="color:#d3c6aa;"> </span><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">b</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;"> </span><span style="color:#e69875;">?</span><span style="color:#d3c6aa;"> </span><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">a</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;"> </span><span style="color:#e69875;">:</span><span style="color:#d3c6aa;"> </span><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">b</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;">
+</span><span style="color:#7fbbb3;">int</span><span style="color:#d3c6aa;"> x </span><span style="color:#e69875;">=</span><span style="color:#d3c6aa;"> </span><span style="color:#d3c6aa;">MAX</span><span style="color:#d3c6aa;">(</span><span style="color:#d699b6;">3</span><span style="color:#d3c6aa;">,</span><span style="color:#d3c6aa;"> </span><span style="color:#d699b6;">5</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;">;</span></code></pre>
+</li>
+    </ol>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Stanford-CS107/S1-9.1.2">9.1.2</span>
+ <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">#include</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">#include</span></code>
+</span></summary>
+      
+    </details>
+  </section>
+  
+
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Stanford-CS107/S1-9.2">9.2</span>
+ compiler</summary>
+      
+    </details>
+  </section>
+  
+
+    </details>
+  </section>
+  
+
+ 
+        </details>
+      </section>
+      
+    
+
+
+    </article>
+    
+    <nav id="toc">
+        <div class="block">
+            <h1>Table of Contents</h1>
+            <ul class="block">
+            
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Stanford-CS107/S1">
+<span id="notes/Stanford-CS107/S1"></span>
+Stanford CS107: Programming Paradigm</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Stanford-CS107/S1-1">
+<span id="notes/Stanford-CS107/S1-1">1</span>
+Data Types and Conversion</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Stanford-CS107/S1-1.1">
+<span id="notes/Stanford-CS107/S1-1.1">1.1</span>
+Binary Numbers</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Stanford-CS107/S1-1.2">
+<span id="notes/Stanford-CS107/S1-1.2">1.2</span>
+Characters</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Stanford-CS107/S1-1.3">
+<span id="notes/Stanford-CS107/S1-1.3">1.3</span>
+Convert</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Stanford-CS107/S1-1.4">
+<span id="notes/Stanford-CS107/S1-1.4">1.4</span>
+Floats</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Stanford-CS107/S1-1.5">
+<span id="notes/Stanford-CS107/S1-1.5">1.5</span>
+Endian</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Stanford-CS107/S1-2">
+<span id="notes/Stanford-CS107/S1-2">2</span>
+Structure (<span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">struct</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">struct</span></code>
+</span>)</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Stanford-CS107/S1-2.1">
+<span id="notes/Stanford-CS107/S1-2.1">2.1</span>
+Array</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Stanford-CS107/S1-2.2">
+<span id="notes/Stanford-CS107/S1-2.2">2.2</span>
+Generic</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Stanford-CS107/S1-3">
+<span id="notes/Stanford-CS107/S1-3">3</span>
+Stack</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Stanford-CS107/S1-3.1">
+<span id="notes/Stanford-CS107/S1-3.1">3.1</span>
+Stack with int</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Stanford-CS107/S1-3.2">
+<span id="notes/Stanford-CS107/S1-3.2">3.2</span>
+Generic Stack</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Stanford-CS107/S1-4">
+<span id="notes/Stanford-CS107/S1-4">4</span>
+Memory Management</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Stanford-CS107/S1-5">
+<span id="notes/Stanford-CS107/S1-5">5</span>
+Memory Segments</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Stanford-CS107/S1-5.1">
+<span id="notes/Stanford-CS107/S1-5.1">5.1</span>
+Memory compose</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Stanford-CS107/S1-5.2">
+<span id="notes/Stanford-CS107/S1-5.2">5.2</span>
+Stack segment</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Stanford-CS107/S1-5.3">
+<span id="notes/Stanford-CS107/S1-5.3">5.3</span>
+Memory Management</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Stanford-CS107/S1-6">
+<span id="notes/Stanford-CS107/S1-6">6</span>
+Section IX: Computer architecture</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Stanford-CS107/S1-6.1">
+<span id="notes/Stanford-CS107/S1-6.1">6.1</span>
+Load / Store, ALU Operations</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Stanford-CS107/S1-6.2">
+<span id="notes/Stanford-CS107/S1-6.2">6.2</span>
+force conversion</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Stanford-CS107/S1-7">
+<span id="notes/Stanford-CS107/S1-7">7</span>
+activate record: function call frame</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Stanford-CS107/S1-8">
+<span id="notes/Stanford-CS107/S1-8">8</span>
+Section XI: Swap, call in assembly</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Stanford-CS107/S1-9">
+<span id="notes/Stanford-CS107/S1-9">9</span>
+Pre-process, Compile, Assemble, Link</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Stanford-CS107/S1-9.1">
+<span id="notes/Stanford-CS107/S1-9.1">9.1</span>
+Preprocessor</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Stanford-CS107/S1-9.1.1">
+<span id="notes/Stanford-CS107/S1-9.1.1">9.1.1</span>
+<span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">#define</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">#define</span></code>
+</span></a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Stanford-CS107/S1-9.1.2">
+<span id="notes/Stanford-CS107/S1-9.1.2">9.1.2</span>
+<span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">#include</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">#include</span></code>
+</span></a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Stanford-CS107/S1-9.2">
+<span id="notes/Stanford-CS107/S1-9.2">9.2</span>
+compiler</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+
+            </ul>
+        </div>
+    </nav>
+ 
+  </div>
+
+
+</body>
+</html>
