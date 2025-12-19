@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>The Missing Semester of Computer Education</title>
+  <link href="/schemas/page.css" rel="stylesheet"/>
+  <link href="/math-block.css" rel="stylesheet"/>
+  <link href="/math-inline.css" rel="stylesheet"/>
+  <link href="/mathyml.css" rel="stylesheet"/>
+  <link href="/inline-fold.css" rel="stylesheet"/>
+  <link crossorigin="true" href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@700&display=swap" rel="stylesheet">
+  
+  <link href="/components/sidebar.css" rel="stylesheet">
+  <link href="/rewrite/code_inline.css" rel="stylesheet">
+  
+  <link href="https://fred-wang.github.io/MathFonts/NewComputerModern/mathfonts.css" rel="stylesheet">
+</head>
+<body>
+
+  <header class="header" parent="true">
+    <nav class="nav">
+      <div class="logo">
+        <span onclick="window.location.href='/index'" title="GitHub@mujiu555's page [/index]">« GitHub@mujiu555's page</span>
+      </div>
+    </nav>
+  </header>
+  <div id="grid-wrapper" sidebar="true">
+    <article>
+      <section class="block" id="notes/Missing-Semester/S1">
+        <details open="">
+          <summary>
+            <header class="top-header" show-metadata="true">
+              <h1>
+                The Missing Semester of Computer Education 
+              </h1>
+              <div class="metadata">
+                <ul>
+                  <li class="meta-item">
+                    <span class="link external"><a href="https://github.com/mujiu555" title="https://github.com/mujiu555">GitHub@mujiu555</a></span>
+                  </li>
+                  <li class="meta-item">
+                    2025-12-18 21:24
+                  </li>
+                  <li class="meta-item">
+                    <span class="link local"><a href="https://github.com/mujiu555/Wishful-Thinking/tree/main/site" title="Source [https://github.com/mujiu555/Wishful-Thinking/tree/main/site]">Source</a></span>
+                  </li>
+                </ul>
+              </div>
+            </header>
+          </summary>
+          
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-1">1</span>
+ Section I</summary>
+      <p>除了算法, 工具可以有效提升工作效率, 这是一个尝试, 教授如何掌握工具, 以及提供(可能)不清楚但是有用的工具.</p>
+    <p>这会跟进很多领域(11)</p>
+    <p>仅会介绍少量极其有用的工具</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-2">2</span>
+ Shell</summary>
+      <p>Shell是与计算机交互的一个重要途径</p>
+    <p>可以组合文本操作,</p>
+    <ol>
+      <li value="1">可以直接在shell中输入指令</li>
+      <li value="2">可以通过参数临时修改程序执行的行为(由程序自身决定)</li>
+      <li value="3">参数通过空格隔开</li>
+    </ol>
+    <p>Shell可以通过PATH路径找到可以使用的指令 PATH是用来在计算机中找到可执行文件的方式</p>
+    <ol>
+      <li value="1">绝对路径: 一个文件的全部路径</li>
+      <li value="2">相对路径: 文件相对于当前工作目录的路径 (pwd)</li>
+      <li value="3"><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">.</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">.</span></code>
+</span>: 当前目录</li>
+      <li value="4"><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">..</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">..</span></code>
+</span>: 上一级目录</li>
+      <li value="5"><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">~</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">~</span></code>
+</span>: 家目录</li>
+      <li value="6"><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">-</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">-</span></code>
+</span>: 上一次<span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">cd</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">cd</span></code>
+</span>的目录</li>
+    </ol>
+    <p>命令的参数:</p>
+    <ol>
+      <li value="1">一般通过<span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">--help</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">--help</span></code>
+</span>查询</li>
+      <li value="2"><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">-</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">-</span></code>
+</span> flag, 一般为短开关, 可以自由组合</li>
+      <li value="3">方括号一般表示内部是可选的</li>
+    </ol>
+    <p>权限:</p>
+    <ol>
+      <li value="1">第一位表示目录/普通文件/套接字</li>
+      <li value="2">ugo: 所有者, 所有者组, 其他:</li>
+      <li value="3">一共由9位二进制表示: 每三位表示对应对应用户(组)的权限, 读/写/执行</li>
+      <li value="4">目录的写权限仅影响是否可以删除修改其内部的文件</li>
+    </ol>
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-2.1">2.1</span>
+ Most used Commands</summary>
+      <ol>
+      <li value="1"><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">mv</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">mv</span></code>
+</span>:</li>
+      <li value="1"><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">cp</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">cp</span></code>
+</span>:</li>
+      <li value="1"><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">mv</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">mv</span></code>
+</span>:</li>
+      <li value="1"><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">mkdir</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">mkdir</span></code>
+</span>:</li>
+      <li value="1"><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">rmdir</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">rmdir</span></code>
+</span>:</li>
+      <li value="1"><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">man</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">man</span></code>
+</span>:</li>
+    </ol>
+    <p>PS. <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">info</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">info</span></code>
+</span>:</p>
+    <p>Short cut: <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Ctrl-L</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Ctrl-L</span></code>
+</span>: clear</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-2.2">2.2</span>
+ Shell Stream</summary>
+      <p>iostream redirection</p>
+    <ol>
+      <li value="1"><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">&lt; file</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">&lt; file</span></code>
+</span>: input redirection (from file)</li>
+      <li value="2"><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">&gt; file</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">&gt; file</span></code>
+</span>: output redirection (into file)</li>
+      <li value="3">PS. <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">&lt;&lt; label</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">&lt;&lt; label</span></code>
+</span>: input redirection (until read lable)</li>
+      <li value="4"><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">&gt;&gt; file</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">&gt;&gt; file</span></code>
+</span>: output append into file</li>
+      <li value="5"><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">prog1 | prog2</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">prog1 | prog2</span></code>
+</span>: pipe, output redirection to another program</li>
+    </ol>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-2.3">2.3</span>
+ Root user</summary>
+      <p>Super administrator</p>
+    <p><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">sudo</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">sudo</span></code>
+</span>: super user do (do as super user)</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-2.4">2.4</span>
+ <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">/sys</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">/sys</span></code>
+</span></summary>
+      <p>vfs: kernel variables</p>
+    <ol>
+      <li value="1"><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">tee</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">tee</span></code>
+</span>: <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#8da101;">echo</span><span style="color:#8da101;"> </span><span style="color:#f57d26;">&lt;</span><span style="color:#8da101;"> file</span><span style="color:#5c6a72;"> </span><span style="color:#f57d26;">|</span><span style="color:#5c6a72;"> </span><span style="color:#5c6a72;">sudo</span><span style="color:#8da101;"> tee /target</span></code>
+<code color-scheme="dark"><span style="color:#a7c080;">echo</span><span style="color:#a7c080;"> </span><span style="color:#e69875;">&lt;</span><span style="color:#a7c080;"> file</span><span style="color:#d3c6aa;"> </span><span style="color:#e69875;">|</span><span style="color:#d3c6aa;"> </span><span style="color:#d3c6aa;">sudo</span><span style="color:#a7c080;"> tee /target</span></code>
+</span></li>
+    </ol>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-2.5">2.5</span>
+ Shell Scripting</summary>
+      <p>语法,</p>
+    </details>
+  </section>
+  
+
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-3">3</span>
+ VIM</summary>
+      <p>我用的是NeoVim (LazyVim distro)</p>
+    <p>仓库地址: [My LazyVim](<span class="link external"><a href="https://github.com/mujiu555/my-lazyvim" title="https://github.com/mujiu555/my-lazyvim">https://github.com/mujiu555/my-lazyvim</a></span>)</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-4">4</span>
+ Section IV</summary>
+      <ul>
+      <li>
+        <p>grep</p>
+      </li>
+      <li>
+        <p>less</p>
+      </li>
+      <li>
+        <p>sed</p>
+        <ul>
+          <li>regular expression</li>
+        </ul>
+      </li>
+      <li>
+        <p>sort</p>
+      </li>
+      <li>
+        <p>head</p>
+      </li>
+      <li>
+        <p>tail</p>
+      </li>
+      <li>
+        <p>uniq</p>
+      </li>
+      <li>
+        <p>wc</p>
+      </li>
+      <li>
+        <p>paste</p>
+      </li>
+      <li>
+        <p>awk</p>
+      </li>
+      <li>
+        <p>bc</p>
+      </li>
+      <li>
+        <p>xargs</p>
+      </li>
+      <li>
+        <p>parallel</p>
+      </li>
+    </ul>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-5">5</span>
+ Command Line</summary>
+      <p>Short cut for shell</p>
+    <ul>
+      <li>Ctrl-C: SIGINT</li>
+      <li>Signal: kill</li>
+    </ul>
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-5.1">5.1</span>
+ Tmux</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-5.2">5.2</span>
+ Dot files</summary>
+      <p>Configurations</p>
+    <ul>
+      <li>alias</li>
+      <li>.bashrc</li>
+      <li>PS1</li>
+    </ul>
+    </details>
+  </section>
+  
+
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-6">6</span>
+ Debugging</summary>
+      
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-6.1">6.1</span>
+ Logger</summary>
+      <p>Log, like printf, but with more information.</p>
+    <p>It is possible to print with colour.</p>
+    <p>Using ASCII escape codes to draw color.</p>
+    <p>It is possible to use third party log system. Most of which may be placed in <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">/var/log</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">/var/log</span></code>
+</span>. <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Journalctl</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Journalctl</span></code>
+</span> will place log in <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">/var/log/journal</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">/var/log/journal</span></code>
+</span></p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-6.2">6.2</span>
+ Debugger</summary>
+      <p>Step debuggers: <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">GDB</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">GDB</span></code>
+</span>, and so on.</p>
+    <p>It is possible to walk through the execution</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-6.3">6.3</span>
+ Static checker</summary>
+      <p>Try to detect errors without actually execute a program.</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-6.4">6.4</span>
+ Inspect</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-6.5">6.5</span>
+ Profiling</summary>
+      <p>Count time is useful.</p>
+    <p>And real time: the time program cost to execute to finish. User time: the cpu time a program used. System time: the system cost during the program executes.</p>
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-6.5.1">6.5.1</span>
+ CPU profiling</summary>
+      <p>Tracing: record all information during program executes. Sampling: regularly inspect program.</p>
+    <p>Thus tracing will result to performance decrease.</p>
+    <p>Liner profiler: cost for each line's execute.</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-6.5.2">6.5.2</span>
+ Memory profiling</summary>
+      
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-6.5.2.1">6.5.2.1</span>
+ Analysis</summary>
+      <p><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Perf</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Perf</span></code>
+</span>:</p>
+    <ul>
+      <li>list:</li>
+      <li>stat:</li>
+      <li>record:</li>
+      <li>report:</li>
+    </ul>
+    </details>
+  </section>
+  
+
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-6.5.3">6.5.3</span>
+ Visualize</summary>
+      <ul>
+      <li>Flame Graph</li>
+      <li>Call Graph</li>
+    </ul>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-6.5.4">6.5.4</span>
+ Resource profiling</summary>
+      
+    </details>
+  </section>
+  
+
+    </details>
+  </section>
+  
+
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-7">7</span>
+ Meta programming</summary>
+      <p>DSL everywhere.</p>
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-7.1">7.1</span>
+ Build systems</summary>
+      <ul>
+      <li>Describe how to build</li>
+      <li>Encode Rules</li>
+    </ul>
+    <p>Make: GNU Make, BSD Make, NMake</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-7.2">7.2</span>
+ Make Rules</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-7.3">7.3</span>
+ Repositories</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-7.4">7.4</span>
+ Version</summary>
+      <p>Semantic Version</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-7.5">7.5</span>
+ CI/CD</summary>
+      <p>Continuously Integration & Continuously Distribution</p>
+    <ul>
+      <li>Recipe:</li>
+      <li>Behaviour when something happened</li>
+    </ul>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-7.6">7.6</span>
+ Auto Testing</summary>
+      <ul>
+      <li>Test Suit: a large collection of tests</li>
+      <li>Unit Test:</li>
+      <li>Integration Test:</li>
+      <li>Regression Test:</li>
+      <li>Mocking:</li>
+    </ul>
+    </details>
+  </section>
+  
+
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-8">8</span>
+ Security</summary>
+      <p>Password need to be hight information entropy</p>
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-8.1">8.1</span>
+ Hash functions</summary>
+      <ul>
+      <li>non-invertible</li>
+      <li>collision resistant</li>
+    </ul>
+    <p>Hash in git, need no conflict, compared to old hash method.</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-8.2">8.2</span>
+ Key derivation functions</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-8.3">8.3</span>
+ Symmetric key cryptography</summary>
+      <ul>
+      <li>keygen() -> key</li>
+      <li>encrypt(plain text, key) -> cipher text</li>
+      <li>decrypt(cipher text, key) -> plain text</li>
+    </ul>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-8.4">8.4</span>
+ Asymmetric key cryptography</summary>
+      <ul>
+      <li>
+        <p>keygen() -> (public key, private key)</p>
+      </li>
+      <li>
+        <p>encrypt(P, public key) -> C</p>
+      </li>
+      <li>
+        <p>decrypt(C, private key) -> P</p>
+      </li>
+      <li>
+        <p>sign(msg, private key) -> signature</p>
+      </li>
+      <li>
+        <p>verify(msg, sig, public key) -> ok?</p>
+      </li>
+    </ul>
+    </details>
+  </section>
+  
+
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-9">9</span>
+ Misc</summary>
+      
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-9.1">9.1</span>
+ Change keyboard mapping</summary>
+      <p>Remap fn keys, caplock, shortcuts.</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-9.2">9.2</span>
+ daemons</summary>
+      <p>run commands in background</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-9.3">9.3</span>
+ fuse</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-9.4">9.4</span>
+ background</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-9.5">9.5</span>
+ API</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-9.6">9.6</span>
+ WM</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-9.7">9.7</span>
+ MD</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-9.8">9.8</span>
+ Boot</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-9.9">9.9</span>
+ Docker</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-9.10">9.10</span>
+ Interactive Notepad Programming</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Missing-Semester/S1-9.11">9.11</span>
+ GitHub</summary>
+      
+    </details>
+  </section>
+  
+
+    </details>
+  </section>
+  
+
+ 
+        </details>
+      </section>
+      
+    
+
+
+    </article>
+    
+    <nav id="toc">
+        <div class="block">
+            <h1>Table of Contents</h1>
+            <ul class="block">
+            
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1">
+<span id="notes/Missing-Semester/S1"></span>
+The Missing Semester of Computer Education</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-1">
+<span id="notes/Missing-Semester/S1-1">1</span>
+Section I</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-2">
+<span id="notes/Missing-Semester/S1-2">2</span>
+Shell</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-2.1">
+<span id="notes/Missing-Semester/S1-2.1">2.1</span>
+Most used Commands</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-2.2">
+<span id="notes/Missing-Semester/S1-2.2">2.2</span>
+Shell Stream</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-2.3">
+<span id="notes/Missing-Semester/S1-2.3">2.3</span>
+Root user</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-2.4">
+<span id="notes/Missing-Semester/S1-2.4">2.4</span>
+<span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">/sys</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">/sys</span></code>
+</span></a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-2.5">
+<span id="notes/Missing-Semester/S1-2.5">2.5</span>
+Shell Scripting</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-3">
+<span id="notes/Missing-Semester/S1-3">3</span>
+VIM</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-4">
+<span id="notes/Missing-Semester/S1-4">4</span>
+Section IV</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-5">
+<span id="notes/Missing-Semester/S1-5">5</span>
+Command Line</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-5.1">
+<span id="notes/Missing-Semester/S1-5.1">5.1</span>
+Tmux</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-5.2">
+<span id="notes/Missing-Semester/S1-5.2">5.2</span>
+Dot files</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-6">
+<span id="notes/Missing-Semester/S1-6">6</span>
+Debugging</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-6.1">
+<span id="notes/Missing-Semester/S1-6.1">6.1</span>
+Logger</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-6.2">
+<span id="notes/Missing-Semester/S1-6.2">6.2</span>
+Debugger</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-6.3">
+<span id="notes/Missing-Semester/S1-6.3">6.3</span>
+Static checker</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-6.4">
+<span id="notes/Missing-Semester/S1-6.4">6.4</span>
+Inspect</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-6.5">
+<span id="notes/Missing-Semester/S1-6.5">6.5</span>
+Profiling</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-6.5.1">
+<span id="notes/Missing-Semester/S1-6.5.1">6.5.1</span>
+CPU profiling</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-6.5.2">
+<span id="notes/Missing-Semester/S1-6.5.2">6.5.2</span>
+Memory profiling</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-6.5.2.1">
+<span id="notes/Missing-Semester/S1-6.5.2.1">6.5.2.1</span>
+Analysis</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-6.5.3">
+<span id="notes/Missing-Semester/S1-6.5.3">6.5.3</span>
+Visualize</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-6.5.4">
+<span id="notes/Missing-Semester/S1-6.5.4">6.5.4</span>
+Resource profiling</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-7">
+<span id="notes/Missing-Semester/S1-7">7</span>
+Meta programming</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-7.1">
+<span id="notes/Missing-Semester/S1-7.1">7.1</span>
+Build systems</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-7.2">
+<span id="notes/Missing-Semester/S1-7.2">7.2</span>
+Make Rules</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-7.3">
+<span id="notes/Missing-Semester/S1-7.3">7.3</span>
+Repositories</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-7.4">
+<span id="notes/Missing-Semester/S1-7.4">7.4</span>
+Version</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-7.5">
+<span id="notes/Missing-Semester/S1-7.5">7.5</span>
+CI/CD</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-7.6">
+<span id="notes/Missing-Semester/S1-7.6">7.6</span>
+Auto Testing</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-8">
+<span id="notes/Missing-Semester/S1-8">8</span>
+Security</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-8.1">
+<span id="notes/Missing-Semester/S1-8.1">8.1</span>
+Hash functions</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-8.2">
+<span id="notes/Missing-Semester/S1-8.2">8.2</span>
+Key derivation functions</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-8.3">
+<span id="notes/Missing-Semester/S1-8.3">8.3</span>
+Symmetric key cryptography</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-8.4">
+<span id="notes/Missing-Semester/S1-8.4">8.4</span>
+Asymmetric key cryptography</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-9">
+<span id="notes/Missing-Semester/S1-9">9</span>
+Misc</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-9.1">
+<span id="notes/Missing-Semester/S1-9.1">9.1</span>
+Change keyboard mapping</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-9.2">
+<span id="notes/Missing-Semester/S1-9.2">9.2</span>
+daemons</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-9.3">
+<span id="notes/Missing-Semester/S1-9.3">9.3</span>
+fuse</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-9.4">
+<span id="notes/Missing-Semester/S1-9.4">9.4</span>
+background</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-9.5">
+<span id="notes/Missing-Semester/S1-9.5">9.5</span>
+API</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-9.6">
+<span id="notes/Missing-Semester/S1-9.6">9.6</span>
+WM</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-9.7">
+<span id="notes/Missing-Semester/S1-9.7">9.7</span>
+MD</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-9.8">
+<span id="notes/Missing-Semester/S1-9.8">9.8</span>
+Boot</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-9.9">
+<span id="notes/Missing-Semester/S1-9.9">9.9</span>
+Docker</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-9.10">
+<span id="notes/Missing-Semester/S1-9.10">9.10</span>
+Interactive Notepad Programming</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Missing-Semester/S1-9.11">
+<span id="notes/Missing-Semester/S1-9.11">9.11</span>
+GitHub</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+
+            </ul>
+        </div>
+    </nav>
+ 
+  </div>
+
+
+</body>
+</html>
