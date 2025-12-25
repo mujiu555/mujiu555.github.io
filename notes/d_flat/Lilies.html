@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>GitHub@mujiu555's page</title>
+  <link href="/schemas/page.css" rel="stylesheet"/>
+  <link href="/math-block.css" rel="stylesheet"/>
+  <link href="/math-inline.css" rel="stylesheet"/>
+  <link href="/mathyml.css" rel="stylesheet"/>
+  <link href="/inline-fold.css" rel="stylesheet"/>
+  <link crossorigin="true" href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@700&display=swap" rel="stylesheet">
+  
+  <link href="/components/sidebar.css" rel="stylesheet">
+  <script>
+    setInterval(async () => {
+      const res = await fetch('/_reload')
+      if (await res.text() === '1') {
+        location.reload()
+      }
+    }, 500)
+  </script>
+  <link href="/rewrite/code_block.css" rel="stylesheet">
+  <link href="/rewrite/code_inline.css" rel="stylesheet">
+  
+  <link href="https://fred-wang.github.io/MathFonts/NewComputerModern/mathfonts.css" rel="stylesheet">
+</head>
+<body>
+
+  <header class="header" parent="true">
+    <nav class="nav">
+      <div class="logo">
+        <span onclick="window.location.href='/index'" title="GitHub@mujiu555's page [/index]">« GitHub@mujiu555's page</span>
+      </div>
+    </nav>
+  </header>
+  <div id="grid-wrapper" sidebar="true">
+    <article>
+      <section class="block" id="notes/d_flat/Lilies">
+        <details open="">
+          <summary>
+            <header class="top-header" show-metadata="true">
+              <h1>
+                GitHub@mujiu555's page 
+              </h1>
+              <div class="metadata">
+                <ul>
+                  <li class="meta-item">
+                    <span class="link external"><a href="https://github.com/mujiu555" title="https://github.com/mujiu555">GitHub@mujiu555</a></span>
+                  </li>
+                  <li class="meta-item">
+                    2025-12-14 23:46
+                  </li>
+                  <li class="meta-item">
+                    <span class="link local"><a href="https://github.com/mujiu555/Wishful-Thinking/tree/main/site" title="Source [https://github.com/mujiu555/Wishful-Thinking/tree/main/site]">Source</a></span>
+                  </li>
+                </ul>
+              </div>
+            </header>
+          </summary>
+          
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/d_flat/Lilies-1">1</span>
+ D-Flat Spec</summary>
+      
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/d_flat/Lilies-1.1">1.1</span>
+ Lilies: S-Expression Language Build Upon D-Flat System</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/d_flat/Lilies-1.2">1.2</span>
+ Abstract 摘要</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/d_flat/Lilies-1.3">1.3</span>
+ Introduction 引言</summary>
+      
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/d_flat/Lilies-1.3.1">1.3.1</span>
+ Background 背景</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/d_flat/Lilies-1.3.2">1.3.2</span>
+ Guiding Principle 指导方略</summary>
+      
+    </details>
+  </section>
+  
+
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/d_flat/Lilies-1.4">1.4</span>
+ Overview 语言总览</summary>
+      <p>本章用于描述语言的基本概念, 以帮助了解后续章节. 本章依据语法条目以帮助手册的方式被组织起来, 并非完整对于语言的描述. 在某些地方也不会完善和规范.</p>
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/d_flat/Lilies-1.4.1">1.4.1</span>
+ Type System 类型系统</summary>
+      <ul>
+      <li>Basic Types</li>
+      <li>Symbols</li>
+      <li>Object System</li>
+      <li>Internal Types (Special Types Concerning Compiler)</li>
+      <li>Syntax Types</li>
+      <li>Auto Type Detection</li>
+    </ul>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/d_flat/Lilies-1.4.2">1.4.2</span>
+ Object System</summary>
+      <ul>
+      <li>
+        <p>Basic Class & Meta Class</p>
+        <ul>
+          <li>Parent & Final</li>
+          <li>Extend Base Class</li>
+        </ul>
+      </li>
+      <li>Fields</li>
+      <li>Properties</li>
+      <li>
+        <p>Interface</p>
+        <ol>
+          <li>Implement Interface</li>
+          <li>Default Implement</li>
+          <li>Cross-domain Interface</li>
+        </ol>
+      </li>
+    </ul>
+    <ol>
+      <li>
+        <p>Methods</p>
+        <ol>
+          <li>Method for objects</li>
+          <li>Method for classes</li>
+          <li>Implement Methods</li>
+          <li>Inherit Methods</li>
+          <li>
+            <p>Call the Method</p>
+            <ol>
+              <li>Static Dispatch</li>
+              <li>Method visit Syntax Sugar</li>
+              <li>Dynamic Dispatch</li>
+              <li>Invoke</li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+      <li>
+        <p>Generic Functions</p>
+        <ol>
+          <li>
+            <p>History: <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">CLOS</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">CLOS</span></code>
+</span></p>
+          </li>
+          <li>
+            <p>Define Generic Function: 广义函数允许方法调用以普通函数的方式被使用:</p>
+  <pre color-scheme="light"><code><span style="color:#5c6a72;">scheme
+</span><span style="color:#5c6a72;">(define foo:constraint
+</span><span style="color:#5c6a72;">  (interface ()
+</span><span style="color:#5c6a72;">    (define bar (function (self)))
+</span><span style="color:#5c6a72;">
+</span><span style="color:#5c6a72;">(define foo
+</span><span style="color:#5c6a72;">  (generic bar () #:implement foo:constraint))
+</span><span style="color:#5c6a72;">
+</span><span style="color:#5c6a72;">(define zoo
+</span><span style="color:#5c6a72;">  (class
+</span><span style="color:#5c6a72;">    #:self this))
+</span><span style="color:#5c6a72;">
+</span><span style="color:#5c6a72;">(implement zoo foo:constraint
+</span><span style="color:#5c6a72;">  (define bar
+</span><span style="color:#5c6a72;">    (lambda ()
+</span><span style="color:#5c6a72;">      (display 1))))
+</span><span style="color:#5c6a72;">
+</span><span style="color:#5c6a72;">(implement zoo new
+</span><span style="color:#5c6a72;">  (define new
+</span><span style="color:#5c6a72;">    (lambda (self)
+</span><span style="color:#5c6a72;">      (alloc:heap (this))))
+</span><span style="color:#5c6a72;">
+</span><span style="color:#5c6a72;">(define a (new zoo))
+</span><span style="color:#5c6a72;">
+</span><span style="color:#5c6a72;">({bar a})
+</span><span style="color:#5c6a72;">;; equal to
+</span><span style="color:#5c6a72;">(foo a)</span></code></pre>
+  
+  <pre color-scheme="dark"><code><span style="color:#d3c6aa;">scheme
+</span><span style="color:#d3c6aa;">(define foo:constraint
+</span><span style="color:#d3c6aa;">  (interface ()
+</span><span style="color:#d3c6aa;">    (define bar (function (self)))
+</span><span style="color:#d3c6aa;">
+</span><span style="color:#d3c6aa;">(define foo
+</span><span style="color:#d3c6aa;">  (generic bar () #:implement foo:constraint))
+</span><span style="color:#d3c6aa;">
+</span><span style="color:#d3c6aa;">(define zoo
+</span><span style="color:#d3c6aa;">  (class
+</span><span style="color:#d3c6aa;">    #:self this))
+</span><span style="color:#d3c6aa;">
+</span><span style="color:#d3c6aa;">(implement zoo foo:constraint
+</span><span style="color:#d3c6aa;">  (define bar
+</span><span style="color:#d3c6aa;">    (lambda ()
+</span><span style="color:#d3c6aa;">      (display 1))))
+</span><span style="color:#d3c6aa;">
+</span><span style="color:#d3c6aa;">(implement zoo new
+</span><span style="color:#d3c6aa;">  (define new
+</span><span style="color:#d3c6aa;">    (lambda (self)
+</span><span style="color:#d3c6aa;">      (alloc:heap (this))))
+</span><span style="color:#d3c6aa;">
+</span><span style="color:#d3c6aa;">(define a (new zoo))
+</span><span style="color:#d3c6aa;">
+</span><span style="color:#d3c6aa;">({bar a})
+</span><span style="color:#d3c6aa;">;; equal to
+</span><span style="color:#d3c6aa;">(foo a)</span></code></pre>
+</li>
+          <li>
+            <p>Trait Shadow</p>
+          </li>
+        </ol>
+      </li>
+    </ol>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/d_flat/Lilies-1.4.3">1.4.3</span>
+ Expression</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/d_flat/Lilies-1.4.4">1.4.4</span>
+ Apply & Evaluation</summary>
+      <ol>
+      <li>
+        <p>Apply & Evaluation</p>
+        <ol>
+          <li>Value Pass</li>
+          <li>
+            <p>Reference Pass</p>
+            <ol>
+              <li>Ownership transaction</li>
+              <li>Move</li>
+              <li>Brought</li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+    </ol>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/d_flat/Lilies-1.4.5">1.4.5</span>
+ Variable, Binding & Reference</summary>
+      <ul>
+      <li>
+        <p>Variable, Definition & Binding</p>
+        <ul>
+          <li>Dynamic Scope</li>
+          <li>Lexical Scope</li>
+          <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">define</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">define</span></code>
+</span></li>
+          <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">let</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">let</span></code>
+</span> & <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">let:</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">let:</span></code>
+</span> family</li>
+          <li>Dynamic In Lexical Scope</li>
+        </ul>
+      </li>
+      <li>Form</li>
+      <li>Assignment</li>
+    </ul>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/d_flat/Lilies-1.4.6">1.4.6</span>
+ Procedure, Function & Method</summary>
+      <ul>
+      <li>
+        <p>Functions</p>
+        <ul>
+          <li>Parameters</li>
+          <li>Rest Parameters</li>
+          <li>Parameter Stack</li>
+          <li>Return Values</li>
+          <li>Multiple Values Returning</li>
+          <li>Function Call</li>
+          <li>Multiple Value for Function Call</li>
+        </ul>
+      </li>
+    </ul>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/d_flat/Lilies-1.4.7">1.4.7</span>
+ Name Space, Lexical Scope, Dynamic Scope, Closure</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/d_flat/Lilies-1.4.8">1.4.8</span>
+ Generics</summary>
+      <ol>
+      <li>
+        <p>Generics: Template</p>
+        <ol>
+          <li>Generic Macro</li>
+        </ol>
+      </li>
+    </ol>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/d_flat/Lilies-1.4.9">1.4.9</span>
+ Macro</summary>
+      <ol>
+      <li>
+        <p>Macro</p>
+        <ol>
+          <li>History: Compile-time calculation</li>
+          <li>History: C-Style Macro</li>
+          <li>History: <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">defmacro</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">defmacro</span></code>
+</span></li>
+          <li>Procedure Macro</li>
+          <li>Hygiene for the Unhygienic Macro</li>
+        </ol>
+      </li>
+    </ol>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/d_flat/Lilies-1.4.10">1.4.10</span>
+ Syntax Rules</summary>
+      <ol>
+      <li>
+        <p>Syntax Rules</p>
+        <ol>
+          <li>History: Hygiene Macro</li>
+          <li>Syntax Object</li>
+        </ol>
+      </li>
+    </ol>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/d_flat/Lilies-1.4.11">1.4.11</span>
+ Memory Management</summary>
+      <ol>
+      <li>
+        <p>Pointer</p>
+        <ol>
+          <li>Reference Count</li>
+          <li>Unique Ownership</li>
+          <li>Raw Pointer</li>
+          <li>Address</li>
+          <li>Virtual Method Table: How dynamic dispatch implemented</li>
+        </ol>
+      </li>
+      <li>Ownership</li>
+      <li>Garbage Collection</li>
+      <li>
+        <p>Allocation</p>
+        <ol>
+          <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">alloc:stack</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">alloc:stack</span></code>
+</span>: Object Allocated in Stack</li>
+          <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">alloc:heap</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">alloc:heap</span></code>
+</span>: Object Allocated in Heap</li>
+          <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">new</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">new</span></code>
+</span>: Object creation</li>
+        </ol>
+      </li>
+      <li>Auto Life-cycle Detection</li>
+    </ol>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/d_flat/Lilies-1.4.12">1.4.12</span>
+ Expression Tree</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/d_flat/Lilies-1.4.13">1.4.13</span>
+ Continuations</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/d_flat/Lilies-1.4.14">1.4.14</span>
+ Exception Handling</summary>
+      <ol>
+      <li>Condition System</li>
+    </ol>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/d_flat/Lilies-1.4.15">1.4.15</span>
+ Module & Library</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/d_flat/Lilies-1.4.16">1.4.16</span>
+ Top-Level</summary>
+      
+    </details>
+  </section>
+  
+
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/d_flat/Lilies-1.5">1.5</span>
+ …</summary>
+      
+    </details>
+  </section>
+  
+
+    </details>
+  </section>
+  
+
+ 
+        </details>
+      </section>
+      
+    
+
+
+    </article>
+    
+    <nav id="toc">
+        <div class="block">
+            <h1>Table of Contents</h1>
+            <ul class="block">
+            
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Lilies">
+<span id="notes/d_flat/Lilies"></span>
+GitHub@mujiu555's page</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Lilies-1">
+<span id="notes/d_flat/Lilies-1">1</span>
+D-Flat Spec</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Lilies-1.1">
+<span id="notes/d_flat/Lilies-1.1">1.1</span>
+Lilies: S-Expression Language Build Upon D-Flat System</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Lilies-1.2">
+<span id="notes/d_flat/Lilies-1.2">1.2</span>
+Abstract 摘要</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Lilies-1.3">
+<span id="notes/d_flat/Lilies-1.3">1.3</span>
+Introduction 引言</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Lilies-1.3.1">
+<span id="notes/d_flat/Lilies-1.3.1">1.3.1</span>
+Background 背景</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Lilies-1.3.2">
+<span id="notes/d_flat/Lilies-1.3.2">1.3.2</span>
+Guiding Principle 指导方略</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Lilies-1.4">
+<span id="notes/d_flat/Lilies-1.4">1.4</span>
+Overview 语言总览</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Lilies-1.4.1">
+<span id="notes/d_flat/Lilies-1.4.1">1.4.1</span>
+Type System 类型系统</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Lilies-1.4.2">
+<span id="notes/d_flat/Lilies-1.4.2">1.4.2</span>
+Object System</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Lilies-1.4.3">
+<span id="notes/d_flat/Lilies-1.4.3">1.4.3</span>
+Expression</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Lilies-1.4.4">
+<span id="notes/d_flat/Lilies-1.4.4">1.4.4</span>
+Apply & Evaluation</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Lilies-1.4.5">
+<span id="notes/d_flat/Lilies-1.4.5">1.4.5</span>
+Variable, Binding & Reference</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Lilies-1.4.6">
+<span id="notes/d_flat/Lilies-1.4.6">1.4.6</span>
+Procedure, Function & Method</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Lilies-1.4.7">
+<span id="notes/d_flat/Lilies-1.4.7">1.4.7</span>
+Name Space, Lexical Scope, Dynamic Scope, Closure</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Lilies-1.4.8">
+<span id="notes/d_flat/Lilies-1.4.8">1.4.8</span>
+Generics</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Lilies-1.4.9">
+<span id="notes/d_flat/Lilies-1.4.9">1.4.9</span>
+Macro</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Lilies-1.4.10">
+<span id="notes/d_flat/Lilies-1.4.10">1.4.10</span>
+Syntax Rules</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Lilies-1.4.11">
+<span id="notes/d_flat/Lilies-1.4.11">1.4.11</span>
+Memory Management</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Lilies-1.4.12">
+<span id="notes/d_flat/Lilies-1.4.12">1.4.12</span>
+Expression Tree</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Lilies-1.4.13">
+<span id="notes/d_flat/Lilies-1.4.13">1.4.13</span>
+Continuations</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Lilies-1.4.14">
+<span id="notes/d_flat/Lilies-1.4.14">1.4.14</span>
+Exception Handling</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Lilies-1.4.15">
+<span id="notes/d_flat/Lilies-1.4.15">1.4.15</span>
+Module & Library</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Lilies-1.4.16">
+<span id="notes/d_flat/Lilies-1.4.16">1.4.16</span>
+Top-Level</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Lilies-1.5">
+<span id="notes/d_flat/Lilies-1.5">1.5</span>
+…</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+
+            </ul>
+        </div>
+    </nav>
+ 
+  </div>
+
+
+</body>
+</html>

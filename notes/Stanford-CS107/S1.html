@@ -23,8 +23,8 @@
       }
     }, 500)
   </script>
-  <link href="/rewrite/code_block.css" rel="stylesheet">
   <link href="/rewrite/code_inline.css" rel="stylesheet">
+  <link href="/rewrite/code_block.css" rel="stylesheet">
   
   <link href="https://fred-wang.github.io/MathFonts/NewComputerModern/mathfonts.css" rel="stylesheet">
 </head>
@@ -1043,6 +1043,117 @@
 <code color-scheme="light"><span style="color:#5c6a72;">assert</span></code>
 <code color-scheme="dark"><span style="color:#d3c6aa;">assert</span></code>
 </span> will be seen as a function and the final object file will miss the symbol.</p>
+  <pre color-scheme="light"><code><span style="color:#3a94c5;">void</span><span style="color:#5c6a72;"> </span><span style="color:#8da101;">foo</span><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">)</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">{</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">  </span><span style="color:#3a94c5;">int</span><span style="color:#8da101;"> i</span><span style="color:#5c6a72;">;</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">  </span><span style="color:#3a94c5;">int</span><span style="color:#8da101;"> array</span><span style="color:#5c6a72;">[</span><span style="color:#df69ba;">4</span><span style="color:#5c6a72;">]</span><span style="color:#5c6a72;">;</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">  </span><span style="color:#f85552;">for</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">(</span><span style="color:#8da101;">i </span><span style="color:#f57d26;">=</span><span style="color:#8da101;"> </span><span style="color:#df69ba;">0</span><span style="color:#5c6a72;">;</span><span style="color:#8da101;"> i </span><span style="color:#f57d26;">&lt;=</span><span style="color:#8da101;"> </span><span style="color:#df69ba;">7</span><span style="color:#8da101;"> </span><span style="font-style:italic;color:#939f91;">/*</span><span style="font-style:italic;color:#939f91;"> for 32-bit alignment requirement in x86_64 Linux, there are 3-bits padding </span><span style="font-style:italic;color:#939f91;">*/</span><span style="color:#5c6a72;">;</span><span style="color:#8da101;"> i </span><span style="color:#f57d26;">++</span><span style="color:#5c6a72;">)</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">{</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">    array</span><span style="color:#5c6a72;">[</span><span style="color:#8da101;">i</span><span style="color:#5c6a72;">]</span><span style="color:#8da101;"> </span><span style="color:#f57d26;">=</span><span style="color:#8da101;"> </span><span style="color:#df69ba;">0</span><span style="color:#5c6a72;">;</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">  </span><span style="color:#5c6a72;">}</span><span style="color:#8da101;">
+</span><span style="color:#5c6a72;">}</span></code></pre>
+  
+  <pre color-scheme="dark"><code><span style="color:#7fbbb3;">void</span><span style="color:#d3c6aa;"> </span><span style="color:#a7c080;">foo</span><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">)</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">{</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">  </span><span style="color:#7fbbb3;">int</span><span style="color:#a7c080;"> i</span><span style="color:#d3c6aa;">;</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">  </span><span style="color:#7fbbb3;">int</span><span style="color:#a7c080;"> array</span><span style="color:#d3c6aa;">[</span><span style="color:#d699b6;">4</span><span style="color:#d3c6aa;">]</span><span style="color:#d3c6aa;">;</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">  </span><span style="color:#e67e80;">for</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">(</span><span style="color:#a7c080;">i </span><span style="color:#e69875;">=</span><span style="color:#a7c080;"> </span><span style="color:#d699b6;">0</span><span style="color:#d3c6aa;">;</span><span style="color:#a7c080;"> i </span><span style="color:#e69875;">&lt;=</span><span style="color:#a7c080;"> </span><span style="color:#d699b6;">7</span><span style="color:#a7c080;"> </span><span style="font-style:italic;color:#859289;">/*</span><span style="font-style:italic;color:#859289;"> for 32-bit alignment requirement in x86_64 Linux, there are 3-bits padding </span><span style="font-style:italic;color:#859289;">*/</span><span style="color:#d3c6aa;">;</span><span style="color:#a7c080;"> i </span><span style="color:#e69875;">++</span><span style="color:#d3c6aa;">)</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">{</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">    array</span><span style="color:#d3c6aa;">[</span><span style="color:#a7c080;">i</span><span style="color:#d3c6aa;">]</span><span style="color:#a7c080;"> </span><span style="color:#e69875;">=</span><span style="color:#a7c080;"> </span><span style="color:#d699b6;">0</span><span style="color:#d3c6aa;">;</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">  </span><span style="color:#d3c6aa;">}</span><span style="color:#a7c080;">
+</span><span style="color:#d3c6aa;">}</span></code></pre>
+<p>Will loop, forever.</p>
+    <p>What will happen if</p>
+  <pre color-scheme="light"><code><span style="color:#3a94c5;">int</span><span style="color:#5c6a72;"> </span><span style="color:#8da101;">Declare</span><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">)</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">{</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">  </span><span style="color:#3a94c5;">int</span><span style="color:#8da101;"> array</span><span style="color:#5c6a72;">[</span><span style="color:#df69ba;">100</span><span style="color:#5c6a72;">]</span><span style="color:#5c6a72;">;</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">  </span><span style="color:#f85552;">for</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">(</span><span style="color:#3a94c5;">int</span><span style="color:#8da101;"> i </span><span style="color:#f57d26;">=</span><span style="color:#8da101;"> </span><span style="color:#df69ba;">0</span><span style="color:#5c6a72;">;</span><span style="color:#8da101;"> i </span><span style="color:#f57d26;">&lt;</span><span style="color:#8da101;"> </span><span style="color:#df69ba;">100</span><span style="color:#5c6a72;">;</span><span style="color:#8da101;"> i </span><span style="color:#f57d26;">++</span><span style="color:#5c6a72;">)</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">{</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">    array</span><span style="color:#5c6a72;">[</span><span style="color:#8da101;">i</span><span style="color:#5c6a72;">]</span><span style="color:#8da101;"> </span><span style="color:#f57d26;">=</span><span style="color:#8da101;"> i</span><span style="color:#5c6a72;">;</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">  </span><span style="color:#5c6a72;">}</span><span style="color:#8da101;">
+</span><span style="color:#5c6a72;">}</span><span style="color:#5c6a72;">
+</span><span style="color:#5c6a72;">
+</span><span style="color:#3a94c5;">int</span><span style="color:#5c6a72;"> </span><span style="color:#8da101;">Print</span><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">)</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">{</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">  </span><span style="color:#3a94c5;">int</span><span style="color:#8da101;"> array</span><span style="color:#5c6a72;">[</span><span style="color:#df69ba;">100</span><span style="color:#5c6a72;">]</span><span style="color:#5c6a72;">;</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">  </span><span style="color:#f85552;">for</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">(</span><span style="color:#3a94c5;">int</span><span style="color:#8da101;"> i </span><span style="color:#f57d26;">=</span><span style="color:#8da101;"> </span><span style="color:#df69ba;">0</span><span style="color:#5c6a72;">;</span><span style="color:#8da101;"> i </span><span style="color:#f57d26;">&lt;</span><span style="color:#8da101;"> </span><span style="color:#df69ba;">100</span><span style="color:#5c6a72;">;</span><span style="color:#8da101;"> i </span><span style="color:#f57d26;">++</span><span style="color:#5c6a72;">)</span><span style="color:#8da101;"> </span><span style="color:#5c6a72;">{</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">    </span><span style="color:#8da101;">printf</span><span style="color:#5c6a72;">(</span><span style="color:#dfa000;">&quot;</span><span style="color:#8da101;">%d</span><span style="color:#dfa000;">&quot;</span><span style="color:#5c6a72;">,</span><span style="color:#5c6a72;"> array</span><span style="color:#5c6a72;">[</span><span style="color:#5c6a72;">i</span><span style="color:#5c6a72;">]</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;">;</span><span style="color:#8da101;">
+</span><span style="color:#8da101;">  </span><span style="color:#5c6a72;">}</span><span style="color:#8da101;">
+</span><span style="color:#5c6a72;">}</span></code></pre>
+  
+  <pre color-scheme="dark"><code><span style="color:#7fbbb3;">int</span><span style="color:#d3c6aa;"> </span><span style="color:#a7c080;">Declare</span><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">)</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">{</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">  </span><span style="color:#7fbbb3;">int</span><span style="color:#a7c080;"> array</span><span style="color:#d3c6aa;">[</span><span style="color:#d699b6;">100</span><span style="color:#d3c6aa;">]</span><span style="color:#d3c6aa;">;</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">  </span><span style="color:#e67e80;">for</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">(</span><span style="color:#7fbbb3;">int</span><span style="color:#a7c080;"> i </span><span style="color:#e69875;">=</span><span style="color:#a7c080;"> </span><span style="color:#d699b6;">0</span><span style="color:#d3c6aa;">;</span><span style="color:#a7c080;"> i </span><span style="color:#e69875;">&lt;</span><span style="color:#a7c080;"> </span><span style="color:#d699b6;">100</span><span style="color:#d3c6aa;">;</span><span style="color:#a7c080;"> i </span><span style="color:#e69875;">++</span><span style="color:#d3c6aa;">)</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">{</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">    array</span><span style="color:#d3c6aa;">[</span><span style="color:#a7c080;">i</span><span style="color:#d3c6aa;">]</span><span style="color:#a7c080;"> </span><span style="color:#e69875;">=</span><span style="color:#a7c080;"> i</span><span style="color:#d3c6aa;">;</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">  </span><span style="color:#d3c6aa;">}</span><span style="color:#a7c080;">
+</span><span style="color:#d3c6aa;">}</span><span style="color:#d3c6aa;">
+</span><span style="color:#d3c6aa;">
+</span><span style="color:#7fbbb3;">int</span><span style="color:#d3c6aa;"> </span><span style="color:#a7c080;">Print</span><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">)</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">{</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">  </span><span style="color:#7fbbb3;">int</span><span style="color:#a7c080;"> array</span><span style="color:#d3c6aa;">[</span><span style="color:#d699b6;">100</span><span style="color:#d3c6aa;">]</span><span style="color:#d3c6aa;">;</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">  </span><span style="color:#e67e80;">for</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">(</span><span style="color:#7fbbb3;">int</span><span style="color:#a7c080;"> i </span><span style="color:#e69875;">=</span><span style="color:#a7c080;"> </span><span style="color:#d699b6;">0</span><span style="color:#d3c6aa;">;</span><span style="color:#a7c080;"> i </span><span style="color:#e69875;">&lt;</span><span style="color:#a7c080;"> </span><span style="color:#d699b6;">100</span><span style="color:#d3c6aa;">;</span><span style="color:#a7c080;"> i </span><span style="color:#e69875;">++</span><span style="color:#d3c6aa;">)</span><span style="color:#a7c080;"> </span><span style="color:#d3c6aa;">{</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">    </span><span style="color:#a7c080;">printf</span><span style="color:#d3c6aa;">(</span><span style="color:#dbbc7f;">&quot;</span><span style="color:#a7c080;">%d</span><span style="color:#dbbc7f;">&quot;</span><span style="color:#d3c6aa;">,</span><span style="color:#d3c6aa;"> array</span><span style="color:#d3c6aa;">[</span><span style="color:#d3c6aa;">i</span><span style="color:#d3c6aa;">]</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;">;</span><span style="color:#a7c080;">
+</span><span style="color:#a7c080;">  </span><span style="color:#d3c6aa;">}</span><span style="color:#a7c080;">
+</span><span style="color:#d3c6aa;">}</span></code></pre>
+<p>Two function have same memory structure so that the Print can work correctly, since the function <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Declare</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Declare</span></code>
+</span> will not clean whole bit pattern after returning.</p>
+    <p>The technology is called "Channeling".</p>
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Stanford-CS107/S1-10.1">10.1</span>
+ multiple arguments</summary>
+      <p>Push arguments from right to left. For better organization of compiler.</p>
+    </details>
+  </section>
+  
+
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Stanford-CS107/S1-11">11</span>
+ Multiple Threads</summary>
+      <p>Operating systems give different process a virtual memory. So that the program can assuming it holds all memory.</p>
+    <p>Kernel trace and maintaining Virtual Memory Mapping Table and calls MMU to map virtual memory of each process to real memory.</p>
+    <p>Program execution is sequential.</p>
+    <p>When multiple processes share one shared data, it may manipulate the data after other process manipulate it already. E.g., read a variable and check it already fit the requirement, when it about to do operation on it, it was switched to another process by scheduler, and the other process do operation on the variable successfully. When the time scheduler dispatch back to original one, it will never able to validate the variable and do same operation to the variable. Which cause the error.</p>
+    <p>The condition happened here called race condition.</p>
+    <p>There always be some critical section in code, when code executing in critical section, it will never able to validate the shared data again.</p>
+    <p>The solution is to use semaphore or lock to protect critical section. When a process want to enter critical section, it will try to acquire the lock.</p>
+    <p>Semaphore is a integer variable with atomic operation ability, when it is 0, the process can not enter critical section, else if it is greater than 0, the process can enter critical section and decrease the semaphore by 1 atomically. When leaving critical section, add the semaphore, release the resource.</p>
+    <p>Semaphore operations acquire resources.</p>
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Stanford-CS107/S1-11.1">11.1</span>
+ Producer Consumer Problem</summary>
+      <p>Producer generates data, puts into a buffer. Consumer takes data from buffer, process it.</p>
+    <p>Consumer should not take data when buffer is empty. Producer should not put data when buffer is full.</p>
+    <p>Use two semaphores to track the number of empty slots and full slots in buffer.</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Stanford-CS107/S1-11.2">11.2</span>
+ Reader Writer Problem</summary>
+      <p>Reader Writer problem is a classic synchronization problem. With two types of processes, readers and writers, readers can read shared data simultaneously, writers need exclusive access to shared data.</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/Stanford-CS107/S1-11.3">11.3</span>
+ Philosophers Dining Problem</summary>
+      <p>Every philosopher needs two forks to eat. Five philosophers sitting around a table, when a philosopher wants to eat, it will try to pick up the left and right forks. But if all philosophers pick up the left fork first, then they will never able to pick up the right fork,</p>
+    <p>This is a deadlock.</p>
+    </details>
+  </section>
+  
+
     </details>
   </section>
   
@@ -1358,6 +1469,56 @@ compiler</a></span>
 Section XIII:</a></span>
     <ul class="block" style="display: block;">
       
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Stanford-CS107/S1-10.1">
+<span id="notes/Stanford-CS107/S1-10.1">10.1</span>
+multiple arguments</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Stanford-CS107/S1-11">
+<span id="notes/Stanford-CS107/S1-11">11</span>
+Multiple Threads</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Stanford-CS107/S1-11.1">
+<span id="notes/Stanford-CS107/S1-11.1">11.1</span>
+Producer Consumer Problem</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Stanford-CS107/S1-11.2">
+<span id="notes/Stanford-CS107/S1-11.2">11.2</span>
+Reader Writer Problem</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/Stanford-CS107/S1-11.3">
+<span id="notes/Stanford-CS107/S1-11.3">11.3</span>
+Philosophers Dining Problem</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
     </ul>
   </li>
 
