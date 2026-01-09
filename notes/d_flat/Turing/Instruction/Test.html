@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Instruction: <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Test</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Test</span></code>
+</span></title>
+  <link href="/schemas/page.css" rel="stylesheet"/>
+  <link href="/math-block.css" rel="stylesheet"/>
+  <link href="/math-inline.css" rel="stylesheet"/>
+  <link href="/mathyml.css" rel="stylesheet"/>
+  <link href="/inline-fold.css" rel="stylesheet"/>
+  <link crossorigin="true" href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@700&display=swap" rel="stylesheet">
+  
+  <link href="/components/sidebar.css" rel="stylesheet">
+  <script>
+    setInterval(async () => {
+      const res = await fetch('/_reload')
+      if (await res.text() === '1') {
+        location.reload()
+      }
+    }, 500)
+  </script>
+  <link href="/rewrite/code_inline.css" rel="stylesheet">
+  <link href="/rewrite/code_block.css" rel="stylesheet">
+  
+  <link href="https://fred-wang.github.io/MathFonts/NewComputerModern/mathfonts.css" rel="stylesheet">
+</head>
+<body>
+
+  <header class="header" parent="true">
+    <nav class="nav">
+      <div class="logo">
+        <span onclick="window.location.href='/notes/d_flat/Turing/Instruction'" title="Instruction Specification [/notes/d_flat/Turing/Instruction]">« Instruction Specification</span>
+      </div>
+    </nav>
+  </header>
+  <div id="grid-wrapper" sidebar="true">
+    <article>
+      <section class="block" id="notes/d_flat/Turing/Instruction/Test">
+        <details open="">
+          <summary>
+            <header class="top-header" show-metadata="true">
+              <h1>
+                Instruction: <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Test</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Test</span></code>
+</span> 
+              </h1>
+              <div class="metadata">
+                <ul>
+                  <li class="meta-item">
+                    <span class="link external"><a href="https://github.com/mujiu555" title="https://github.com/mujiu555">GitHub@mujiu555</a></span>
+                  </li>
+                  <li class="meta-item">
+                    2025-12-14 23:46
+                  </li>
+                  <li class="meta-item">
+                    <span class="link local"><a href="https://github.com/mujiu555/Wishful-Thinking/tree/main/site" title="Source [https://github.com/mujiu555/Wishful-Thinking/tree/main/site]">Source</a></span>
+                  </li>
+                </ul>
+              </div>
+            </header>
+          </summary>
+          <p><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Test</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Test</span></code>
+</span> instruction is used to test condition and jump to target address if condition is met.</p>
+  <pre color-scheme="light"><code><span style="color:#5c6a72;">0x
+</span><span style="color:#5c6a72;">              20              18              10              08              00
+</span><span style="color:#5c6a72;">              |3 3 2 2 2 2 2 2|2 2 2 2 1 1 1 1|1 1 1 1 1 1 0 0|0 0 0 0 0 0 0 0|
+</span><span style="color:#5c6a72;">Decimal       |1 0 9 8 7 6 5 4|3 2 1 0 9 8 7 6|5 4 3 2 1 0 9 8|7 6 5 4 3 2 1 0|
+</span><span style="color:#5c6a72;">--------------------------------------------------------------------------------
+</span><span style="color:#5c6a72;">II            | literal       | literal       |             | typ | operator  |
+</span><span style="color:#5c6a72;">
+</span><span style="color:#5c6a72;">* literal: literal constant value, either in 16 bits or 8 bits integer.
+</span><span style="color:#5c6a72;">* flags: reserved space, for instruction extension use</span></code></pre>
+  
+  <pre color-scheme="dark"><code><span style="color:#d3c6aa;">0x
+</span><span style="color:#d3c6aa;">              20              18              10              08              00
+</span><span style="color:#d3c6aa;">              |3 3 2 2 2 2 2 2|2 2 2 2 1 1 1 1|1 1 1 1 1 1 0 0|0 0 0 0 0 0 0 0|
+</span><span style="color:#d3c6aa;">Decimal       |1 0 9 8 7 6 5 4|3 2 1 0 9 8 7 6|5 4 3 2 1 0 9 8|7 6 5 4 3 2 1 0|
+</span><span style="color:#d3c6aa;">--------------------------------------------------------------------------------
+</span><span style="color:#d3c6aa;">II            | literal       | literal       |             | typ | operator  |
+</span><span style="color:#d3c6aa;">
+</span><span style="color:#d3c6aa;">* literal: literal constant value, either in 16 bits or 8 bits integer.
+</span><span style="color:#d3c6aa;">* flags: reserved space, for instruction extension use</span></code></pre>
+<p>The <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Test</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Test</span></code>
+</span> instruction have one immediate parameter.</p>
+    <ul>
+      <li>Syntax: <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">:test cond, addr</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">:test cond, addr</span></code>
+</span></li>
+      <li>
+        <p>Description: test condition <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">cond</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">cond</span></code>
+</span>, if met, jump to target address <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">addr</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">addr</span></code>
+</span></p>
+        <ul>
+          <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">cond</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">cond</span></code>
+</span>: condition to be tested</li>
+          <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">addr</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">addr</span></code>
+</span>: target address to jump to if condition is met</li>
+        </ul>
+      </li>
+      <li>Flags: none</li>
+    </ul>
+    <p><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">cond</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">cond</span></code>
+</span> are integer indeed, can be written as following to prevent confusion:</p>
+    <ul>
+      <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Test#e</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Test#e</span></code>
+</span>, 0, equal, zero flag is set</li>
+      <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Test#g</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Test#g</span></code>
+</span>, 1, greater, not equal and sign flag equals overflow flag</li>
+      <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Test#ng</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Test#ng</span></code>
+</span>, 2, not greater, equal or sign flag not equals overflow flag</li>
+      <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Test#l</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Test#l</span></code>
+</span>, 3, less, sign flag not equals overflow flag</li>
+      <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Test#nl</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Test#nl</span></code>
+</span>, 4, not less, sign flag equals overflow flag</li>
+      <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Test#o</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Test#o</span></code>
+</span>, 5, overflow, overflow flag is set</li>
+      <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Test#no</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Test#no</span></code>
+</span>, 6, not overflow, overflow flag is not set</li>
+      <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Test#c</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Test#c</span></code>
+</span>, 7, carry, carry flag is set</li>
+      <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Test#nc</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Test#nc</span></code>
+</span>, 8, not carry, carry flag is not set</li>
+      <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Test#z</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Test#z</span></code>
+</span>, 9, zero, zero flag is set</li>
+      <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Test#nz</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Test#nz</span></code>
+</span>, 10, not zero, not zero flag is set</li>
+      <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Test#s</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Test#s</span></code>
+</span>, 11, sign, sign flag is set</li>
+    </ul>
+ 
+        </details>
+      </section>
+      
+    
+
+
+    </article>
+    
+    <nav id="toc">
+        <div class="block">
+            <h1>Table of Contents</h1>
+            <ul class="block">
+            
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Turing/Instruction/Test">
+<span id="notes/d_flat/Turing/Instruction/Test"></span>
+Instruction: <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Test</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Test</span></code>
+</span></a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+
+            </ul>
+        </div>
+    </nav>
+ 
+  </div>
+
+
+</body>
+</html>

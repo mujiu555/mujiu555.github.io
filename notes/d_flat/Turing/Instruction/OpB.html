@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Instruction: <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">OpB</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">OpB</span></code>
+</span></title>
+  <link href="/schemas/page.css" rel="stylesheet"/>
+  <link href="/math-block.css" rel="stylesheet"/>
+  <link href="/math-inline.css" rel="stylesheet"/>
+  <link href="/mathyml.css" rel="stylesheet"/>
+  <link href="/inline-fold.css" rel="stylesheet"/>
+  <link crossorigin="true" href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@700&display=swap" rel="stylesheet">
+  
+  <link href="/components/sidebar.css" rel="stylesheet">
+  <script>
+    setInterval(async () => {
+      const res = await fetch('/_reload')
+      if (await res.text() === '1') {
+        location.reload()
+      }
+    }, 500)
+  </script>
+  <link href="/rewrite/code_block.css" rel="stylesheet">
+  <link href="/rewrite/code_inline.css" rel="stylesheet">
+  
+  <link href="https://fred-wang.github.io/MathFonts/NewComputerModern/mathfonts.css" rel="stylesheet">
+</head>
+<body>
+
+  <header class="header" parent="true">
+    <nav class="nav">
+      <div class="logo">
+        <span onclick="window.location.href='/notes/d_flat/Turing/Instruction'" title="Instruction Specification [/notes/d_flat/Turing/Instruction]">« Instruction Specification</span>
+      </div>
+    </nav>
+  </header>
+  <div id="grid-wrapper" sidebar="true">
+    <article>
+      <section class="block" id="notes/d_flat/Turing/Instruction/OpB">
+        <details open="">
+          <summary>
+            <header class="top-header" show-metadata="true">
+              <h1>
+                Instruction: <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">OpB</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">OpB</span></code>
+</span> 
+              </h1>
+              <div class="metadata">
+                <ul>
+                  <li class="meta-item">
+                    <span class="link external"><a href="https://github.com/mujiu555" title="https://github.com/mujiu555">GitHub@mujiu555</a></span>
+                  </li>
+                  <li class="meta-item">
+                    2025-12-14 23:46
+                  </li>
+                  <li class="meta-item">
+                    <span class="link local"><a href="https://github.com/mujiu555/Wishful-Thinking/tree/main/site" title="Source [https://github.com/mujiu555/Wishful-Thinking/tree/main/site]">Source</a></span>
+                  </li>
+                </ul>
+              </div>
+            </header>
+          </summary>
+          <p><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">OpB</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">OpB</span></code>
+</span> instruction is used to perform bitwise computation.</p>
+  <pre color-scheme="light"><code><span style="color:#5c6a72;">0x
+</span><span style="color:#5c6a72;">              20              18              10              08              00
+</span><span style="color:#5c6a72;">              |3 3 2 2 2 2 2 2|2 2 2 2 1 1 1 1|1 1 1 1 1 1 0 0|0 0 0 0 0 0 0 0|
+</span><span style="color:#5c6a72;">Decimal       |1 0 9 8 7 6 5 4|3 2 1 0 9 8 7 6|5 4 3 2 1 0 9 8|7 6 5 4 3 2 1 0|
+</span><span style="color:#5c6a72;">--------------------------------------------------------------------------------
+</span><span style="color:#5c6a72;">RR            | register  | register  |                 |op | typ | operator  |
+</span><span style="color:#5c6a72;">RI            | register  | literal                     |op | typ | operator  |
+</span><span style="color:#5c6a72;">
+</span><span style="color:#5c6a72;">* registers: 6 bits register code
+</span><span style="color:#5c6a72;">* literal: literal constant value, either in 16 bits or 8 bits integer.
+</span><span style="color:#5c6a72;">* flags: reserved space, for instruction extension use
+</span><span style="color:#5c6a72;">* RI and IR are two variant of same instruction, distinguish by instruction type</span></code></pre>
+  
+  <pre color-scheme="dark"><code><span style="color:#d3c6aa;">0x
+</span><span style="color:#d3c6aa;">              20              18              10              08              00
+</span><span style="color:#d3c6aa;">              |3 3 2 2 2 2 2 2|2 2 2 2 1 1 1 1|1 1 1 1 1 1 0 0|0 0 0 0 0 0 0 0|
+</span><span style="color:#d3c6aa;">Decimal       |1 0 9 8 7 6 5 4|3 2 1 0 9 8 7 6|5 4 3 2 1 0 9 8|7 6 5 4 3 2 1 0|
+</span><span style="color:#d3c6aa;">--------------------------------------------------------------------------------
+</span><span style="color:#d3c6aa;">RR            | register  | register  |                 |op | typ | operator  |
+</span><span style="color:#d3c6aa;">RI            | register  | literal                     |op | typ | operator  |
+</span><span style="color:#d3c6aa;">
+</span><span style="color:#d3c6aa;">* registers: 6 bits register code
+</span><span style="color:#d3c6aa;">* literal: literal constant value, either in 16 bits or 8 bits integer.
+</span><span style="color:#d3c6aa;">* flags: reserved space, for instruction extension use
+</span><span style="color:#d3c6aa;">* RI and IR are two variant of same instruction, distinguish by instruction type</span></code></pre>
+<p>The <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">OpB</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">OpB</span></code>
+</span> instruction have following variants:</p>
+    <ul>
+      <li>
+        <p>Register-Register variant:</p>
+        <ul>
+          <li>Syntax: <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">:opb op dst, src</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">:opb op dst, src</span></code>
+</span></li>
+          <li>Type code: 0, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">RR</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">RR</span></code>
+</span></li>
+          <li>
+            <p>Description: perform arithmetic operation <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">op</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">op</span></code>
+</span> on bitwise <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">dst</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">dst</span></code>
+</span> and <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">src</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">src</span></code>
+</span>, store result into <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Reg#A</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Reg#A</span></code>
+</span></p>
+            <ul>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">dst</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">dst</span></code>
+</span>: target register</li>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">src</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">src</span></code>
+</span>: source register</li>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">op</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">op</span></code>
+</span>: arithmetic operation</li>
+            </ul>
+          </li>
+          <li>
+            <p>Flags:</p>
+            <ul>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">op</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">op</span></code>
+</span>: 2 bits operation code</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>Register-Immediate variant:</p>
+        <ul>
+          <li>Syntax: <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">:opb op dst, val</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">:opb op dst, val</span></code>
+</span></li>
+          <li>Type code: 1, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">RI</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">RI</span></code>
+</span>, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">val</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">val</span></code>
+</span> can be at most 15 bits integer, or 14 bits signed integer</li>
+          <li>
+            <p>Description: perform arithmetic operation <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">op</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">op</span></code>
+</span> on bitwise <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">dst</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">dst</span></code>
+</span> and immediate value <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">val</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">val</span></code>
+</span>, store result into <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Reg#A</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Reg#A</span></code>
+</span></p>
+            <ul>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">dst</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">dst</span></code>
+</span>: target register</li>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">val</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">val</span></code>
+</span>: immediate value</li>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">op</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">op</span></code>
+</span>: arithmetic operation</li>
+            </ul>
+          </li>
+          <li>
+            <p>Flags:</p>
+            <ul>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">op</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">op</span></code>
+</span>: 2 bits operation code</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>Address(Register)-Register variant:</p>
+        <ul>
+          <li>Syntax: <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">:opb op ptr[dst], src</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">:opb op ptr[dst], src</span></code>
+</span></li>
+          <li>Type code: 2, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">RR</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">RR</span></code>
+</span></li>
+          <li>
+            <p>Description: perform arithmetic operation <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">op</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">op</span></code>
+</span> on bitwise memory address <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">dst</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">dst</span></code>
+</span> and bitwise <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">src</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">src</span></code>
+</span>, store result into <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Reg#A</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Reg#A</span></code>
+</span></p>
+            <ul>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">dst</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">dst</span></code>
+</span>: target memory address register</li>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">src</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">src</span></code>
+</span>: source register</li>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">op</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">op</span></code>
+</span>: arithmetic operation</li>
+            </ul>
+          </li>
+          <li>
+            <p>Flags:</p>
+            <ul>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">op</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">op</span></code>
+</span>: 2 bits operation code</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>Register-Address(Register) variant:</p>
+        <ul>
+          <li>Syntax: <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">:opb op dst, ptr[src]</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">:opb op dst, ptr[src]</span></code>
+</span></li>
+          <li>Type code: 3, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">RR</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">RR</span></code>
+</span></li>
+          <li>
+            <p>Description: perform arithmetic operation <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">op</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">op</span></code>
+</span> on bitwise <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">dst</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">dst</span></code>
+</span> and bitwise memory address <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">src</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">src</span></code>
+</span>, store result into <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Reg#A</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Reg#A</span></code>
+</span></p>
+            <ul>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">dst</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">dst</span></code>
+</span>: target register</li>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">src</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">src</span></code>
+</span>: source memory address register</li>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">op</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">op</span></code>
+</span>: arithmetic operation</li>
+            </ul>
+          </li>
+          <li>
+            <p>Flags:</p>
+            <ul>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">op</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">op</span></code>
+</span>: 2 bits operation code</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>Address(Register)-Address(Register) variant:</p>
+        <ul>
+          <li>Syntax: <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">:opb op ptr[dst], [src]</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">:opb op ptr[dst], [src]</span></code>
+</span></li>
+          <li>Type code: 4, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">RR</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">RR</span></code>
+</span></li>
+          <li>
+            <p>Description: perform arithmetic operation <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">op</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">op</span></code>
+</span> on bitwise memory address <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">dst</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">dst</span></code>
+</span> and bitwise memory address <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">src</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">src</span></code>
+</span>, store result into <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Reg#A</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Reg#A</span></code>
+</span></p>
+            <ul>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">dst</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">dst</span></code>
+</span>: target memory address register</li>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">src</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">src</span></code>
+</span>: source memory address register</li>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">op</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">op</span></code>
+</span>: arithmetic operation</li>
+            </ul>
+          </li>
+          <li>
+            <p>Flags:</p>
+            <ul>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">op</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">op</span></code>
+</span>: 2 bits operation code</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>Address(Register)-Immediate variant:</p>
+        <ul>
+          <li>Syntax: <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">:opb op ptr[dst], val</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">:opb op ptr[dst], val</span></code>
+</span></li>
+          <li>Type code: 5, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">RI</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">RI</span></code>
+</span>, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">val</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">val</span></code>
+</span> can be at most 15 bits integer, or 14 bits signed integer</li>
+          <li>
+            <p>Description: perform arithmetic operation <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">op</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">op</span></code>
+</span> on bitwise memory address <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">dst</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">dst</span></code>
+</span> and immediate value <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">val</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">val</span></code>
+</span>, store result into <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Reg#A</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Reg#A</span></code>
+</span></p>
+            <ul>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">dst</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">dst</span></code>
+</span>: target memory address register</li>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">val</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">val</span></code>
+</span>: immediate value</li>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">op</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">op</span></code>
+</span>: arithmetic operation</li>
+            </ul>
+          </li>
+          <li>
+            <p>Flags:</p>
+            <ul>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">op</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">op</span></code>
+</span>: 2 bits operation code</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <p><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">OpB</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">OpB</span></code>
+</span> support following bitwise operations:</p>
+    <ul>
+      <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">and</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">and</span></code>
+</span>: bitwise AND</li>
+      <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">or</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">or</span></code>
+</span>: bitwise OR</li>
+      <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">xor</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">xor</span></code>
+</span>: bitwise XOR</li>
+      <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">not</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">not</span></code>
+</span>: bitwise NOT</li>
+    </ul>
+    <p>For the case <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">op</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">op</span></code>
+</span> is <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">not</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">not</span></code>
+</span>, operation result of performance to <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">dst</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">dst</span></code>
+</span> will be stored into <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Reg#A</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Reg#A</span></code>
+</span>, and other will be written to <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Reg#R</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Reg#R</span></code>
+</span>. For all other operations, result will be stored into <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Reg#A</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Reg#A</span></code>
+</span>, and <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Reg#R</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Reg#R</span></code>
+</span> is not modified.</p>
+ 
+        </details>
+      </section>
+      
+    
+
+
+    </article>
+    
+    <nav id="toc">
+        <div class="block">
+            <h1>Table of Contents</h1>
+            <ul class="block">
+            
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Turing/Instruction/OpB">
+<span id="notes/d_flat/Turing/Instruction/OpB"></span>
+Instruction: <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">OpB</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">OpB</span></code>
+</span></a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+
+            </ul>
+        </div>
+    </nav>
+ 
+  </div>
+
+
+</body>
+</html>

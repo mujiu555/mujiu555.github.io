@@ -7785,6 +7785,72 @@
   </section>
   
 
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/MIT-18_404j/S1-8.3">8.3</span>
+ Ambiguity</summary>
+      <p>For some CFG, there may be more than one parse tree for some string in the language. For some string, there may be more than one leftmost derivation or more than one rightmost derivation.</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/MIT-18_404j/S1-8.4">8.4</span>
+ PDA: pushdown automata</summary>
+      <p>This is a new view of finite automata with a stack memory.</p>
+    <p>For a pda, there exists a finite controller and a input tape, the head pointer can always trace input.</p>
+    <p>PDA are mostly similar to finite automata, but with a stack.</p>
+    <p>The limitation of finite automata is limited memory, but with a stack, PDA has unlimited memory, used in a restricted way. And PDA have the ability to push data into the stack, pop out of the stack and used as memory.</p>
+    <p>Only accepted at the end of input.</p>
+    <p>Defn: A Pushdown Automata is a 6-tuple: <span><math><mrow><mo><</mo><mrow><mi>𝑄</mi><mo>,</mo></mrow><mrow><mi mathvariant="normal">Σ</mi><mo>,</mo></mrow><mrow><mi mathvariant="normal">Γ</mi><mo>,</mo></mrow><mrow><mi>𝛿</mi><mo>,</mo></mrow><mrow><msub><mi>𝑞</mi><mn>0</mn></msub><mo>,</mo></mrow><mi>𝐹</mi><mo>></mo></mrow></math></span>,</p>
+    <ul>
+      <li><span><math><mi mathvariant="normal">Σ</mi></math></span>: inpu alphabet</li>
+      <li><span><math><mi mathvariant="normal">Γ</mi></math></span>: stack alphabet</li>
+      <li><span><math><mi>𝛿</mi></math></span>: transition functions: <span><math><mrow><mi>𝑄</mi><mo>×</mo><msub><mi mathvariant="normal">Σ</mi><mi>𝜀</mi></msub><mo>×</mo><msub><mi mathvariant="normal">Γ</mi><mi>𝜀</mi></msub><mo>→</mo><mrow><mi>𝑃</mi><mrow><mo>(</mo><mrow><mi>𝑄</mi><mo>×</mo><msub><mi mathvariant="normal">Γ</mi><mi>𝜀</mi></msub></mrow><mo>)</mo></mrow></mrow></mrow></math></span> <span><math><mrow><mrow><mi>𝛿</mi><mrow><mo>(</mo><mrow><mi>𝑞</mi><mo>,</mo><mi>𝑎</mi><mo>,</mo><mi>𝑐</mi></mrow><mo>)</mo></mrow></mrow><mo>=</mo><mrow><mo>{</mo><mrow><mrow><mo>(</mo><mrow><mrow><msub><mi>𝑟</mi><mn>1</mn></msub><mo>,</mo></mrow><mi>𝑑</mi></mrow><mo>)</mo></mrow><mo>,</mo><mrow><mo>(</mo><mrow><mrow><msub><mi>𝑟</mi><mn>2</mn></msub><mo>,</mo></mrow><mi>𝑒</mi></mrow><mo>)</mo></mrow></mrow><mo>}</mo></mrow></mrow></math></span> epsilon here represents read no symbol in input, or read nothing in stack.</li>
+    </ul>
+    <p>E.g., <span><math><mrow><mi>𝐵</mi><mo>=</mo><mrow><mo>{</mo><mrow><mi>𝑤</mi><msup><mi>𝑤</mi><mi>𝑅</mi></msup><mo>|</mo><mi>𝑤</mi><mo>∈</mo><msup><mrow><mo>{</mo><mrow><mrow><mn>1</mn><mo>,</mo></mrow><mn>0</mn></mrow><mo>}</mo></mrow><mo>∗</mo></msup></mrow><mo>}</mo></mrow></mrow></math></span>, and sample input: 011110</p>
+    <ul>
+      <li>read and input input symbols, nodeerministically either repeat or goto 2</li>
+      <li>read input symbols and pop stack symbols, compare, if ever not equals to then thread reject.</li>
+      <li>and enter accepted state if stack is empty.</li>
+    </ul>
+    <p>Assume, every time the state fork, stack is duplicated for each.</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/MIT-18_404j/S1-8.5">8.5</span>
+ Convert CFG to PDA</summary>
+      <p>Theorem: If A is a CFL then some PDA recognizes A. Proof: Convert A's CFG to a PDA.</p>
+    <p>IDEA: PDA begins with starting variables and guesses substitutions. It keeps intermediate generated string on stack. When done, compare with the input.</p>
+    <p>P.S., Use stack as a kind of cache for intermediate generated string.</p>
+    <p>If find a terminal on the top of stack, then pop it and compare with input symbol, until there is a variable in the stack.</p>
+    <ol>
+      <li>Push the start symbol on the stack.</li>
+      <li>If the top of stack is a variable, non-deterministically choose a rule with that variable on the left side, pop the variable and push the right side of the rule onto the stack. Else if the top of stack is a terminal symbol, then pop it and compare with input symbol, if equal, then read next input symbol.</li>
+      <li>If both input and stack are empty, then accept.</li>
+    </ol>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/MIT-18_404j/S1-8.6">8.6</span>
+ Convert PDA to CFG</summary>
+      <p>Theorem: A is a CFL iff some PDA recognizes A. Proof need to be done on both PDA can be converted to CFG and CFG can be converted to PDA.</p>
+    <p>Proof:</p>
+    </details>
+  </section>
+  
+
     </details>
   </section>
   
@@ -8093,6 +8159,46 @@ Parse Trees</a></span>
     <span class="link"><a href="#notes/MIT-18_404j/S1-8.2">
 <span id="notes/MIT-18_404j/S1-8.2">8.2</span>
 Formal definition of CFG</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/MIT-18_404j/S1-8.3">
+<span id="notes/MIT-18_404j/S1-8.3">8.3</span>
+Ambiguity</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/MIT-18_404j/S1-8.4">
+<span id="notes/MIT-18_404j/S1-8.4">8.4</span>
+PDA: pushdown automata</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/MIT-18_404j/S1-8.5">
+<span id="notes/MIT-18_404j/S1-8.5">8.5</span>
+Convert CFG to PDA</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/MIT-18_404j/S1-8.6">
+<span id="notes/MIT-18_404j/S1-8.6">8.6</span>
+Convert PDA to CFG</a></span>
     <ul class="block" style="display: block;">
       
     </ul>

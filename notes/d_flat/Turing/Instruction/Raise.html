@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Instruction: <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Raise</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Raise</span></code>
+</span></title>
+  <link href="/schemas/page.css" rel="stylesheet"/>
+  <link href="/math-block.css" rel="stylesheet"/>
+  <link href="/math-inline.css" rel="stylesheet"/>
+  <link href="/mathyml.css" rel="stylesheet"/>
+  <link href="/inline-fold.css" rel="stylesheet"/>
+  <link crossorigin="true" href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@700&display=swap" rel="stylesheet">
+  
+  <link href="/components/sidebar.css" rel="stylesheet">
+  <script>
+    setInterval(async () => {
+      const res = await fetch('/_reload')
+      if (await res.text() === '1') {
+        location.reload()
+      }
+    }, 500)
+  </script>
+  <link href="/rewrite/code_inline.css" rel="stylesheet">
+  <link href="/rewrite/code_block.css" rel="stylesheet">
+  
+  <link href="https://fred-wang.github.io/MathFonts/NewComputerModern/mathfonts.css" rel="stylesheet">
+</head>
+<body>
+
+  <header class="header" parent="true">
+    <nav class="nav">
+      <div class="logo">
+        <span onclick="window.location.href='/notes/d_flat/Turing/Instruction'" title="Instruction Specification [/notes/d_flat/Turing/Instruction]">« Instruction Specification</span>
+      </div>
+    </nav>
+  </header>
+  <div id="grid-wrapper" sidebar="true">
+    <article>
+      <section class="block" id="notes/d_flat/Turing/Instruction/Raise">
+        <details open="">
+          <summary>
+            <header class="top-header" show-metadata="true">
+              <h1>
+                Instruction: <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Raise</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Raise</span></code>
+</span> 
+              </h1>
+              <div class="metadata">
+                <ul>
+                  <li class="meta-item">
+                    <span class="link external"><a href="https://github.com/mujiu555" title="https://github.com/mujiu555">GitHub@mujiu555</a></span>
+                  </li>
+                  <li class="meta-item">
+                    2025-12-14 23:46
+                  </li>
+                  <li class="meta-item">
+                    <span class="link local"><a href="https://github.com/mujiu555/Wishful-Thinking/tree/main/site" title="Source [https://github.com/mujiu555/Wishful-Thinking/tree/main/site]">Source</a></span>
+                  </li>
+                </ul>
+              </div>
+            </header>
+          </summary>
+          <p><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Raise</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Raise</span></code>
+</span> instruction is used to raise exception.</p>
+  <pre color-scheme="light"><code><span style="color:#5c6a72;">0x
+</span><span style="color:#5c6a72;">              20              18              10              08              00
+</span><span style="color:#5c6a72;">              |3 3 2 2 2 2 2 2|2 2 2 2 1 1 1 1|1 1 1 1 1 1 0 0|0 0 0 0 0 0 0 0|
+</span><span style="color:#5c6a72;">Decimal       |1 0 9 8 7 6 5 4|3 2 1 0 9 8 7 6|5 4 3 2 1 0 9 8|7 6 5 4 3 2 1 0|
+</span><span style="color:#5c6a72;">--------------------------------------------------------------------------------
+</span><span style="color:#5c6a72;">Immediate     | literal                       |             | typ | operator  |
+</span><span style="color:#5c6a72;">
+</span><span style="color:#5c6a72;">* registers: 6 bits register code
+</span><span style="color:#5c6a72;">* literal: literal constant value, either in 16 bits or 8 bits integer.
+</span><span style="color:#5c6a72;">* flags: reserved space, for instruction extension use
+</span><span style="color:#5c6a72;">* RI and IR are two variant of same instruction, distinguish by instruction type</span></code></pre>
+  
+  <pre color-scheme="dark"><code><span style="color:#d3c6aa;">0x
+</span><span style="color:#d3c6aa;">              20              18              10              08              00
+</span><span style="color:#d3c6aa;">              |3 3 2 2 2 2 2 2|2 2 2 2 1 1 1 1|1 1 1 1 1 1 0 0|0 0 0 0 0 0 0 0|
+</span><span style="color:#d3c6aa;">Decimal       |1 0 9 8 7 6 5 4|3 2 1 0 9 8 7 6|5 4 3 2 1 0 9 8|7 6 5 4 3 2 1 0|
+</span><span style="color:#d3c6aa;">--------------------------------------------------------------------------------
+</span><span style="color:#d3c6aa;">Immediate     | literal                       |             | typ | operator  |
+</span><span style="color:#d3c6aa;">
+</span><span style="color:#d3c6aa;">* registers: 6 bits register code
+</span><span style="color:#d3c6aa;">* literal: literal constant value, either in 16 bits or 8 bits integer.
+</span><span style="color:#d3c6aa;">* flags: reserved space, for instruction extension use
+</span><span style="color:#d3c6aa;">* RI and IR are two variant of same instruction, distinguish by instruction type</span></code></pre>
+<p>The <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Raise</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Raise</span></code>
+</span> instruction have one immediate parameter.</p>
+    <ul>
+      <li>Syntax: <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">:raise code</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">:raise code</span></code>
+</span></li>
+      <li>Description: raise exception with code <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">code</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">code</span></code>
+</span></li>
+    </ul>
+    <p>No flag used.</p>
+    <p>Basically, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">raise</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">raise</span></code>
+</span> instruction will invoke exception handler function unit. Exception code will be passed to exception handler function unit via <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Reg#FLAGS</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Reg#FLAGS</span></code>
+</span>. Exception handler function unit may return to previous execution status by <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">iret</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">iret</span></code>
+</span> instruction. Exception handler is a special interrupt handler.</p>
+    <p>There are some pre-defined exception code:</p>
+    <ul>
+      <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0x00</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0x00</span></code>
+</span>: General Exception</li>
+      <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0x01</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0x01</span></code>
+</span>: Invalid Instruction Exception</li>
+      <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0x02</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0x02</span></code>
+</span>: Invalid Operand Exception</li>
+      <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0x03</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0x03</span></code>
+</span>: Invalid Variation Exception</li>
+      <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0x04</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0x04</span></code>
+</span>: Arithmetic Exception</li>
+      <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0x05</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0x05</span></code>
+</span>: Division by Zero Exception</li>
+      <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0x06</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0x06</span></code>
+</span>: Shift Count Exception</li>
+      <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0x07</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0x07</span></code>
+</span>: Arithmetic Overflow Exception</li>
+      <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0x08</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0x08</span></code>
+</span>: Invalid Interrupt Exception</li>
+      <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0x09</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0x09</span></code>
+</span>: Invalid Function Call Exception</li>
+      <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0x0A</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0x0A</span></code>
+</span>: Invalid Parameter Exception</li>
+      <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0x0B</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0x0B</span></code>
+</span>: Invalid Memory Access Exception</li>
+      <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0x0C</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0x0C</span></code>
+</span>: Invalid Segment Access Exception</li>
+      <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0x0D</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0x0D</span></code>
+</span>: Invalid Register Access Exception</li>
+      <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0x0E</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0x0E</span></code>
+</span>: Stack Overflow Exception</li>
+      <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0x0F</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0x0F</span></code>
+</span>: Stack Underflow Exception</li>
+      <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0x10</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0x10</span></code>
+</span>: Invalid Register Access Exception</li>
+      <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0x11</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0x11</span></code>
+</span>: Snapshot Restore Exception</li>
+      <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0x12</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0x12</span></code>
+</span>: Snapshot Exception</li>
+    </ul>
+ 
+        </details>
+      </section>
+      
+    
+
+
+    </article>
+    
+    <nav id="toc">
+        <div class="block">
+            <h1>Table of Contents</h1>
+            <ul class="block">
+            
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Turing/Instruction/Raise">
+<span id="notes/d_flat/Turing/Instruction/Raise"></span>
+Instruction: <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Raise</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Raise</span></code>
+</span></a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+
+            </ul>
+        </div>
+    </nav>
+ 
+  </div>
+
+
+</body>
+</html>

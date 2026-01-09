@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Pointer Specification</title>
+  <link href="/schemas/page.css" rel="stylesheet"/>
+  <link href="/math-block.css" rel="stylesheet"/>
+  <link href="/math-inline.css" rel="stylesheet"/>
+  <link href="/mathyml.css" rel="stylesheet"/>
+  <link href="/inline-fold.css" rel="stylesheet"/>
+  <link crossorigin="true" href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@700&display=swap" rel="stylesheet">
+  
+  <link href="/components/sidebar.css" rel="stylesheet">
+  <script>
+    setInterval(async () => {
+      const res = await fetch('/_reload')
+      if (await res.text() === '1') {
+        location.reload()
+      }
+    }, 500)
+  </script>
+  <link href="/rewrite/code_block.css" rel="stylesheet">
+  <link href="/rewrite/code_inline.css" rel="stylesheet">
+  
+  <link href="https://fred-wang.github.io/MathFonts/NewComputerModern/mathfonts.css" rel="stylesheet">
+</head>
+<body>
+
+  <header class="header" parent="true">
+    <nav class="nav">
+      <div class="logo">
+        <span onclick="window.location.href='/notes/d_flat/Turing'" title="Turing Machine Simulator (R-M) for Project D-Flat [/notes/d_flat/Turing]">« Turing Machine Simulator (R-M) for Project D-Flat</span>
+      </div>
+    </nav>
+  </header>
+  <div id="grid-wrapper" sidebar="true">
+    <article>
+      <section class="block" id="notes/d_flat/Turing/Pointer">
+        <details open="">
+          <summary>
+            <header class="top-header" show-metadata="true">
+              <h1>
+                Pointer Specification 
+              </h1>
+              <div class="metadata">
+                <ul>
+                  <li class="meta-item">
+                    <span class="link external"><a href="https://github.com/mujiu555" title="https://github.com/mujiu555">GitHub@mujiu555</a></span>
+                  </li>
+                  <li class="meta-item">
+                    2025-12-14 23:46
+                  </li>
+                  <li class="meta-item">
+                    <span class="link local"><a href="https://github.com/mujiu555/Wishful-Thinking/tree/main/site" title="Source [https://github.com/mujiu555/Wishful-Thinking/tree/main/site]">Source</a></span>
+                  </li>
+                </ul>
+              </div>
+            </header>
+          </summary>
+          <p>A pointer in this virtual machine is a 64-bit unsigned integer that stored in the capture section of function unit.</p>
+    <p>The pointer uses 46 bits to address and 6 bits to identify the type of pointer, rest 12 bits are reserved for future use. Address can be divided to two part: Pointer Base Address (PBA) and Segment.</p>
+  <pre color-scheme="light"><code><span style="color:#5c6a72;">0x
+</span><span style="color:#5c6a72;">              00              08              10              18              20
+</span><span style="color:#5c6a72;">                                                                              40
+</span><span style="color:#5c6a72;">              |0 0 0 0 0 0 0 0|0 0 1 1 1 1 1 1|1 1 1 1 2 2 2 2|2 2 2 2 2 2 3 3|
+</span><span style="color:#5c6a72;">            =&gt; 3 3 3 3 3 3 3 3|4 4 4 4 4 4 4 4|4 4 5 5 5 5 5 5|5 5 5 5 6 6 6 6|
+</span><span style="color:#5c6a72;">Decimal       |0 1 2 3 4 5 6 7|8 9 0 1 2 3 4 5|6 7 8 9 0 1 2 3|4 5 6 7 8 9 0 1|
+</span><span style="color:#5c6a72;">            =&gt; 2 3 4 5 6 7 8 9|0 1 2 3 4 5 6 7|8 9 0 1 2 3 4 5|6 7 8 9 0 1 2 3|
+</span><span style="color:#5c6a72;">--------------------------------------------------------------------------------
+</span><span style="color:#5c6a72;">              00                              10                              20
+</span><span style="color:#5c6a72;">                                              30              38              40
+</span><span style="color:#5c6a72;">Default       | Pointer Base Address                                          |
+</span><span style="color:#5c6a72;">            =&gt;  PBA(c.)       | Segment   | Type      |                       |
+</span><span style="color:#5c6a72;">* VF &lt;- VIF; VP &lt;- VIP</span></code></pre>
+  
+  <pre color-scheme="dark"><code><span style="color:#d3c6aa;">0x
+</span><span style="color:#d3c6aa;">              00              08              10              18              20
+</span><span style="color:#d3c6aa;">                                                                              40
+</span><span style="color:#d3c6aa;">              |0 0 0 0 0 0 0 0|0 0 1 1 1 1 1 1|1 1 1 1 2 2 2 2|2 2 2 2 2 2 3 3|
+</span><span style="color:#d3c6aa;">            =&gt; 3 3 3 3 3 3 3 3|4 4 4 4 4 4 4 4|4 4 5 5 5 5 5 5|5 5 5 5 6 6 6 6|
+</span><span style="color:#d3c6aa;">Decimal       |0 1 2 3 4 5 6 7|8 9 0 1 2 3 4 5|6 7 8 9 0 1 2 3|4 5 6 7 8 9 0 1|
+</span><span style="color:#d3c6aa;">            =&gt; 2 3 4 5 6 7 8 9|0 1 2 3 4 5 6 7|8 9 0 1 2 3 4 5|6 7 8 9 0 1 2 3|
+</span><span style="color:#d3c6aa;">--------------------------------------------------------------------------------
+</span><span style="color:#d3c6aa;">              00                              10                              20
+</span><span style="color:#d3c6aa;">                                              30              38              40
+</span><span style="color:#d3c6aa;">Default       | Pointer Base Address                                          |
+</span><span style="color:#d3c6aa;">            =&gt;  PBA(c.)       | Segment   | Type      |                       |
+</span><span style="color:#d3c6aa;">* VF &lt;- VIF; VP &lt;- VIP</span></code></pre>
+<p>Type field defines the type of pointer, following are all defined pointer types:</p>
+    <ul>
+      <li>Heap Pointer: type code <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0x00</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0x00</span></code>
+</span>, point to heap allocated memory block.</li>
+      <li>Stack Pointer: type code <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0x01</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0x01</span></code>
+</span>, point to global data stack location.</li>
+      <li>Function Pointer: type code <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0x02</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0x02</span></code>
+</span>, point to function unit entry point.</li>
+      <li>Text Pointer: type code <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0x03</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0x03</span></code>
+</span>, point to text vector.</li>
+      <li>Data Pointer: type code <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0x04</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0x04</span></code>
+</span>, point to data section in function unit.</li>
+      <li>Constant Pointer: type code <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0x05</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0x05</span></code>
+</span>, point to constant section in function unit.</li>
+    </ul>
+ 
+        </details>
+      </section>
+      
+    
+
+
+    </article>
+    
+    <nav id="toc">
+        <div class="block">
+            <h1>Table of Contents</h1>
+            <ul class="block">
+            
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Turing/Pointer">
+<span id="notes/d_flat/Turing/Pointer"></span>
+Pointer Specification</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+
+            </ul>
+        </div>
+    </nav>
+ 
+  </div>
+
+
+</body>
+</html>

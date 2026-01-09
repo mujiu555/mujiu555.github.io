@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Instruction: <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Mov</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Mov</span></code>
+</span></title>
+  <link href="/schemas/page.css" rel="stylesheet"/>
+  <link href="/math-block.css" rel="stylesheet"/>
+  <link href="/math-inline.css" rel="stylesheet"/>
+  <link href="/mathyml.css" rel="stylesheet"/>
+  <link href="/inline-fold.css" rel="stylesheet"/>
+  <link crossorigin="true" href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@700&display=swap" rel="stylesheet">
+  
+  <link href="/components/sidebar.css" rel="stylesheet">
+  <script>
+    setInterval(async () => {
+      const res = await fetch('/_reload')
+      if (await res.text() === '1') {
+        location.reload()
+      }
+    }, 500)
+  </script>
+  <link href="/rewrite/code_block.css" rel="stylesheet">
+  <link href="/rewrite/code_inline.css" rel="stylesheet">
+  
+  <link href="https://fred-wang.github.io/MathFonts/NewComputerModern/mathfonts.css" rel="stylesheet">
+</head>
+<body>
+
+  <header class="header" parent="true">
+    <nav class="nav">
+      <div class="logo">
+        <span onclick="window.location.href='/notes/d_flat/Turing/Instruction'" title="Instruction Specification [/notes/d_flat/Turing/Instruction]">« Instruction Specification</span>
+      </div>
+    </nav>
+  </header>
+  <div id="grid-wrapper" sidebar="true">
+    <article>
+      <section class="block" id="notes/d_flat/Turing/Instruction/Mov">
+        <details open="">
+          <summary>
+            <header class="top-header" show-metadata="true">
+              <h1>
+                Instruction: <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Mov</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Mov</span></code>
+</span> 
+              </h1>
+              <div class="metadata">
+                <ul>
+                  <li class="meta-item">
+                    <span class="link external"><a href="https://github.com/mujiu555" title="https://github.com/mujiu555">GitHub@mujiu555</a></span>
+                  </li>
+                  <li class="meta-item">
+                    2025-12-14 23:46
+                  </li>
+                  <li class="meta-item">
+                    <span class="link local"><a href="https://github.com/mujiu555/Wishful-Thinking/tree/main/site" title="Source [https://github.com/mujiu555/Wishful-Thinking/tree/main/site]">Source</a></span>
+                  </li>
+                </ul>
+              </div>
+            </header>
+          </summary>
+          <p><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Mov</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Mov</span></code>
+</span> instruction is used to move data between registers and memory.</p>
+  <pre color-scheme="light"><code><span style="color:#5c6a72;">0x
+</span><span style="color:#5c6a72;">              20              18              10              08              00
+</span><span style="color:#5c6a72;">              |3 3 2 2 2 2 2 2|2 2 2 2 1 1 1 1|1 1 1 1 1 1 0 0|0 0 0 0 0 0 0 0|
+</span><span style="color:#5c6a72;">Decimal       |1 0 9 8 7 6 5 4|3 2 1 0 9 8 7 6|5 4 3 2 1 0 9 8|7 6 5 4 3 2 1 0|
+</span><span style="color:#5c6a72;">--------------------------------------------------------------------------------
+</span><span style="color:#5c6a72;">RR            | register  | register  |k| l |d| shl       |s| typ | operator  |
+</span><span style="color:#5c6a72;">RR(1)         | register  | register  |             |o  |ss | typ | operator  |
+</span><span style="color:#5c6a72;">RI            | register  | literal                     |o  | typ | operator  |
+</span><span style="color:#5c6a72;">IR            | register  | literal                     |o  | typ | operator  |
+</span><span style="color:#5c6a72;">RRI           | register  | register  | literal       | |ss | typ | operator  |
+</span><span style="color:#5c6a72;">
+</span><span style="color:#5c6a72;">* registers: 6 bits register code
+</span><span style="color:#5c6a72;">* literal: literal constant value, either in 16 bits or 8 bits integer.
+</span><span style="color:#5c6a72;">* flags: reserved space, for instruction extension use
+</span><span style="color:#5c6a72;">* RI and IR are two variant of same instruction, distinguish by instruction type</span></code></pre>
+  
+  <pre color-scheme="dark"><code><span style="color:#d3c6aa;">0x
+</span><span style="color:#d3c6aa;">              20              18              10              08              00
+</span><span style="color:#d3c6aa;">              |3 3 2 2 2 2 2 2|2 2 2 2 1 1 1 1|1 1 1 1 1 1 0 0|0 0 0 0 0 0 0 0|
+</span><span style="color:#d3c6aa;">Decimal       |1 0 9 8 7 6 5 4|3 2 1 0 9 8 7 6|5 4 3 2 1 0 9 8|7 6 5 4 3 2 1 0|
+</span><span style="color:#d3c6aa;">--------------------------------------------------------------------------------
+</span><span style="color:#d3c6aa;">RR            | register  | register  |k| l |d| shl       |s| typ | operator  |
+</span><span style="color:#d3c6aa;">RR(1)         | register  | register  |             |o  |ss | typ | operator  |
+</span><span style="color:#d3c6aa;">RI            | register  | literal                     |o  | typ | operator  |
+</span><span style="color:#d3c6aa;">IR            | register  | literal                     |o  | typ | operator  |
+</span><span style="color:#d3c6aa;">RRI           | register  | register  | literal       | |ss | typ | operator  |
+</span><span style="color:#d3c6aa;">
+</span><span style="color:#d3c6aa;">* registers: 6 bits register code
+</span><span style="color:#d3c6aa;">* literal: literal constant value, either in 16 bits or 8 bits integer.
+</span><span style="color:#d3c6aa;">* flags: reserved space, for instruction extension use
+</span><span style="color:#d3c6aa;">* RI and IR are two variant of same instruction, distinguish by instruction type</span></code></pre>
+<p>The <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Mov</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Mov</span></code>
+</span> instruction have following variants:</p>
+    <ul>
+      <li>
+        <p>Register-Register variant:</p>
+        <ul>
+          <li>Syntax: <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">:mov s dst, shl d(src)</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">:mov s dst, shl d(src)</span></code>
+</span></li>
+          <li>Type code: 0, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">RR</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">RR</span></code>
+</span></li>
+          <li>
+            <p>Description: move data from <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">src</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">src</span></code>
+</span> to <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">dst</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">dst</span></code>
+</span>, shift left by <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">shl</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">shl</span></code>
+</span> bits, padding with 0 or 1 by <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">+</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">+</span></code>
+</span> or <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">-</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">-</span></code>
+</span>. <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">+</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">+</span></code>
+</span> is default if omitted.</p>
+            <ul>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">dst</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">dst</span></code>
+</span>: target register</li>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">src</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">src</span></code>
+</span>: source register</li>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">shl</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">shl</span></code>
+</span>: shift left bits, from <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0</span></code>
+</span> to <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">63</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">63</span></code>
+</span>, optional, default is <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0</span></code>
+</span> if omitted</li>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">s</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">s</span></code>
+</span>: <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">+</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">+</span></code>
+</span> or <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">-</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">-</span></code>
+</span>, padding with <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0</span></code>
+</span> or <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">1</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">1</span></code>
+</span>, optional, if provided, manual padding</li>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">d</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">d</span></code>
+</span>: shift direction and type, optional, default is left logical shift if omitted <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">&lt;</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">&lt;</span></code>
+</span> for shift left logical, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">&gt;</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">&gt;</span></code>
+</span> for shift right logical, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">&gt;&gt;</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">&gt;&gt;</span></code>
+</span> for shift right arithmetic, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">rol</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">rol</span></code>
+</span> for roll left, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">ror</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">ror</span></code>
+</span> for roll right, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">lp</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">lp</span></code>
+</span> for manual padding shift</li>
+            </ul>
+          </li>
+          <li>
+            <p>Flags:</p>
+            <ul>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">s</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">s</span></code>
+</span>: padding bit, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0</span></code>
+</span> for <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">+</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">+</span></code>
+</span>, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">1</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">1</span></code>
+</span> for <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">-</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">-</span></code>
+</span>, available only when l is <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">11</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">11</span></code>
+</span></li>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">d</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">d</span></code>
+</span>: shift direction, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0</span></code>
+</span> for left, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">1</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">1</span></code>
+</span> for right</li>
+              <li>
+                <p><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">l</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">l</span></code>
+</span>: shift type code</p>
+                <ul>
+                  <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">00</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">00</span></code>
+</span>: logical shift</li>
+                  <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">01</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">01</span></code>
+</span>: arithmetic shift</li>
+                  <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">10</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">10</span></code>
+</span>: roll shift</li>
+                  <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">11</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">11</span></code>
+</span>: manual padding shift</li>
+                </ul>
+              </li>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">shl</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">shl</span></code>
+</span>: 6 bits shift left bits</li>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">k</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">k</span></code>
+</span>: short process flag, if read as <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0</span></code>
+</span>, treat as shift left logical with <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">shl</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">shl</span></code>
+</span> bits shift.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>Register-Immediate variant:</p>
+        <ul>
+          <li>Syntax: <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">:mov offset dst, val</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">:mov offset dst, val</span></code>
+</span></li>
+          <li>Type code: 1 / 2, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">RI</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">RI</span></code>
+</span> / <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">RI</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">RI</span></code>
+</span>, if literal have 16th bit set, use second type code, otherwise use first type code</li>
+          <li>
+            <p>Description: move immediate value <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">val</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">val</span></code>
+</span> to <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">dst</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">dst</span></code>
+</span>, offset can be <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">low16</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">low16</span></code>
+</span>, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">high16</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">high16</span></code>
+</span>, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">low16h</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">low16h</span></code>
+</span>, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">high16h</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">high16h</span></code>
+</span> for low 16 or high 16 bits in totally low 32 bits of <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">dst</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">dst</span></code>
+</span> or low 16 or high 16 bits in totally high 32 bits of <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">dst</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">dst</span></code>
+</span>.</p>
+            <ul>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">dst</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">dst</span></code>
+</span>: target register</li>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">val</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">val</span></code>
+</span>: immediate value</li>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">offset</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">offset</span></code>
+</span>: target offset</li>
+            </ul>
+          </li>
+          <li>
+            <p>Flags:</p>
+            <ul>
+              <li>
+                <p><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">o</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">o</span></code>
+</span>: 2 bits offset code</p>
+                <ul>
+                  <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">00</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">00</span></code>
+</span>: low 16</li>
+                  <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">01</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">01</span></code>
+</span>: high 16</li>
+                  <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">10</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">10</span></code>
+</span>: low 16h</li>
+                  <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">11</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">11</span></code>
+</span>: high 16h</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>Register-Address(Register) variant:</p>
+        <ul>
+          <li>Syntax: <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">:mov ptr[dst], offset src</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">:mov ptr[dst], offset src</span></code>
+</span></li>
+          <li>Type code: 3, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">RR(1)</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">RR(1)</span></code>
+</span></li>
+          <li>
+            <p>Description: move data from <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">src</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">src</span></code>
+</span> to memory address <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">dst</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">dst</span></code>
+</span>, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">ptr</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">ptr</span></code>
+</span> can be <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">qword</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">qword</span></code>
+</span>(<span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0</span></code>
+</span>), <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">bytes</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">bytes</span></code>
+</span>(<span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">1</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">1</span></code>
+</span>), <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">word</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">word</span></code>
+</span>(<span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">2</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">2</span></code>
+</span>), <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">dword</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">dword</span></code>
+</span>(<span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">4</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">4</span></code>
+</span>) for data size, offset can be <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0</span></code>
+</span>, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">1</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">1</span></code>
+</span>, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">2</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">2</span></code>
+</span>, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">4</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">4</span></code>
+</span> for source data offset</p>
+            <ul>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">dst</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">dst</span></code>
+</span>: target memory address register</li>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">src</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">src</span></code>
+</span>: source register</li>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">ptr</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">ptr</span></code>
+</span>: data size</li>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">offset</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">offset</span></code>
+</span>: source data offset</li>
+            </ul>
+          </li>
+          <li>
+            <p>Flags:</p>
+            <ul>
+              <li>
+                <p><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">ss</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">ss</span></code>
+</span>: 2 bits source data size code</p>
+                <ul>
+                  <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">00</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">00</span></code>
+</span>: qword</li>
+                  <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">01</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">01</span></code>
+</span>: bytes</li>
+                  <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">10</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">10</span></code>
+</span>: word</li>
+                  <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">11</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">11</span></code>
+</span>: dword</li>
+                </ul>
+              </li>
+              <li>
+                <p><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">o</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">o</span></code>
+</span>: 2 bits source data offset</p>
+                <ul>
+                  <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">00</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">00</span></code>
+</span>: 0</li>
+                  <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">01</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">01</span></code>
+</span>: 1</li>
+                  <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">10</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">10</span></code>
+</span>: 2</li>
+                  <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">11</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">11</span></code>
+</span>: 4</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>Address(Register)-Register variant:</p>
+        <ul>
+          <li>Syntax: <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">:mov offset dst, ptr[src]</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">:mov offset dst, ptr[src]</span></code>
+</span></li>
+          <li>Type code: 4, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">RR(2)</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">RR(2)</span></code>
+</span></li>
+          <li>
+            <p>Description: deference memory address <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">src</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">src</span></code>
+</span> and move data to <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">dst</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">dst</span></code>
+</span>, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">ptr</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">ptr</span></code>
+</span> can be <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">qword</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">qword</span></code>
+</span>(<span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0</span></code>
+</span>), <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">bytes</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">bytes</span></code>
+</span>(<span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">1</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">1</span></code>
+</span>), <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">word</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">word</span></code>
+</span>(<span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">2</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">2</span></code>
+</span>), <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">dword</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">dword</span></code>
+</span>(<span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">4</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">4</span></code>
+</span>) for data size, offset can be <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0</span></code>
+</span>, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">1</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">1</span></code>
+</span>, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">2</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">2</span></code>
+</span>, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">4</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">4</span></code>
+</span> for target data offset</p>
+            <ul>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">dst</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">dst</span></code>
+</span>: target register</li>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">src</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">src</span></code>
+</span>: source memory address register</li>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">ptr</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">ptr</span></code>
+</span>: data size</li>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">offset</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">offset</span></code>
+</span>: target data offset</li>
+            </ul>
+          </li>
+          <li>
+            <p>Flags:</p>
+            <ul>
+              <li>
+                <p><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">ss</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">ss</span></code>
+</span>: 2 bits target data size code</p>
+                <ul>
+                  <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">00</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">00</span></code>
+</span>: qword</li>
+                  <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">01</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">01</span></code>
+</span>: bytes</li>
+                  <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">10</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">10</span></code>
+</span>: word</li>
+                  <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">11</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">11</span></code>
+</span>: dword</li>
+                </ul>
+              </li>
+              <li>
+                <p><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">o</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">o</span></code>
+</span>: 2 bits target data offset</p>
+                <ul>
+                  <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">00</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">00</span></code>
+</span>: 0</li>
+                  <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">01</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">01</span></code>
+</span>: 1</li>
+                  <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">10</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">10</span></code>
+</span>: 2</li>
+                  <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">11</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">11</span></code>
+</span>: 4</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>Address(Register)-Address(Register) variant:</p>
+        <ul>
+          <li>Syntax: <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">:mov ptr [dst], [src]</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">:mov ptr [dst], [src]</span></code>
+</span></li>
+          <li>Type code: 5, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">RR</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">RR</span></code>
+</span></li>
+          <li>
+            <p>Description: move data from memory address <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">src</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">src</span></code>
+</span> to memory address <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">dst</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">dst</span></code>
+</span>, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">ptr</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">ptr</span></code>
+</span> can be <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">qword</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">qword</span></code>
+</span>(<span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0</span></code>
+</span>), <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">bytes</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">bytes</span></code>
+</span>(<span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">1</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">1</span></code>
+</span>), <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">word</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">word</span></code>
+</span>(<span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">2</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">2</span></code>
+</span>), <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">dword</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">dword</span></code>
+</span>(<span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">4</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">4</span></code>
+</span>) for data size</p>
+            <ul>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">dst</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">dst</span></code>
+</span>: target memory address register</li>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">src</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">src</span></code>
+</span>: source memory address register</li>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">ptr</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">ptr</span></code>
+</span>: data size</li>
+            </ul>
+          </li>
+          <li>
+            <p>Flags:</p>
+            <ul>
+              <li>
+                <p><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">ss</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">ss</span></code>
+</span>: 2 bits data size code</p>
+                <ul>
+                  <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">00</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">00</span></code>
+</span>: qword</li>
+                  <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">01</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">01</span></code>
+</span>: bytes</li>
+                  <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">10</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">10</span></code>
+</span>: word</li>
+                  <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">11</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">11</span></code>
+</span>: dword</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>Register-Address(Register + Immediate) variant:</p>
+        <ul>
+          <li>Syntax: <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">:mov dst, ptr[base + offset]</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">:mov dst, ptr[base + offset]</span></code>
+</span></li>
+          <li>Type code: 6, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">RRI</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">RRI</span></code>
+</span></li>
+          <li>
+            <p>Description: move data from memory address calculated by <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">base</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">base</span></code>
+</span> register plus immediate <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">offset</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">offset</span></code>
+</span> to <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">dst</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">dst</span></code>
+</span></p>
+            <ul>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">dst</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">dst</span></code>
+</span>: target register</li>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">base</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">base</span></code>
+</span>: base register for memory address calculation</li>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">offset</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">offset</span></code>
+</span>: immediate offset for memory address calculation</li>
+            </ul>
+          </li>
+          <li>Flags: none</li>
+        </ul>
+      </li>
+      <li>
+        <p>Address(Register + Immediate)-Register variant:</p>
+        <ul>
+          <li>Syntax: <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">:mov ptr[base + offset], src</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">:mov ptr[base + offset], src</span></code>
+</span></li>
+          <li>Type code: 7, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">RIR</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">RIR</span></code>
+</span></li>
+          <li>
+            <p>Description: move data from <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">src</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">src</span></code>
+</span> to memory address calculated by <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">base</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">base</span></code>
+</span> register plus immediate <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">offset</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">offset</span></code>
+</span></p>
+            <ul>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">src</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">src</span></code>
+</span>: source register</li>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">base</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">base</span></code>
+</span>: base register for memory address calculation</li>
+              <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">offset</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">offset</span></code>
+</span>: immediate offset for memory address calculation</li>
+            </ul>
+          </li>
+          <li>Flags: none</li>
+        </ul>
+      </li>
+    </ul>
+    <p>All other combination of source and target operand are invalid for <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Mov</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Mov</span></code>
+</span> instruction.</p>
+    <p>Basically, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">mov</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">mov</span></code>
+</span> instruction copies data from source operand to target operand directly.</p>
+    <p>The whole <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">mov</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">mov</span></code>
+</span> instruction family can be divided into three categories:</p>
+    <ul>
+      <li>register to register move, including register-register variant, simply copy data between registers, with optional shift operation. Shift operation may be applied during data move. Depend on shift type and direction, data in source register will be shifted left or right by specified bits, and then moved to target register. For most case without shift operation, data in source register is copied directly to target register. <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">dst </span><span style="color:#f57d26;">=</span><span style="color:#5c6a72;"> src</span><span style="color:#5c6a72;">;</span><span style="color:#5c6a72;"> </span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">dst </span><span style="color:#e69875;">=</span><span style="color:#d3c6aa;"> src</span><span style="color:#d3c6aa;">;</span><span style="color:#d3c6aa;"> </span></code>
+</span> For rest case with default shift operation, data int source register is shifted left logically by specified bits, and then moved to target register. <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">dst </span><span style="color:#f57d26;">=</span><span style="color:#5c6a72;"> src </span><span style="color:#f57d26;">&lt;&lt;</span><span style="color:#5c6a72;"> shl</span><span style="color:#5c6a72;">;</span><span style="color:#5c6a72;"> </span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">dst </span><span style="color:#e69875;">=</span><span style="color:#d3c6aa;"> src </span><span style="color:#e69875;">&lt;&lt;</span><span style="color:#d3c6aa;"> shl</span><span style="color:#d3c6aa;">;</span><span style="color:#d3c6aa;"> </span></code>
+</span> For rest case with specified shift operation, data in source register is shifted depend on shift type and direction, and then moved to target register. By register to register move, the user can simulate 32 bits general-purposed register, like in Risc-V or x86_64 architecture.</li>
+      <li>immediate to register move, including register-immediate variant I and II, move immediate value to target register directly. The immediate value have 15 bits stored in instruction, the 16th bit distinguished by type code. For register-immediate variant I, 16th bit is <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">1</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">1</span></code>
+</span>, for register-immediate variant II, 16th bit is <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0</span></code>
+</span>. The immediate value can be assigned to corresponding double-word in target register depend on offset parameter. Since the flags have 2 bits offset code, all four double-words in target register can be assigned separately.</li>
+      <li>
+        <p>register to memory, memory to register and memory to memory move, including RR, RR, RR, RR, RRI, RIR variants, Addressing using register, or register plus immediate offset. Basically read value in register and or add immediate to the value, addressing global data stack using the value as memory address. Data size and data offset must be specified by flags. For data size:</p>
+        <ul>
+          <li>0 means qword (8 bytes)</li>
+          <li>1 means bytes (1 byte)</li>
+          <li>2 means word (2 bytes)</li>
+          <li>3 means dword (4 bytes)</li>
+        </ul>
+        <p>For data offset:</p>
+        <ul>
+          <li>0 means offset 0</li>
+          <li>1 means offset 1</li>
+          <li>2 means offset 2</li>
+          <li>3 means offset 4</li>
+        </ul>
+        <p>RR variant with Addressing(Register)-Addressing(Register) must have o with 0 For RR(A(R)R) or RRI variant, Read ss bytes data from source memory address and write ss bytes data to target register with offset o. For RR(RA(R)) or RIR variant, Read ss bytes data from source register with offset o and write ss bytes data to target memory address. For RR(A(R)A(R)) variant, Read ss bytes data from source memory address and write ss bytes data to target memory address.</p>
+      </li>
+    </ul>
+ 
+        </details>
+      </section>
+      
+    
+
+
+    </article>
+    
+    <nav id="toc">
+        <div class="block">
+            <h1>Table of Contents</h1>
+            <ul class="block">
+            
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Turing/Instruction/Mov">
+<span id="notes/d_flat/Turing/Instruction/Mov"></span>
+Instruction: <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Mov</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Mov</span></code>
+</span></a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+
+            </ul>
+        </div>
+    </nav>
+ 
+  </div>
+
+
+</body>
+</html>
