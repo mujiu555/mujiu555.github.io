@@ -97,25 +97,25 @@
       <summary style="font-size: 117%;">
 <span id="notes/d_flat/Lilies-2">2</span>
  Introduction 引言</summary>
-      <p>A generic programming language cannot satisfy all the needs of all programmers. Thus reduce the complexity of the language is important. Keeping the least core language and giving users the ability to extend the language.</p>
-    <p>A simple and clear expression syntax and the unlimited combinability of expressions can thus construct a practical and effective programming language.</p>
-    <p>Lilies have many design from earlier Lisps and Scheme dialects. First-class functions(procedures), lexical scope, continuations, macros. Syntax are also a objects that can be manipulated programmatically. But in contrast to them, Lilies is designed to be with a strong static type system.</p>
-    <p>Lilies meant to be a native language competed with c. Or be like a compile target, so that other languages can be implemented upon it. In D-Flat system, Marguerite is implemented upon Lilies.</p>
-    <p>Every symbols in Lilies sharing same namespace, no matter they are variables, functions, classes, interfaces, modules or so. In each expression, operators and operands are distinguished by their position.</p>
-    <p>Though other lisp dialects use function application to archive loop, Lilies provides full functional loop constructs as built-in syntax extension other than core language. The tail call optimization is also provided to make sure loops are efficient.</p>
-    <p>Classes for the object-oriented programming paradigm are provided. Everything in Lilies is an object, including functions, classes, interfaces, modules, and so on. Classes can be computed at compile-time, allowing for powerful metaprogramming capabilities and generic programming. Lilies supports monomorphized generics, allowing for efficient code generation and type safety. With traits and interfaces, Lilies supports polymorphism and code reuse. With contracts, Lilies supports design by contract programming. There also provided with full compile-time type checking and type inference capabilities.</p>
-    <p>Modules in Lilies are first-class citizens. Modules can be defined, imported, and exported.</p>
-    <p>The language is able to capture every continuation, which is "rest of the computation" at any point in the program. For which advanced control flow constructs can be built upon. When a continuation is captured, it will be saved as "escape procedure", a function that can be invoked later to resume the computation from the point where the continuation was captured. Markable, there exists a special kind of continuation, "delimited continuation", which will also be supported in Lilies.</p>
-    <p>For a higher-level logical, algebraic effects can be also handled with Lilies. The effect handlers can be implemented with continuations, but in Lilies, it will be treated as a separate construct to provide better syntax and semantics.</p>
-    <p>A full functional exception handling system is provided. With conditional system, exceptions can be defined, raise, caught, and propagated. Allowing users to resume from exceptions or handle them in a flexible way. For non-local control flow, a simpler and lighter exceptions system can be used to implement coroutines, generators, and other advanced control flow constructs.</p>
-    <p>There are various ways to extend the language. Macros are the most powerful one. Macros in Lilies are hygienic and provide user with the ability to parse AST, fetch or drop context information, and generate new syntax trees. Thus new syntax constructed can be hygienic or unhygienic as needed. Syntax objects are first-class in Lilies, provides the ability to parse, manipulate, and generate syntax trees, especially in macros. The other way to extend the language is through symbol generation. It is possible to generate new expressions with given symbols or attributes at compile-time (likely Ksp for kotlin or Roslyn for c#).</p>
-    <p>Macros system for Lilies must ensure that macros used in the program can provide same information as built-in syntax at compile-time. So that the compiler can provide full error information for user.</p>
-    <p>The language is built with attribute grammar. So that every syntax can be associated with attributes, which can be used to store type information, scope information, or other metadata.</p>
-    <p>Everything except <span style="display: inline-block;">
+      <p>A single generic programming language cannot satisfy all needs of all programmers. Therefore reducing language complexity is important: keep a small core and give users the ability to extend the language.</p>
+    <p>A simple, clear expression syntax and unlimited composability of expressions make it possible to construct a practical and effective programming language.</p>
+    <p>Lilies draws many design ideas from earlier Lisps and Scheme dialects: first-class functions (procedures), lexical scope, continuations, and macros. Syntax objects can be manipulated programmatically. In contrast to those languages, Lilies is designed with a strong static type system.</p>
+    <p>Lilies is intended to be a native language that can compete with C, or a compilation target upon which other languages can be implemented. In the D-Flat system, Marguerite is implemented on top of Lilies.</p>
+    <p>All symbols in Lilies share a single namespace, whether they are variables, functions, classes, interfaces, modules, or other entities. In each expression, operators and operands are distinguished by their positions.</p>
+    <p>Unlike some Lisp dialects that use function application to implement loops, Lilies provides full functional loop constructs as built-in syntax extensions (outside the minimal core). Tail-call optimization is provided to ensure loops are efficient.</p>
+    <p>Object-oriented classes are supported. Everything in Lilies is an object, including functions, classes, interfaces, and modules. Classes can be computed at compile time, enabling powerful metaprogramming and generic programming. With traits and interfaces, Lilies supports polymorphism and code reuse. Contracts enable design-by-contract programming. The language also provides full compile-time type checking and type inference.</p>
+    <p>Modules are first-class citizens: they can be defined, imported, and exported.</p>
+    <p>The language can capture continuations — the "rest of the computation" at any point — allowing advanced control-flow constructs to be built on top. When a continuation is captured it is saved as an "escape procedure", a function that can be invoked later to resume execution at the capture point. Delimited continuations are also supported.</p>
+    <p>For higher-level control, algebraic effects and handlers are supported. Although effect handlers can be implemented with continuations, Lilies treats them as a distinct construct with dedicated syntax and semantics.</p>
+    <p>A full functional exception system is provided. Exceptions can be defined, raised, caught, propagated, and in some cases resumed, allowing flexible handling.</p>
+    <p>There are several ways to extend the language; macros are the most powerful. Lilies’ macros are hygienic and let users parse ASTs, access or drop contextual information, and generate new syntax trees. Macro-generated syntax can be hygienic or intentionally unhygienic as needed. Syntax objects are first-class, permitting parsing, manipulation, and generation of syntax trees, especially within macros. Another extension mechanism is symbol generation: new expressions can be generated at compile time with specific symbols or attributes (similar in spirit to KSP for Kotlin or Roslyn for C#).</p>
+    <p>The macro system must ensure that macros can provide the same compile-time information as built-in syntax so the compiler can produce full error diagnostics.</p>
+    <p>The language is built on an attribute grammar so that each syntax node can carry attributes used to store type information, scope information, and other metadata.</p>
+    <p>Except for <span style="display: inline-block;">
 
 <code color-scheme="light"><span style="color:#5c6a72;">define</span></code>
 <code color-scheme="dark"><span style="color:#d3c6aa;">define</span></code>
-</span> cannot create new bindings directly in the current scope. <span style="display: inline-block;">
+</span>, no construct may directly create new bindings in the current scope. The <span style="display: inline-block;">
 
 <code color-scheme="light"><span style="color:#5c6a72;">let</span></code>
 <code color-scheme="dark"><span style="color:#d3c6aa;">let</span></code>
@@ -123,8 +123,36 @@
 
 <code color-scheme="light"><span style="color:#5c6a72;">let:</span></code>
 <code color-scheme="dark"><span style="color:#d3c6aa;">let:</span></code>
-</span> family are used to create new bindings through closure capture. Thus, the language is designed to be referentially transparent. Everything including variables, functions, classes, modules, and macros should be defined before use.</p>
-    <p>Those features make Lilies a powerful tool for building complex software systems. Furthermore, a research for computer program theory.</p>
+</span> families create bindings through closure capture. The language is designed to be referentially transparent: variables, functions, classes, modules, and macros should be defined before use.</p>
+    <p>These features make Lilies a powerful tool for building complex software systems and a fertile platform for research in programming theory.</p>
+    <p>单一的通用编程语言无法满足所有程序员的所有需求。因此，简化语言复杂性很重要：保留最小核心，并赋予用户扩展语言的能力。</p>
+    <p>简单清晰的表达式语法以及表达式的无限可组合性，使得构建实用且高效的编程语言成为可能。</p>
+    <p>Lilies 在设计上借鉴了早期的 Lisp 和 Scheme 方言的许多思想：一等函数（过程）、词法作用域、continuations（续延/延续）和宏。语法对象可以以编程方式进行操作。与这些语言不同，Lilies 设计为具有强静态类型系统的语言。</p>
+    <p>Lilies 的目标是成为一门可与 C 竞争的本地语言，或作为其他语言的编译目标。在 D-Flat 系统中，Marguerite 就是建立在 Lilies 之上的。</p>
+    <p>在 Lilies 中所有符号共享同一个命名空间，不论它们是变量、函数、类、接口、模块或其他实体。在每个表达式中，运算符和操作数由其位置来区分。</p>
+    <p>不同于某些 Lisp 方言通过函数调用实现循环的做法，Lilies 提供完整的函数式循环构造，作为内建的语法扩展（而非核心）。同时提供尾调用优化以保证循环的高效性。</p>
+    <p>支持面向对象的类。Lilies 中的一切都是对象，包括函数、类、接口和模块。类可以在编译期计算，从而支持强大的元编程能力和泛型编程。通过 trait（特征）和接口，Lilies 支持多态和代码重用。通过契约（contracts），支持契约式设计。语言同时提供完整的编译时类型检查和类型推断能力。</p>
+    <p>模块是第一类公民：可以定义、导入和导出。</p>
+    <p>语言能够捕获任意时刻的 continuation（程序剩余计算），从而可以构建高级控制流构造。捕获的 continuation 会被保存为“逃逸过程”（escape procedure），这是一个可以稍后调用以从捕获点恢复计算的函数。Lilies 也支持定界（delimited）continuation。</p>
+    <p>为了实现更高层次的控制，Lilies 也支持代数效果（algebraic effects）及其处理器。虽然效果处理器可以用 continuation 来实现，但 Lilies 将它们作为独立的构造来提供，以便拥有更好的语法和语义支持。</p>
+    <p>提供了完整的函数式异常处理系统。异常可以定义、抛出、捕获和传播，并在某些情况下支持恢复，从而灵活地处理错误。</p>
+    <p>有多种方式扩展语言，其中宏是最强大的。Lilies 的宏是“卫生”的（hygienic），并允许用户解析抽象语法树（AST）、获取或丢弃上下文信息、生成新的语法树。宏生成的语法可以根据需要是卫生的或有意非卫生的。语法对象在 Lilies 中是一等公民，便于在宏中解析、操作和生成语法树。另一种扩展方式是符号生成：可以在编译时根据给定的符号或属性生成新的表达式（类似于 Kotlin 的 KSP 或 C# 的 Roslyn）。</p>
+    <p>宏系统必须确保程序中使用的宏在编译时能提供与内建语法相同的信息，以便编译器能给出完整的错误诊断。</p>
+    <p>该语言基于属性文法构建，每个语法节点都可以关联属性，用于存储类型信息、作用域信息或其他元数据。</p>
+    <p>除 <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">define</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">define</span></code>
+</span> 外，任何构造都不能直接在当前作用域创建新的绑定。<span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">let</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">let</span></code>
+</span> 和 <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">let:</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">let:</span></code>
+</span> 系列通过闭包捕获来创建绑定。因此语言被设计为引用透明：变量、函数、类、模块和宏应在使用前定义。</p>
+    <p>这些特性使 Lilies 成为构建复杂软件系统的强大工具，同时也是计算机程序理论研究的良好平台。</p>
   <section class="block">
     <details open="">
       <summary style="font-size: 117%;">
@@ -189,7 +217,7 @@
  Type System 类型系统</summary>
       <p>Every value in Lilies has a type. Types are used to classify values and determine what operations can be performed on them.</p>
     <p>It is able to define new types by combining existing types (structures) or inductively defining new types (recursive types).</p>
-    <p>Each type are individual, defined by its name, structure, and behavior. But types can also have hierarchical relationships with other types through inheritance and subtyping. A type can be a subtype of another type, if and only if it inherits from that type and implement all traits and interfaces defined the type implemented.</p>
+    <p>Each type are individual, defined by its name, structure, and behavior. But types can also have hierarchical relationships with other types through inheritance and subtyping. A type can be a subtype of another type, if and only if it inherits from that type and implement all traits and interfaces the type implemented.</p>
     <p>Supertype doesn't means that all values of the subtype can be treated as values of the supertype. The only guarantee is that when a constraint requires a value of the supertype, a value of the subtype can be used instead.</p>
     <p>Every type must derive a default "empty" value, together with its corresponding type, which is used when a value of that type is required but not provided. Every type has its own type checking rules, which are used to determine whether a value is of that type or not. Thus empty values can be distinguished from other values of the same type.</p>
   <section class="block">
@@ -210,6 +238,8 @@
       <li>Any</li>
       <li>None</li>
       <li>Ignore</li>
+      <li>Meta</li>
+      <li>Unit</li>
     </ul>
   <section class="block">
     <details open="">
@@ -343,6 +373,15 @@
 <code color-scheme="light"><span style="color:#5c6a72;">&quot;&quot;</span></code>
 <code color-scheme="dark"><span style="color:#d3c6aa;">&quot;&quot;</span></code>
 </span>.</p>
+    <p>String are some serialized data, a continuous sequence of bytes. No matter it is encoded utf-8 ro raw bytes, even integers or complex objects.</p>
+    <p>In Lilies, there are different kinds of continuous data:</p>
+    <ul>
+      <li>Strings, which is described here,</li>
+      <li>Vector, fixed-size sequence of same-type elements,</li>
+      <li>Tuple, fixed-size sequence of potentially different-type elements,</li>
+      <li>Array, variable-size sequence of same-type elements,</li>
+      <li>List, variable-size sequence of potentially different-type elements, as a linked list,</li>
+    </ul>
     </details>
   </section>
   
@@ -469,6 +508,28 @@
   </section>
   
 
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/d_flat/Lilies-3.2.1.12">3.2.1.12</span>
+ Meta 元类型</summary>
+      <p>Meta type is the type of types in Lilies. Meta type may be structure description or type generator.</p>
+    <p>Meta type always promises to be non-empty, thus has no default empty type.</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/d_flat/Lilies-3.2.1.13">3.2.1.13</span>
+ Unit 单元类型</summary>
+      <p>Every structure that has no fields is considered as Unit type. Thus unit type is not a primitive type, but a special structure type.</p>
+    <p>Unit types cannot have instances, thus has no default empty type.</p>
+    </details>
+  </section>
+  
+
     </details>
   </section>
   
@@ -534,6 +595,15 @@
       </li>
     </ul>
     <p>Some of them are built-in primitive types with generic type parameters, such as tuple, pair, and vector. Others are constructed through type definition syntax, such as structures, unions, and recursive types.</p>
+    <p>Use <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">type</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">type</span></code>
+</span> to define new recursive types by creating type generators that can produce types based on type parameters. The type described by <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">type</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">type</span></code>
+</span> will not create a new type indeed, rather a new type checker that can check whether a value is of the described type or not will be implemented.</p>
     </details>
   </section>
   
@@ -582,6 +652,17 @@
     <details open="">
       <summary style="font-size: 117%;">
 <span id="notes/d_flat/Lilies-3.2.8">3.2.8</span>
+ Traits 特征与接口</summary>
+      <p>Traits are a way to define shared behavior that can be implemented by multiple types. Furthermore, traits can be composed together to create new traits.</p>
+    <p>Traits can be used to constraint generic types, ensuring that a type parameter implements a specific set of behaviors. Traits can be used to define dynamic dispatch rule, allowing methods to be called on values of different types that implement the same trait.</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/d_flat/Lilies-3.2.9">3.2.9</span>
  Type Dispatch 类型分派</summary>
       <p>When a value is used in an expression, the type of the value is determined through type dispatch.</p>
     </details>
@@ -591,7 +672,7 @@
   <section class="block">
     <details open="">
       <summary style="font-size: 117%;">
-<span id="notes/d_flat/Lilies-3.2.9">3.2.9</span>
+<span id="notes/d_flat/Lilies-3.2.10">3.2.10</span>
  Auto Type Detection 自动类型检测</summary>
       <p>When defining variables, functions, classes, and so on, if the type is not explicitly specified, the type will be inferred from the context.</p>
     </details>
@@ -606,125 +687,158 @@
     <details open="">
       <summary style="font-size: 117%;">
 <span id="notes/d_flat/Lilies-3.3">3.3</span>
- Object System</summary>
-      <ul>
-      <li>
-        <p>Basic Class & Meta Class</p>
-        <ul>
-          <li>Parent & Final</li>
-          <li>Extend Base Class</li>
-        </ul>
-      </li>
-      <li>Fields</li>
-      <li>Properties</li>
-      <li>
-        <p>Interface</p>
-        <ol>
-          <li>Implement Interface</li>
-          <li>Default Implement</li>
-          <li>Cross-domain Interface</li>
-        </ol>
-      </li>
-    </ul>
-    <ol>
-      <li>
-        <p>Methods</p>
-        <ol>
-          <li>Method for objects</li>
-          <li>Method for classes</li>
-          <li>Implement Methods</li>
-          <li>Inherit Methods</li>
-          <li>
-            <p>Call the Method</p>
-            <ol>
-              <li>Static Dispatch</li>
-              <li>Method visit Syntax Sugar</li>
-              <li>Dynamic Dispatch</li>
-              <li>Invoke</li>
-            </ol>
-          </li>
-        </ol>
-      </li>
-      <li>
-        <p>Generic Functions</p>
-        <ol>
-          <li>
-            <p>History: <span style="display: inline-block;">
+ Object System 对象系统</summary>
+      <p>Object is the core concept of Lilies language. Though types in Lilies can not inherit from other types in the traditional sense, objects system for Lilies still provides other way to archive polymorphism and code reuse.</p>
+    <p>The class defines only the structure of a object, but methods are implemented separately. With traits, it becomes possible to share method implementations across different classes and extend object behaviour outside the class definition.</p>
+    <p>A concept of generic function is borrowed from CLOS and it is renamed to <span style="display: inline-block;">
 
-<code color-scheme="light"><span style="color:#5c6a72;">CLOS</span></code>
-<code color-scheme="dark"><span style="color:#d3c6aa;">CLOS</span></code>
-</span></p>
-          </li>
-          <li>
-            <p>Define Generic Function: 广义函数允许方法调用以普通函数的方式被使用:</p>
-  <pre color-scheme="light"><code><span style="color:#5c6a72;">scheme
-</span><span style="color:#5c6a72;">(define foo:constraint
-</span><span style="color:#5c6a72;">  (interface ()
-</span><span style="color:#5c6a72;">    (define bar (function (self)))
-</span><span style="color:#5c6a72;">
-</span><span style="color:#5c6a72;">(define foo
-</span><span style="color:#5c6a72;">  (generic bar () #:implement foo:constraint))
-</span><span style="color:#5c6a72;">
-</span><span style="color:#5c6a72;">(define zoo
-</span><span style="color:#5c6a72;">  (class
-</span><span style="color:#5c6a72;">    #:self this))
-</span><span style="color:#5c6a72;">
-</span><span style="color:#5c6a72;">(implement zoo foo:constraint
-</span><span style="color:#5c6a72;">  (define bar
-</span><span style="color:#5c6a72;">    (lambda ()
-</span><span style="color:#5c6a72;">      (display 1))))
-</span><span style="color:#5c6a72;">
-</span><span style="color:#5c6a72;">(implement zoo new
-</span><span style="color:#5c6a72;">  (define new
-</span><span style="color:#5c6a72;">    (lambda (self)
-</span><span style="color:#5c6a72;">      (alloc:heap (this))))
-</span><span style="color:#5c6a72;">
-</span><span style="color:#5c6a72;">(define a (new zoo))
-</span><span style="color:#5c6a72;">
-</span><span style="color:#5c6a72;">({bar a})
-</span><span style="color:#5c6a72;">;; equal to
-</span><span style="color:#5c6a72;">(foo a)</span></code></pre>
-  
-  <pre color-scheme="dark"><code><span style="color:#d3c6aa;">scheme
-</span><span style="color:#d3c6aa;">(define foo:constraint
-</span><span style="color:#d3c6aa;">  (interface ()
-</span><span style="color:#d3c6aa;">    (define bar (function (self)))
-</span><span style="color:#d3c6aa;">
-</span><span style="color:#d3c6aa;">(define foo
-</span><span style="color:#d3c6aa;">  (generic bar () #:implement foo:constraint))
-</span><span style="color:#d3c6aa;">
-</span><span style="color:#d3c6aa;">(define zoo
-</span><span style="color:#d3c6aa;">  (class
-</span><span style="color:#d3c6aa;">    #:self this))
-</span><span style="color:#d3c6aa;">
-</span><span style="color:#d3c6aa;">(implement zoo foo:constraint
-</span><span style="color:#d3c6aa;">  (define bar
-</span><span style="color:#d3c6aa;">    (lambda ()
-</span><span style="color:#d3c6aa;">      (display 1))))
-</span><span style="color:#d3c6aa;">
-</span><span style="color:#d3c6aa;">(implement zoo new
-</span><span style="color:#d3c6aa;">  (define new
-</span><span style="color:#d3c6aa;">    (lambda (self)
-</span><span style="color:#d3c6aa;">      (alloc:heap (this))))
-</span><span style="color:#d3c6aa;">
-</span><span style="color:#d3c6aa;">(define a (new zoo))
-</span><span style="color:#d3c6aa;">
-</span><span style="color:#d3c6aa;">({bar a})
-</span><span style="color:#d3c6aa;">;; equal to
-</span><span style="color:#d3c6aa;">(foo a)</span></code></pre>
-</li>
-          <li>
-            <p>Trait Shadow</p>
-          </li>
-        </ol>
-      </li>
-    </ol>
+<code color-scheme="light"><span style="color:#5c6a72;">interface</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">interface</span></code>
+</span> in Lilies. With interface, user-defined methods can be called in a uniform way as traditional functions. Another benefit is that interfaces are all static dispatched by default, making them more efficient than traditional methods.</p>
+    <p><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">implement</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">implement</span></code>
+</span> syntax will create methods for a specific class, and assign the method to corresponding class.</p>
+    <p>There are still some special concept borrowed form traditional OOP languages:</p>
+    <ul>
+      <li>Fields: named slots associated with a specific object instance.</li>
+      <li>Properties: named slots that used for value fetching only.</li>
+    </ul>
+    <p>All objects in lilies are referenced by value by default. To have a object referenced by reference, use type wrappers.</p>
+    <p>Type wrapper can be ownership, garbage collected or reference counted pointer.</p>
+    <p>This part describes the object system, definition of classes, and their possible literals.</p>
   <section class="block">
     <details open="">
       <summary style="font-size: 117%;">
 <span id="notes/d_flat/Lilies-3.3.1">3.3.1</span>
- Traits 特征</summary>
-      
+ Primitive Object 原始对象</summary>
+      <p>Primitive objects in Lilies are build upon primitive types. Some of primitive objects can be written in literal syntax.</p>
+    <p>Primitive objects cannot be split into smaller parts.</p>
+    <p>For which, there are:</p>
+    <ul>
+      <li>
+        <p>Integer Object</p>
+        <ul>
+          <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">[1-9][0-9]*</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">[1-9][0-9]*</span></code>
+</span></li>
+          <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0b[01]+</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0b[01]+</span></code>
+</span></li>
+          <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0o[0-7]+</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0o[0-7]+</span></code>
+</span></li>
+          <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">0x[0-9a-fA-F]+</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">0x[0-9a-fA-F]+</span></code>
+</span></li>
+        </ul>
+      </li>
+      <li>
+        <p>Float Object</p>
+        <ul>
+          <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">[0-9]+\.[0-9]*([eE][+-]?[0-9]+)?</span></code>
+</span></li>
+          <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">\.[0-9]+([eE][+-]?[0-9]+)?</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">\.[0-9]+([eE][+-]?[0-9]+)?</span></code>
+</span></li>
+          <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">[0-9]+[eE][+-]?[0-9]+</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">[0-9]+[eE][+-]?[0-9]+</span></code>
+</span></li>
+        </ul>
+      </li>
+      <li>
+        <p>Character Object</p>
+        <ul>
+          <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">#\descrition</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">#\descrition</span></code>
+</span></li>
+          <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">#\&#39;character</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">#\&#39;character</span></code>
+</span></li>
+          <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">#\uXXXX</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">#\uXXXX</span></code>
+</span></li>
+        </ul>
+      </li>
+      <li>
+        <p>String Object</p>
+        <ul>
+          <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">&quot;string content&quot;</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">&quot;string content&quot;</span></code>
+</span></li>
+          <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">#f&quot;string content with escapes&quot;</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">#f&quot;string content with escapes&quot;</span></code>
+</span></li>
+          <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">#b&quot;raw string content&quot;</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">#b&quot;raw string content&quot;</span></code>
+</span></li>
+        </ul>
+      </li>
+      <li>
+        <p>Symbol Object</p>
+        <ul>
+          <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">&#39;symbol-name</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">&#39;symbol-name</span></code>
+</span></li>
+        </ul>
+      </li>
+      <li>
+        <p>Boolean Object</p>
+        <ul>
+          <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">#True</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">#True</span></code>
+</span></li>
+          <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">#False</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">#False</span></code>
+</span></li>
+        </ul>
+      </li>
+      <li>
+        <p>Pair Object</p>
+        <ul>
+          <li><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">&#39;(first . second)</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">&#39;(first . second)</span></code>
+</span></li>
+        </ul>
+      </li>
+    </ul>
+    <p>Above, quote syntax is used to create literal syntax for symbols and pairs.</p>
     </details>
   </section>
   
@@ -733,7 +847,214 @@
     <details open="">
       <summary style="font-size: 117%;">
 <span id="notes/d_flat/Lilies-3.3.2">3.3.2</span>
- Implementation 实现</summary>
+ Classes, Fields, Properties & Traits 类, 字段, 属性与特征</summary>
+      <p>Classes are user defined types for structure types.</p>
+    <p>A classes can declare it inherits from a parent class explicitly, but that will not change the class structure. If a class is declared to have a parent class, it must implement all traits that its parent class implements.</p>
+    <p>Fields are named slots associated with a specific object instance. Each field has its own name and type. In class definition, fields are declared with <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">define</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">define</span></code>
+</span> syntax.</p>
+    <p>Properties are named slots that used for value fetching only. The method to declare a field as property can be various, Use setter and getter methods is one of the common way. However, it is encouraged to manually assign accessibility attributes to fields to control read and write access right for internal, class internal, package internal, and public access levels.</p>
+    <p>Traits are used to define shared behavior that can be implemented by multiple classes. Traits can be implemented manually for a class, and user defined traits can be used to extend class behavior for a library defined class.</p>
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/d_flat/Lilies-3.3.2.1">3.3.2.1</span>
+ Definition of Classes 类的定义</summary>
+      <p>Define a new class with <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">class</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">class</span></code>
+</span> syntax. E.g., to define a new class <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Point</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Point</span></code>
+</span> with two fields <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">x</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">x</span></code>
+</span> and <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">y</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">y</span></code>
+</span> of type <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Integer</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Integer</span></code>
+</span>:</p>
+  <pre color-scheme="light"><code><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">define Point
+</span><span style="color:#5c6a72;">  </span><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">class
+</span><span style="color:#5c6a72;">    </span><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">define x Integer</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;">
+</span><span style="color:#5c6a72;">    </span><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">define y Integer</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;">)</span></code></pre>
+  
+  <pre color-scheme="dark"><code><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">define Point
+</span><span style="color:#d3c6aa;">  </span><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">class
+</span><span style="color:#d3c6aa;">    </span><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">define x Integer</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;">
+</span><span style="color:#d3c6aa;">    </span><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">define y Integer</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;">)</span></code></pre>
+<p>Here, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">define</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">define</span></code>
+</span> syntax used to declare Point as the class we defined using <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">class</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">class</span></code>
+</span> syntax. And <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">define</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">define</span></code>
+</span> syntax inside the class body used to declare fields <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">x</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">x</span></code>
+</span> and <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">y</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">y</span></code>
+</span> of type <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Integer</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Integer</span></code>
+</span>. <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">#:self this</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">#:self this</span></code>
+</span> declares that within the class body, <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">this</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">this</span></code>
+</span> refers to the current instance of the class. Symbols starts with <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">#:</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">#:</span></code>
+</span> are keywords annotations, for which pass some attributes when function or macro application. Another special keyword annotations are start with <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">#&amp;</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">#&amp;</span></code>
+</span>, for passing some attributes when function or macro definition. Most generic annotations are written as <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">#@[attributes]</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">#@[attributes]</span></code>
+</span>, and is assigned to expressions. Later there will be a chapter describing all these annotations in detail.</p>
+    <p>Full syntax of class definition is described as:</p>
+  <pre color-scheme="light"><code><span style="color:#5c6a72;">class-definition ::=
+</span><span style="color:#5c6a72;">&#39;</span><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">&#39; &#39;class&#39; </span><span style="color:#f57d26;">&lt;</span><span style="color:#5c6a72;">inherits</span><span style="color:#f57d26;">&gt;</span><span style="color:#5c6a72;">
+</span><span style="color:#5c6a72;">   { </span><span style="color:#f57d26;">&lt;</span><span style="color:#5c6a72;">fields</span><span style="color:#f57d26;">&gt;</span><span style="color:#5c6a72;"> } &#39;</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;">&#39;
+</span><span style="color:#5c6a72;">
+</span><span style="color:#5c6a72;">&lt;inherits&gt;       =&gt; &#39;</span><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">&#39; { </span><span style="color:#f57d26;">&lt;</span><span style="color:#5c6a72;">class</span><span style="color:#f57d26;">&gt;</span><span style="color:#5c6a72;"> } &#39;</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;">&#39;
+</span><span style="color:#5c6a72;">&lt;fields&gt;         =&gt;
+</span><span style="color:#5c6a72;">&#39;</span><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">&#39; &#39;:fields&#39; { </span><span style="color:#f57d26;">&lt;</span><span style="color:#5c6a72;">deffield</span><span style="color:#f57d26;">&gt;</span><span style="color:#5c6a72;"> } &#39;</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;">&#39;
+</span><span style="color:#5c6a72;">
+</span><span style="color:#5c6a72;">&lt;deffield&gt;       =&gt;
+</span><span style="color:#5c6a72;">&#39;</span><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">&#39; &#39;define&#39; </span><span style="color:#f57d26;">&lt;</span><span style="color:#5c6a72;">name</span><span style="color:#f57d26;">&gt;</span><span style="color:#5c6a72;"> [ &#39;</span><span style="color:#5c6a72;">#</span><span style="color:#5c6a72;">:type&#39;</span><span style="color:#5c6a72;"> ] </span><span style="color:#f57d26;">&lt;</span><span style="color:#5c6a72;">type</span><span style="color:#f57d26;">&gt;</span><span style="color:#5c6a72;"> [ </span><span style="color:#f57d26;">&lt;</span><span style="color:#5c6a72;">init</span><span style="color:#f57d26;">&gt;</span><span style="color:#5c6a72;"> ] &#39;</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;">&#39;</span></code></pre>
+  
+  <pre color-scheme="dark"><code><span style="color:#d3c6aa;">class-definition ::=
+</span><span style="color:#d3c6aa;">&#39;</span><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">&#39; &#39;class&#39; </span><span style="color:#e69875;">&lt;</span><span style="color:#d3c6aa;">inherits</span><span style="color:#e69875;">&gt;</span><span style="color:#d3c6aa;">
+</span><span style="color:#d3c6aa;">   { </span><span style="color:#e69875;">&lt;</span><span style="color:#d3c6aa;">fields</span><span style="color:#e69875;">&gt;</span><span style="color:#d3c6aa;"> } &#39;</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;">&#39;
+</span><span style="color:#d3c6aa;">
+</span><span style="color:#d3c6aa;">&lt;inherits&gt;       =&gt; &#39;</span><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">&#39; { </span><span style="color:#e69875;">&lt;</span><span style="color:#d3c6aa;">class</span><span style="color:#e69875;">&gt;</span><span style="color:#d3c6aa;"> } &#39;</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;">&#39;
+</span><span style="color:#d3c6aa;">&lt;fields&gt;         =&gt;
+</span><span style="color:#d3c6aa;">&#39;</span><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">&#39; &#39;:fields&#39; { </span><span style="color:#e69875;">&lt;</span><span style="color:#d3c6aa;">deffield</span><span style="color:#e69875;">&gt;</span><span style="color:#d3c6aa;"> } &#39;</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;">&#39;
+</span><span style="color:#d3c6aa;">
+</span><span style="color:#d3c6aa;">&lt;deffield&gt;       =&gt;
+</span><span style="color:#d3c6aa;">&#39;</span><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">&#39; &#39;define&#39; </span><span style="color:#e69875;">&lt;</span><span style="color:#d3c6aa;">name</span><span style="color:#e69875;">&gt;</span><span style="color:#d3c6aa;"> [ &#39;</span><span style="color:#d3c6aa;">#</span><span style="color:#d3c6aa;">:type&#39;</span><span style="color:#d3c6aa;"> ] </span><span style="color:#e69875;">&lt;</span><span style="color:#d3c6aa;">type</span><span style="color:#e69875;">&gt;</span><span style="color:#d3c6aa;"> [ </span><span style="color:#e69875;">&lt;</span><span style="color:#d3c6aa;">init</span><span style="color:#e69875;">&gt;</span><span style="color:#d3c6aa;"> ] &#39;</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;">&#39;</span></code></pre>
+<p>Inherits clause declares the super classes of the class being defined. Self clause declares the symbol that refers to the current instance of the class within the class body. Type clause declares the type of the class being defined.</p>
+    <p>With annotations, the accessibility of fields can be controlled: E.g.,</p>
+  <pre color-scheme="light"><code><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">define Point
+</span><span style="color:#5c6a72;">  </span><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">class
+</span><span style="color:#5c6a72;">    #@[accessibility x </span><span style="color:#5c6a72;">(</span><span style="color:#8da101;">read</span><span style="color:#5c6a72;"> :public</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;"> </span><span style="color:#5c6a72;">(</span><span style="color:#8da101;">write</span><span style="color:#5c6a72;"> :private</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;">]
+</span><span style="color:#5c6a72;">    #@[accessibility y </span><span style="color:#5c6a72;">(</span><span style="color:#8da101;">read</span><span style="color:#5c6a72;"> :public</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;"> </span><span style="color:#5c6a72;">(</span><span style="color:#8da101;">write</span><span style="color:#5c6a72;"> :private</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;">]
+</span><span style="color:#5c6a72;">    </span><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">define x Integer</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;">
+</span><span style="color:#5c6a72;">    </span><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">define y Integer</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;">)</span></code></pre>
+  
+  <pre color-scheme="dark"><code><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">define Point
+</span><span style="color:#d3c6aa;">  </span><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">class
+</span><span style="color:#d3c6aa;">    #@[accessibility x </span><span style="color:#d3c6aa;">(</span><span style="color:#a7c080;">read</span><span style="color:#d3c6aa;"> :public</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;"> </span><span style="color:#d3c6aa;">(</span><span style="color:#a7c080;">write</span><span style="color:#d3c6aa;"> :private</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;">]
+</span><span style="color:#d3c6aa;">    #@[accessibility y </span><span style="color:#d3c6aa;">(</span><span style="color:#a7c080;">read</span><span style="color:#d3c6aa;"> :public</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;"> </span><span style="color:#d3c6aa;">(</span><span style="color:#a7c080;">write</span><span style="color:#d3c6aa;"> :private</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;">]
+</span><span style="color:#d3c6aa;">    </span><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">define x Integer</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;">
+</span><span style="color:#d3c6aa;">    </span><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">define y Integer</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;">)</span></code></pre>
+<p>To define filed to be variable, wrap type with <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">variable</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">variable</span></code>
+</span>.</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/d_flat/Lilies-3.3.2.2">3.3.2.2</span>
+ Definition of Traits 特征的定义</summary>
+      <p>Define a new trait with <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">trait</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">trait</span></code>
+</span> syntax. E.g., to define a new trait <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">Drawable</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">Drawable</span></code>
+</span> with a method <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">draw</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">draw</span></code>
+</span>:</p>
+  <pre color-scheme="light"><code><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">define Drawable
+</span><span style="color:#5c6a72;">  </span><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">trait
+</span><span style="color:#5c6a72;">    </span><span style="color:#5c6a72;">#</span><span style="color:#5c6a72;">:self</span><span style="color:#5c6a72;"> self
+</span><span style="color:#5c6a72;">    </span><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">define draw </span><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">function </span><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">self</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;">)</span></code></pre>
+  
+  <pre color-scheme="dark"><code><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">define Drawable
+</span><span style="color:#d3c6aa;">  </span><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">trait
+</span><span style="color:#d3c6aa;">    </span><span style="color:#d3c6aa;">#</span><span style="color:#d3c6aa;">:self</span><span style="color:#d3c6aa;"> self
+</span><span style="color:#d3c6aa;">    </span><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">define draw </span><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">function </span><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">self</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;">)</span></code></pre>
+
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/d_flat/Lilies-3.3.2.3">3.3.2.3</span>
+ Method and Trait Implementation 方法与特征实现</summary>
+      <p>Both Methods and Traits are implemented with <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">implement</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">implement</span></code>
+</span> syntax.</p>
+    <p><span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">implement</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">implement</span></code>
+</span> unwraps namespace of a class, and then methods defined within the body are assigned to the class function table. Furthermore, traits can unwrap namespace of a object, and then anything inside will only extend the object behavior.</p>
+  <pre color-scheme="light"><code><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">implement Point </span><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">Drawable</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;">
+</span><span style="color:#5c6a72;">  </span><span style="color:#5c6a72;">#</span><span style="color:#5c6a72;">:self</span><span style="color:#5c6a72;"> self
+</span><span style="color:#5c6a72;">  </span><span style="color:#5c6a72;">#</span><span style="color:#5c6a72;">:Type</span><span style="color:#5c6a72;"> Self
+</span><span style="color:#5c6a72;">  </span><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">define draw
+</span><span style="color:#5c6a72;">    </span><span style="color:#5c6a72;">(</span><span style="color:#8da101;">lambda</span><span style="color:#5c6a72;"> </span><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">self</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;">
+</span><span style="color:#5c6a72;">      </span><span style="color:#5c6a72;">#</span><span style="color:#5c6a72;">:returns</span><span style="color:#5c6a72;"> </span><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">None</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;">
+</span><span style="color:#5c6a72;">      </span><span style="color:#5c6a72;">(</span><span style="color:#8da101;">print</span><span style="color:#5c6a72;"> </span><span style="color:#8da101;">f</span><span style="color:#dfa000;">&quot;</span><span style="color:#dfa000;">x: {(field self &#39;x)}; y: {(field self &#39;y)}</span><span style="color:#dfa000;">&quot;</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;">)</span></code></pre>
+  
+  <pre color-scheme="dark"><code><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">implement Point </span><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">Drawable</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;">
+</span><span style="color:#d3c6aa;">  </span><span style="color:#d3c6aa;">#</span><span style="color:#d3c6aa;">:self</span><span style="color:#d3c6aa;"> self
+</span><span style="color:#d3c6aa;">  </span><span style="color:#d3c6aa;">#</span><span style="color:#d3c6aa;">:Type</span><span style="color:#d3c6aa;"> Self
+</span><span style="color:#d3c6aa;">  </span><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">define draw
+</span><span style="color:#d3c6aa;">    </span><span style="color:#d3c6aa;">(</span><span style="color:#a7c080;">lambda</span><span style="color:#d3c6aa;"> </span><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">self</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;">
+</span><span style="color:#d3c6aa;">      </span><span style="color:#d3c6aa;">#</span><span style="color:#d3c6aa;">:returns</span><span style="color:#d3c6aa;"> </span><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">None</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;">
+</span><span style="color:#d3c6aa;">      </span><span style="color:#d3c6aa;">(</span><span style="color:#a7c080;">print</span><span style="color:#d3c6aa;"> </span><span style="color:#a7c080;">f</span><span style="color:#dbbc7f;">&quot;</span><span style="color:#dbbc7f;">x: {(field self &#39;x)}; y: {(field self &#39;y)}</span><span style="color:#dbbc7f;">&quot;</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;">)</span></code></pre>
+
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/d_flat/Lilies-3.3.2.4">3.3.2.4</span>
+ Generic Function & Interface 泛义函数与接口</summary>
       
     </details>
   </section>
@@ -742,9 +1063,89 @@
   <section class="block">
     <details open="">
       <summary style="font-size: 117%;">
-<span id="notes/d_flat/Lilies-3.3.3">3.3.3</span>
- Generic 广义函数</summary>
+<span id="notes/d_flat/Lilies-3.3.2.5">3.3.2.5</span>
+ Method Dispatch 方法分派</summary>
+      <p>When a method is called on an object, the method to be executed is determined through method dispatch.</p>
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/d_flat/Lilies-3.3.2.5.1">3.3.2.5.1</span>
+ Dynamic Dispatch 动态分派</summary>
       
+  <pre color-scheme="light"><code><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">method object &#39;method</span><span style="color:#f57d26;">-</span><span style="color:#5c6a72;">name&#39;</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;"> ...args</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;">
+</span><span style="font-style:italic;color:#939f91;">;</span><span style="font-style:italic;color:#939f91;">; or
+</span><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">{method</span><span style="color:#f57d26;">-</span><span style="color:#5c6a72;">name object} ...args</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;"> </span><span style="font-style:italic;color:#939f91;">;</span><span style="font-style:italic;color:#939f91;"> for short</span></code></pre>
+  
+  <pre color-scheme="dark"><code><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">method object &#39;method</span><span style="color:#e69875;">-</span><span style="color:#d3c6aa;">name&#39;</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;"> ...args</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;">
+</span><span style="font-style:italic;color:#859289;">;</span><span style="font-style:italic;color:#859289;">; or
+</span><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">{method</span><span style="color:#e69875;">-</span><span style="color:#d3c6aa;">name object} ...args</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;"> </span><span style="font-style:italic;color:#859289;">;</span><span style="font-style:italic;color:#859289;"> for short</span></code></pre>
+
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/d_flat/Lilies-3.3.2.5.2">3.3.2.5.2</span>
+ Static Dispatch 静态分派</summary>
+      
+  <pre color-scheme="light"><code><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">method Class &#39;method</span><span style="color:#f57d26;">-</span><span style="color:#5c6a72;">name&#39;</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;"> ...args</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;">
+</span><span style="font-style:italic;color:#939f91;">;</span><span style="font-style:italic;color:#939f91;">; or
+</span><span style="color:#5c6a72;">(</span><span style="color:#5c6a72;">{method</span><span style="color:#f57d26;">-</span><span style="color:#5c6a72;">name Class} ...args</span><span style="color:#5c6a72;">)</span><span style="color:#5c6a72;"> </span><span style="font-style:italic;color:#939f91;">;</span><span style="font-style:italic;color:#939f91;"> for short</span></code></pre>
+  
+  <pre color-scheme="dark"><code><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">method Class &#39;method</span><span style="color:#e69875;">-</span><span style="color:#d3c6aa;">name&#39;</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;"> ...args</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;">
+</span><span style="font-style:italic;color:#859289;">;</span><span style="font-style:italic;color:#859289;">; or
+</span><span style="color:#d3c6aa;">(</span><span style="color:#d3c6aa;">{method</span><span style="color:#e69875;">-</span><span style="color:#d3c6aa;">name Class} ...args</span><span style="color:#d3c6aa;">)</span><span style="color:#d3c6aa;"> </span><span style="font-style:italic;color:#859289;">;</span><span style="font-style:italic;color:#859289;"> for short</span></code></pre>
+
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/d_flat/Lilies-3.3.2.5.3">3.3.2.5.3</span>
+ Method Access 语法糖方法调用</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/d_flat/Lilies-3.3.2.5.4">3.3.2.5.4</span>
+ Invoke 调用</summary>
+      
+    </details>
+  </section>
+  
+
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/d_flat/Lilies-3.3.2.6">3.3.2.6</span>
+ Field & Property Access 字段与属性访问</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/d_flat/Lilies-3.3.2.7">3.3.2.7</span>
+ Traits Shadowing 特征遮蔽</summary>
+      
+    </details>
+  </section>
+  
+
     </details>
   </section>
   
@@ -893,6 +1294,13 @@
           <li>Hygiene for the Unhygienic Macro</li>
         </ol>
       </li>
+      <li>
+        <p>Syntax Rules</p>
+        <ol>
+          <li>History: Hygiene Macro</li>
+          <li>Syntax Object</li>
+        </ol>
+      </li>
     </ol>
     </details>
   </section>
@@ -902,16 +1310,18 @@
     <details open="">
       <summary style="font-size: 117%;">
 <span id="notes/d_flat/Lilies-3.11">3.11</span>
- Syntax Rules</summary>
-      <ol>
-      <li>
-        <p>Syntax Rules</p>
-        <ol>
-          <li>History: Hygiene Macro</li>
-          <li>Syntax Object</li>
-        </ol>
-      </li>
-    </ol>
+ Symbol Generation</summary>
+      
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/d_flat/Lilies-3.11.1">3.11.1</span>
+ Expression Tree</summary>
+      
+    </details>
+  </section>
+  
+
     </details>
   </section>
   
@@ -964,16 +1374,6 @@
     <details open="">
       <summary style="font-size: 117%;">
 <span id="notes/d_flat/Lilies-3.13">3.13</span>
- Expression Tree</summary>
-      
-    </details>
-  </section>
-  
-
-  <section class="block">
-    <details open="">
-      <summary style="font-size: 117%;">
-<span id="notes/d_flat/Lilies-3.14">3.14</span>
  Continuations</summary>
       
     </details>
@@ -983,7 +1383,7 @@
   <section class="block">
     <details open="">
       <summary style="font-size: 117%;">
-<span id="notes/d_flat/Lilies-3.15">3.15</span>
+<span id="notes/d_flat/Lilies-3.14">3.14</span>
  Exception Handling</summary>
       <ol>
       <li>Condition System</li>
@@ -995,7 +1395,7 @@
   <section class="block">
     <details open="">
       <summary style="font-size: 117%;">
-<span id="notes/d_flat/Lilies-3.16">3.16</span>
+<span id="notes/d_flat/Lilies-3.15">3.15</span>
  Module & Library</summary>
       
     </details>
@@ -1005,7 +1405,7 @@
   <section class="block">
     <details open="">
       <summary style="font-size: 117%;">
-<span id="notes/d_flat/Lilies-3.17">3.17</span>
+<span id="notes/d_flat/Lilies-3.16">3.16</span>
  Top-Level</summary>
       
     </details>
@@ -1229,6 +1629,26 @@ Ignore 忽略类型</a></span>
     </ul>
   </li>
 
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Lilies-3.2.1.12">
+<span id="notes/d_flat/Lilies-3.2.1.12">3.2.1.12</span>
+Meta 元类型</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Lilies-3.2.1.13">
+<span id="notes/d_flat/Lilies-3.2.1.13">3.2.1.13</span>
+Unit 单元类型</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
     </ul>
   </li>
 
@@ -1296,7 +1716,7 @@ Generic 泛型类型</a></span>
     <a class="bullet">■</a>
     <span class="link"><a href="#notes/d_flat/Lilies-3.2.8">
 <span id="notes/d_flat/Lilies-3.2.8">3.2.8</span>
-Type Dispatch 类型分派</a></span>
+Traits 特征与接口</a></span>
     <ul class="block" style="display: block;">
       
     </ul>
@@ -1306,6 +1726,16 @@ Type Dispatch 类型分派</a></span>
     <a class="bullet">■</a>
     <span class="link"><a href="#notes/d_flat/Lilies-3.2.9">
 <span id="notes/d_flat/Lilies-3.2.9">3.2.9</span>
+Type Dispatch 类型分派</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Lilies-3.2.10">
+<span id="notes/d_flat/Lilies-3.2.10">3.2.10</span>
 Auto Type Detection 自动类型检测</a></span>
     <ul class="block" style="display: block;">
       
@@ -1319,14 +1749,14 @@ Auto Type Detection 自动类型检测</a></span>
     <a class="bullet">■</a>
     <span class="link"><a href="#notes/d_flat/Lilies-3.3">
 <span id="notes/d_flat/Lilies-3.3">3.3</span>
-Object System</a></span>
+Object System 对象系统</a></span>
     <ul class="block" style="display: block;">
       
   <li class="item-summary">
     <a class="bullet">■</a>
     <span class="link"><a href="#notes/d_flat/Lilies-3.3.1">
 <span id="notes/d_flat/Lilies-3.3.1">3.3.1</span>
-Traits 特征</a></span>
+Primitive Object 原始对象</a></span>
     <ul class="block" style="display: block;">
       
     </ul>
@@ -1336,7 +1766,14 @@ Traits 特征</a></span>
     <a class="bullet">■</a>
     <span class="link"><a href="#notes/d_flat/Lilies-3.3.2">
 <span id="notes/d_flat/Lilies-3.3.2">3.3.2</span>
-Implementation 实现</a></span>
+Classes, Fields, Properties & Traits 类, 字段, 属性与特征</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Lilies-3.3.2.1">
+<span id="notes/d_flat/Lilies-3.3.2.1">3.3.2.1</span>
+Definition of Classes 类的定义</a></span>
     <ul class="block" style="display: block;">
       
     </ul>
@@ -1344,11 +1781,104 @@ Implementation 实现</a></span>
 
   <li class="item-summary">
     <a class="bullet">■</a>
-    <span class="link"><a href="#notes/d_flat/Lilies-3.3.3">
-<span id="notes/d_flat/Lilies-3.3.3">3.3.3</span>
-Generic 广义函数</a></span>
+    <span class="link"><a href="#notes/d_flat/Lilies-3.3.2.2">
+<span id="notes/d_flat/Lilies-3.3.2.2">3.3.2.2</span>
+Definition of Traits 特征的定义</a></span>
     <ul class="block" style="display: block;">
       
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Lilies-3.3.2.3">
+<span id="notes/d_flat/Lilies-3.3.2.3">3.3.2.3</span>
+Method and Trait Implementation 方法与特征实现</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Lilies-3.3.2.4">
+<span id="notes/d_flat/Lilies-3.3.2.4">3.3.2.4</span>
+Generic Function & Interface 泛义函数与接口</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Lilies-3.3.2.5">
+<span id="notes/d_flat/Lilies-3.3.2.5">3.3.2.5</span>
+Method Dispatch 方法分派</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Lilies-3.3.2.5.1">
+<span id="notes/d_flat/Lilies-3.3.2.5.1">3.3.2.5.1</span>
+Dynamic Dispatch 动态分派</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Lilies-3.3.2.5.2">
+<span id="notes/d_flat/Lilies-3.3.2.5.2">3.3.2.5.2</span>
+Static Dispatch 静态分派</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Lilies-3.3.2.5.3">
+<span id="notes/d_flat/Lilies-3.3.2.5.3">3.3.2.5.3</span>
+Method Access 语法糖方法调用</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Lilies-3.3.2.5.4">
+<span id="notes/d_flat/Lilies-3.3.2.5.4">3.3.2.5.4</span>
+Invoke 调用</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Lilies-3.3.2.6">
+<span id="notes/d_flat/Lilies-3.3.2.6">3.3.2.6</span>
+Field & Property Access 字段与属性访问</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Lilies-3.3.2.7">
+<span id="notes/d_flat/Lilies-3.3.2.7">3.3.2.7</span>
+Traits Shadowing 特征遮蔽</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
     </ul>
   </li>
 
@@ -1429,9 +1959,19 @@ Macro</a></span>
     <a class="bullet">■</a>
     <span class="link"><a href="#notes/d_flat/Lilies-3.11">
 <span id="notes/d_flat/Lilies-3.11">3.11</span>
-Syntax Rules</a></span>
+Symbol Generation</a></span>
     <ul class="block" style="display: block;">
       
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/d_flat/Lilies-3.11.1">
+<span id="notes/d_flat/Lilies-3.11.1">3.11.1</span>
+Expression Tree</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
     </ul>
   </li>
 
@@ -1449,7 +1989,7 @@ Memory Management</a></span>
     <a class="bullet">■</a>
     <span class="link"><a href="#notes/d_flat/Lilies-3.13">
 <span id="notes/d_flat/Lilies-3.13">3.13</span>
-Expression Tree</a></span>
+Continuations</a></span>
     <ul class="block" style="display: block;">
       
     </ul>
@@ -1459,7 +1999,7 @@ Expression Tree</a></span>
     <a class="bullet">■</a>
     <span class="link"><a href="#notes/d_flat/Lilies-3.14">
 <span id="notes/d_flat/Lilies-3.14">3.14</span>
-Continuations</a></span>
+Exception Handling</a></span>
     <ul class="block" style="display: block;">
       
     </ul>
@@ -1469,7 +2009,7 @@ Continuations</a></span>
     <a class="bullet">■</a>
     <span class="link"><a href="#notes/d_flat/Lilies-3.15">
 <span id="notes/d_flat/Lilies-3.15">3.15</span>
-Exception Handling</a></span>
+Module & Library</a></span>
     <ul class="block" style="display: block;">
       
     </ul>
@@ -1479,16 +2019,6 @@ Exception Handling</a></span>
     <a class="bullet">■</a>
     <span class="link"><a href="#notes/d_flat/Lilies-3.16">
 <span id="notes/d_flat/Lilies-3.16">3.16</span>
-Module & Library</a></span>
-    <ul class="block" style="display: block;">
-      
-    </ul>
-  </li>
-
-  <li class="item-summary">
-    <a class="bullet">■</a>
-    <span class="link"><a href="#notes/d_flat/Lilies-3.17">
-<span id="notes/d_flat/Lilies-3.17">3.17</span>
 Top-Level</a></span>
     <ul class="block" style="display: block;">
       

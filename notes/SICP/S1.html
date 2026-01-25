@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>MIT 6.001: Structure and Interpretation of Computer Programs (SICP)</title>
+  <link href="/schemas/page.css" rel="stylesheet"/>
+  <link href="/math-block.css" rel="stylesheet"/>
+  <link href="/math-inline.css" rel="stylesheet"/>
+  <link href="/mathyml.css" rel="stylesheet"/>
+  <link href="/inline-fold.css" rel="stylesheet"/>
+  <link crossorigin="true" href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@700&display=swap" rel="stylesheet">
+  
+  <link href="/components/sidebar.css" rel="stylesheet">
+  <script>
+    setInterval(async () => {
+      const res = await fetch('/_reload')
+      if (await res.text() === '1') {
+        location.reload()
+      }
+    }, 500)
+  </script>
+  <link href="/rewrite/code_inline.css" rel="stylesheet">
+  
+  <link href="https://fred-wang.github.io/MathFonts/NewComputerModern/mathfonts.css" rel="stylesheet">
+</head>
+<body>
+
+  <header class="header" parent="true">
+    <nav class="nav">
+      <div class="logo">
+        <span onclick="window.location.href='/index'" title="GitHub@mujiu555's page [/index]">« GitHub@mujiu555's page</span>
+      </div>
+    </nav>
+  </header>
+  <div id="grid-wrapper" sidebar="true">
+    <article>
+      <section class="block" id="notes/SICP/S1">
+        <details open="">
+          <summary>
+            <header class="top-header" show-metadata="true">
+              <h1>
+                MIT 6.001: Structure and Interpretation of Computer Programs (SICP) 
+              </h1>
+              <div class="metadata">
+                <ul>
+                  <li class="meta-item">
+                    <span class="link external"><a href="https://github.com/mujiu555" title="https://github.com/mujiu555">GitHub@mujiu555</a></span>
+                  </li>
+                  <li class="meta-item">
+                    2025-12-17 15:56
+                  </li>
+                  <li class="meta-item">
+                    <span class="link local"><a href="https://github.com/mujiu555/Wishful-Thinking/tree/main/site" title="Source [https://github.com/mujiu555/Wishful-Thinking/tree/main/site]">Source</a></span>
+                  </li>
+                </ul>
+              </div>
+            </header>
+          </summary>
+          <p>“ Computer science is not about computers, any more than astronomy is about telescopes, or biology about microscopes. ”</p>
+    <p>Computer is neither about science nor about computers, instead of a subject that helps explore the nature of computation itself, it is a engineering discipline that focuses on building systems that perform computations, aka., how to use computers to solve problems.</p>
+    <p>Likely geometry, which originally focused on measuring land, later evolved into a abstract mathematical discipline that studies the properties of space and shapes.</p>
+    <p>The main problem the computer science tries to solve is to describe the process of computation.</p>
+    <p>In mathematics, functions are used to describe relationships between quantities. In this aspect, a equation cannot tell us how to compute the value of a function. And computer science can provide us a way to describe such process, to compute and solve the functions.</p>
+    <p>The main purpose is to find the way to formalize such process, to describe the process of computation itself. In some case, the systems can be such large and complex that nobody can fully understand the whole system. And that's why we need to build abstractions to help us manage the complexity of such systems. What make this possible is the idea of procedures, which can be used to build abstractions. A technique to manage complexity.</p>
+    <p>Computer is a virtual environment that will not affect by real world constraints, such that the system can be built in any way we want. The only limitation is our imagination and creativity. A ideal system.</p>
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/SICP/S1-1">1</span>
+ Preface</summary>
+      
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/SICP/S1-2">2</span>
+ Section 1: Building Abstractions with Procedures</summary>
+      <p>The first way to build abstraction is black boxes, aka., procedures. Which accepts some inputs, and produce some outputs, without revealing the internal details of how the procedure works. This way is called encapsulation nowadays.</p>
+    <p>Fix points: A fix point of a function is a value that does not change under the application of the function. And in this case, what we want to do is to find a way that can compute such fix points. Package the process into procedures. And how can we archive this is a instructive knowledge. How about to apply such procedure? How about to use such procedure to find the fix points of other functions? And how about to build new procedures that build upon such procedure?</p>
+    <p>In this chapter, we'd talk about several topics:</p>
+    <ul>
+      <li>Primitive Elements</li>
+      <li>Combinations</li>
+      <li>Abstract and how to build new abstractions</li>
+      <li>Extract common patterns</li>
+    </ul>
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/SICP/S1-2.1">2.1</span>
+ Lisp</summary>
+      <p>The main purpose to have such section is not to programming in Lisp, rather than to learn how to think about programming. What is about to learn is a general framework, which compose of primitives, means of combination, and the means of abstraction.</p>
+    <p>The combination of Lisp expressions are organized in a tree structure, aka., S-expressions. P.S., in compiler, such tree structure is called Abstract Syntax Tree (AST).</p>
+    </details>
+  </section>
+  
+
+  <section class="block">
+    <details open="">
+      <summary style="font-size: 117%;">
+<span id="notes/SICP/S1-2.2">2.2</span>
+ <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">define</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">define</span></code>
+</span></summary>
+      <p>The way to build new abstractions is using <span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">define</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">define</span></code>
+</span>. By extract general ideas from specific examples, it is possible to create new procedures.</p>
+    </details>
+  </section>
+  
+
+    </details>
+  </section>
+  
+
+ 
+        </details>
+      </section>
+      
+    
+
+
+    </article>
+    
+    <nav id="toc">
+        <div class="block">
+            <h1>Table of Contents</h1>
+            <ul class="block">
+            
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/SICP/S1">
+<span id="notes/SICP/S1"></span>
+MIT 6.001: Structure and Interpretation of Computer Programs (SICP)</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/SICP/S1-1">
+<span id="notes/SICP/S1-1">1</span>
+Preface</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/SICP/S1-2">
+<span id="notes/SICP/S1-2">2</span>
+Section 1: Building Abstractions with Procedures</a></span>
+    <ul class="block" style="display: block;">
+      
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/SICP/S1-2.1">
+<span id="notes/SICP/S1-2.1">2.1</span>
+Lisp</a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+  <li class="item-summary">
+    <a class="bullet">■</a>
+    <span class="link"><a href="#notes/SICP/S1-2.2">
+<span id="notes/SICP/S1-2.2">2.2</span>
+<span style="display: inline-block;">
+
+<code color-scheme="light"><span style="color:#5c6a72;">define</span></code>
+<code color-scheme="dark"><span style="color:#d3c6aa;">define</span></code>
+</span></a></span>
+    <ul class="block" style="display: block;">
+      
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+    </ul>
+  </li>
+
+
+            </ul>
+        </div>
+    </nav>
+ 
+  </div>
+
+
+</body>
+</html>
